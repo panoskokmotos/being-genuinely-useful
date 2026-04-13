@@ -1,0 +1,12 @@
+{
+  "name": "being-genuinely-useful",
+  "version": "1.0.0",
+  "description": "Being Genuinely Useful in an AI World - Ebook",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": ["usefulness", "AI", "knowledge", "Deutsch", "Naval"],
+  "author": "Panos Kokmotos",
+  "license": "MIT"
+}
