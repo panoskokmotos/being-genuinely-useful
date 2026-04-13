@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribution Hub - Being Genuinely Useful</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #cbd5e1;
+            font-size: 1.1em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #3b82f6;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+            border-color: #10b981;
+        }
+
+        .card h2 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .card-meta {
+            font-size: 0.9em;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+        }
+
+        .section {
+            margin-bottom: 60px;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #475569;
+        }
+
+        .section h2 {
+            color: #10b981;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .content {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1em;
+        }
+
+        .content h3 {
+            color: #3b82f6;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .content p, .content li {
+            margin-bottom: 15px;
+        }
+
+        .content ul, .content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .content li {
+            margin-bottom: 10px;
+        }
+
+        .copy-btn {
+            background: #10b981;
+            padding: 8px 15px;
+            font-size: 0.85em;
+            margin-left: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #059669;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Distribution Hub</h1>
+            <p class="subtitle">Being Genuinely Useful in an AI World</p>
+            <p class="subtitle">All templates, courses, threads, and strategies in one place</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h2>📧 Email Course</h2>
+                <p class="card-meta">7 days, copy-paste ready</p>
+                <p>Complete 7-day email course. Free version builds your list. Paid version monetizes.</p>
+                <button class="btn" onclick="scrollTo('email-course')">View Course</button>
+            </div>
+
+            <div class="card">
+                <h2>𝕏 Twitter Threads</h2>
+                <p class="card-meta">52 weeks of content</p>
+                <p>One complete thread per week for a year. Post 3x/week. Copy-paste ready.</p>
+                <button class="btn" onclick="scrollTo('twitter')">View Threads</button>
+            </div>
+
+            <div class="card">
+                <h2>💰 Monetization</h2>
+                <p class="card-meta">8 revenue streams</p>
+                <p>Complete strategy: pricing, product creation, timeline, revenue projections.</p>
+                <button class="btn" onclick="scrollTo('monetization')">View Strategy</button>
+            </div>
+
+            <div class="card">
+                <h2>📋 30-Day Plan</h2>
+                <p class="card-meta">Action checklist</p>
+                <p>Daily/weekly tasks. What to do each day. Expected results and metrics.</p>
+                <button class="btn" onclick="scrollTo('30day')">View Plan</button>
+            </div>
+
+            <div class="card">
+                <h2>📝 Medium</h2>
+                <p class="card-meta">Serialization</p>
+                <p>Publish one chapter per week on Medium. SEO + audience building.</p>
+                <button class="btn" onclick="scrollTo('medium')">View Strategy</button>
+            </div>
+
+            <div class="card">
+                <h2>🎙️ Podcast</h2>
+                <p class="card-meta">Episode outlines</p>
+                <p>8-10 episode outline. Discuss each chapter with guests. Build authority.</p>
+                <button class="btn" onclick="scrollTo('podcast')">View Outline</button>
+            </div>
+        </div>
+
+        <!-- EMAIL COURSE -->
+        <div id="email-course" class="section">
+            <h2>📧 Email Course: 7-Day Free Series</h2>
+            <div class="content">
+                <p><strong>Free version builds your list from 0 → 500+ subscribers.</strong></p>
+                <p>Send one email per day. Then offer paid version for those who want more.</p>
+
+                <h3>Day 1: The Usefulness Crisis</h3>
+                <p><strong>Subject:</strong> Why most AI assistants are useless (hint: it's not intelligence)</p>
+                <div class="highlight">
+                    <p>Hi [NAME],</p>
+                    <p>You're drowning in helpful tools. Chatbots that respond to everything. AI that generates a thousand options. Apps that customize to your every preference.</p>
+                    <p>Yet you're less productive than ever.</p>
+                    <p>Why?</p>
+                    <p><strong>Because most "helpful" things optimize for feeling helpful, not being helpful.</strong></p>
+                    <p>Over the next 7 days, I'm sharing a framework for building actually useful systems. Not engagement tactics. Not vanity metrics. Actual usefulness.</p>
+                    <p>It's based on David Deutsch's epistemology, Naval Ravikant's philosophy on knowledge, and 5 years of building Givelink.</p>
+                    <p>Tomorrow: What actually makes something useful?</p>
+                    <p>---Panos</p>
+                    <p><strong>CTA:</strong> Reply with your biggest question about usefulness.</p>
+                </div>
+                
+                <p style="margin-top: 30px;"><strong>Days 2-7:</strong> See full course in <code>/distribution/email-course.md</code></p>
+                <p><strong>Expected:</strong> 100-500 subscribers week 1, 2-10 sales of paid version</p>
+
+                <h3>How to Use</h3>
+                <ol>
+                    <li>Go to https://panoskokmotos.substack.com/</li>
+                    <li>Copy Day 1 email above</li>
+                    <li>Paste into draft</li>
+                    <li>Schedule for tomorrow 9am</li>
+                    <li>Repeat for Days 2-7</li>
+                    <li>Share link everywhere</li>
+                </ol>
+
+                <h3>Expected Results</h3>
+                <ul>
+                    <li>Day 1: 10-20 subscribers</li>
+                    <li>Day 3: 30-50 subscribers</li>
+                    <li>Day 7: 100-200 subscribers</li>
+                    <li>Week 2: 200-500 subscribers (viral growth)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TWITTER THREADS -->
+        <div id="twitter" class="section">
+            <h2>𝕏 Twitter: 52 Weeks of Threads</h2>
+            <div class="content">
+                <p><strong>One complete thread per week. Post 3x/week. 52 weeks = 1 year of content.</strong></p>
+
+                <h3>WEEK 1: The Usefulness Crisis</h3>
+                <div class="highlight">
+                    <p>1/ Most AI assistants are useless. Not because they're dumb. Because they optimize for engagement, not outcomes.</p>
+                    <p>A chatbot that responds to everything isn't helpful. It's noise.</p>
+                    <p>An AI that gives 5 options isn't thinking. It's decision paralysis.</p>
+                    <p>Real usefulness is quiet. 🧵</p>
+                    <p><br/>2/ Here's the problem: We measure the wrong things.</p>
+                    <p>✗ Page views<br/>✗ Time spent<br/>✗ User engagement<br/>✗ Response speed</p>
+                    <p>None of this equals usefulness.</p>
+                    <p>Real usefulness is: Did it solve the problem? Can they verify it? Are they more capable?</p>
+                    <p><br/>[Continues with 3-5 more tweets...]</p>
+                </div>
+
+                <p style="margin-top: 30px;"><strong>Weeks 2-52:</strong> See all threads in <code>/distribution/twitter-threads.md</code></p>
+
+                <h3>How to Use</h3>
+                <ol>
+                    <li>Copy a thread (above or from file)</li>
+                    <li>Paste into Twitter compose</li>
+                    <li>Hit tweet</li>
+                    <li>Post 3x/week</li>
+                    <li>Repeat for 52 weeks</li>
+                </ol>
+
+                <h3>Expected Results Per Week</h3>
+                <ul>
+                    <li>150-600 impressions</li>
+                    <li>30-90 engagements</li>
+                    <li>5-15 new followers</li>
+                    <li>2-5 meaningful replies</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MONETIZATION -->
+        <div id="monetization" class="section">
+            <h2>💰 Monetization: 8 Revenue Streams</h2>
+            <div class="content">
+                <h3>Revenue Streams (in priority order)</h3>
+                
+                <h3>1. Email Course ($29)</h3>
+                <ul>
+                    <li>14 days (expanded from free 7)</li>
+                    <li>More exercises</li>
+                    <li>Video summaries</li>
+                    <li>Expected: $300-500/month</li>
+                </ul>
+
+                <h3>2. Workbook ($19)</h3>
+                <ul>
+                    <li>PDF companion</li>
+                    <li>Printable exercises</li>
+                    <li>Templates</li>
+                    <li>Expected: $400-800/month</li>
+                </ul>
+
+                <h3>3. Community ($9/month)</h3>
+                <ul>
+                    <li>Discord + weekly calls</li>
+                    <li>Recurring revenue</li>
+                    <li>Expected: $500-1,500/month</li>
+                </ul>
+
+                <h3>4. Consultation ($100/hour)</h3>
+                <ul>
+                    <li>30-min or 1-hour slots</li>
+                    <li>Help find specific knowledge</li>
+                    <li>Expected: $200-500/week</li>
+                </ul>
+
+                <h3>5. Video Course ($99)</h3>
+                <ul>
+                    <li>11 chapter videos (15-20 min)</li>
+                    <li>Lifetime access</li>
+                    <li>Expected: $1,000-3,000/month</li>
+                </ul>
+
+                <h3>6. Podcast Sponsorships</h3>
+                <ul>
+                    <li>Weekly discussions</li>
+                    <li>Sponsors at 5K listeners</li>
+                    <li>Expected: $1,000-2,000/month</li>
+                </ul>
+
+                <h3>7. Consulting Projects ($1K-5K)</h3>
+                <ul>
+                    <li>Help companies build useful systems</li>
+                    <li>2-3 projects/month</li>
+                    <li>Expected: $2,000-15,000/month</li>
+                </ul>
+
+                <h3>8. Knowledge Market Platform ($49/year)</h3>
+                <ul>
+                    <li>Working prototype of Chapter 10</li>
+                    <li>Recurring revenue</li>
+                    <li>Expected: $5,000-25,000/year</li>
+                </ul>
+
+                <h3>Revenue Projection</h3>
+                <ul>
+                    <li><strong>Month 1:</strong> $900-2,700</li>
+                    <li><strong>Month 2:</strong> $1,500-3,500</li>
+                    <li><strong>Month 3:</strong> $3,000-6,000</li>
+                    <li><strong>Month 6:</strong> $5,000-15,000</li>
+                    <li><strong>Month 12:</strong> $10,000-30,000+</li>
+                </ul>
+
+                <h3>How to Build Month 1</h3>
+                <ol>
+                    <li>Email course (free) - builds list</li>
+                    <li>Workbook ($19) - easy to create</li>
+                    <li>Community tier ($9/mo) - recurring</li>
+                    <li>Consultation ($100/hr) - immediate revenue</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- 30-DAY PLAN -->
+        <div id="30day" class="section">
+            <h2>📋 30-Day Action Plan</h2>
+            <div class="content">
+                <h3>Week 1: Launch (6 hours total)</h3>
+                <ul>
+                    <li>☐ Substack newsletter (30 min) → Email course</li>
+                    <li>☐ Gumroad shop (45 min) → Workbook</li>
+                    <li>☐ Discord community (1 hour)</li>
+                    <li>☐ Twitter/LinkedIn daily (30 min/day)</li>
+                </ul>
+                <p><strong>Expected:</strong> 100+ subscribers, 2-10 sales, $0-200 revenue</p>
+
+                <h3>Week 2: Build Products (7 hours total)</h3>
+                <ul>
+                    <li>☐ Video course (4 hours) → $99</li>
+                    <li>☐ Paid community tier (2 hours) → $9/month</li>
+                    <li>☐ Consultation setup (1 hour) → $100/hour</li>
+                </ul>
+                <p><strong>Expected:</strong> $500-1,500 revenue</p>
+
+                <h3>Week 3: Promote (8.5 hours total)</h3>
+                <ul>
+                    <li>☐ Daily engagement (30 min/day)</li>
+                    <li>☐ 3x/week content (1.5 hours)</li>
+                    <li>☐ Weekly email (1 hour)</li>
+                </ul>
+                <p><strong>Expected:</strong> $200-500 revenue</p>
+
+                <h3>Week 4: Optimize (4 hours total)</h3>
+                <ul>
+                    <li>☐ Track metrics</li>
+                    <li>☐ Identify what works</li>
+                    <li>☐ Double down on winners</li>
+                </ul>
+                <p><strong>Expected:</strong> $200-500 revenue</p>
+
+                <h3>Month 1 Total</h3>
+                <p><strong>25.5 hours work → $900-2,700 revenue</strong></p>
+
+                <h3>Daily Routine (Week 3+)</h3>
+                <ul>
+                    <li><strong>Daily (30 min):</strong> Reply emails, share 1 Twitter, engage 10 people</li>
+                    <li><strong>3x/week (1.5 hr):</strong> Twitter thread, LinkedIn article, Discord discussion</li>
+                    <li><strong>1x/week (1 hr):</strong> Email to list</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MEDIUM SERIALIZATION -->
+        <div id="medium" class="section">
+            <h2>📝 Medium: Serialize Your Book</h2>
+            <div class="content">
+                <h3>Strategy: 1 Chapter Per Week</h3>
+                <ul>
+                    <li>11 chapters = 11 weeks of content</li>
+                    <li>Drive traffic to book</li>
+                    <li>Build SEO authority</li>
+                    <li>Build Medium audience</li>
+                </ul>
+
+                <h3>How to Use</h3>
+                <ol>
+                    <li>Go to Medium.com</li>
+                    <li>Create account</li>
+                    <li>Publish Chapter 1 (extract from book)</li>
+                    <li>Link back to full book</li>
+                    <li>Repeat weekly</li>
+                </ol>
+
+                <h3>Expected Results</h3>
+                <ul>
+                    <li>100-500 reads per chapter</li>
+                    <li>10-30 new followers</li>
+                    <li>5-20% click through to book</li>
+                    <li>SEO benefit (Medium has authority)</li>
+                </ul>
+
+                <h3>Chapter Schedule</h3>
+                <ol>
+                    <li>Week 1: The Usefulness Crisis</li>
+                    <li>Week 2: What Makes Something Useful</li>
+                    <li>Week 3: Hard-to-Vary Explanations</li>
+                    <li>[Continue for 11 weeks]</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- PODCAST -->
+        <div id="podcast" class="section">
+            <h2>🎙️ Podcast: 8-Episode Series</h2>
+            <div class="content">
+                <h3>Format: 30-45 min discussions</h3>
+                <p>Discuss each chapter with a guest expert or solo commentary.</p>
+
+                <h3>Episode Outline</h3>
+                <ol>
+                    <li><strong>The Usefulness Crisis</strong> — Why engagement kills usefulness</li>
+                    <li><strong>What Makes Something Useful</strong> — 4 criteria</li>
+                    <li><strong>David Deutsch</strong> — Hard-to-vary explanations</li>
+                    <li><strong>Naval Ravikant</strong> — Specific knowledge</li>
+                    <li><strong>Why AI Fails</strong> — Engagement vs outcomes</li>
+                    <li><strong>Knowledge Compression</strong> — In-kind model</li>
+                    <li><strong>Building Systems</strong> — That matter</li>
+                    <li><strong>Knowledge Markets</strong> — The future</li>
+                </ol>
+
+                <h3>How to Launch</h3>
+                <ol>
+                    <li>Record on Riverside.fm or Loom</li>
+                    <li>Edit with Descript</li>
+                    <li>Upload to Anchor (free)</li>
+                    <li>Auto-distributes to Spotify, Apple, etc.</li>
+                    <li>1-2 hours/week</li>
+                </ol>
+
+                <h3>Monetization</h3>
+                <ul>
+                    <li>Get 5K-10K monthly downloads</li>
+                    <li>Attract sponsors ($500-2K/episode)</li>
+                    <li>Expected: $1,000-2,000/month</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- HOW TO INCREASE PASSIVE INCOME -->
+        <div id="passive" class="section">
+            <h2>🚀 How to Increase Passive Income (Beyond Month 1)</h2>
+            <div class="content">
+                <h3>Increase Income Without Increasing Time</h3>
+
+                <h3>1. Raise Prices (10-30% more revenue instantly)</h3>
+                <ul>
+                    <li>Email course: $29 → $49</li>
+                    <li>Video course: $99 → $149</li>
+                    <li>Consultation: $100 → $150/hour</li>
+                    <li>Community: $9 → $19/month</li>
+                    <li><strong>Result:</strong> 30% revenue increase with no extra work</li>
+                </ul>
+
+                <h3>2. Affiliate Revenue (Passive, $200-500/month)</h3>
+                <ul>
+                    <li>Amazon Associates (books on reading list)</li>
+                    <li>Gumroad affiliate (tools you recommend)</li>
+                    <li>Tool sponsors (Notion, Airtable, etc.)</li>
+                    <li>Cryptocurrency affiliate programs</li>
+                    <li><strong>Result:</strong> $200-500/month for recommending products</li>
+                </ul>
+
+                <h3>3. Expand Products (2-3x revenue)</h3>
+                <ul>
+                    <li><strong>Advanced course ($297):</strong> "Build Your Useful System" (6-hour course)</li>
+                    <li><strong>Notion templates ($29 each):</strong> Specific knowledge tracker, goal planner, etc.</li>
+                    <li><strong>Yearly membership ($199/year):</strong> All past + future content</li>
+                    <li><strong>Group coaching ($999/person, quarterly):</strong> Small group of 5-10</li>
+                </ul>
+
+                <h3>4. Leverage Existing Audience (High ROI)</h3>
+                <ul>
+                    <li>Email list = your most valuable asset</li>
+                    <li>1,000 subscribers @ $50 product = $50K potential revenue</li>
+                    <li>Focus on growing email list (best conversion)</li>
+                    <li>Create products for them</li>
+                </ul>
+
+                <h3>5. Automate & Systemize (Reduce Time to 5-10 hrs/week)</h3>
+                <ul>
+                    <li><strong>Email:</strong> Set up Substack automations</li>
+                    <li><strong>Twitter:</strong> Schedule threads in advance</li>
+                    <li><strong>Content:</strong> Batch record videos (4 hours, use for 4 weeks)</li>
+                    <li><strong>Community:</strong> Use Discord bots for moderation</li>
+                    <li><strong>Consulting:</strong> Create templates (faster delivery)</li>
+                </ul>
+
+                <h3>6. High-Ticket Consulting (10-100x hourly rate)</h3>
+                <ul>
+                    <li><strong>Current:</strong> $100/hour consultation</li>
+                    <li><strong>High-ticket:</strong> $5,000-10,000 projects</li>
+                    <li><strong>How:</strong> Help companies build their "useful system"</li>
+                    <li><strong>Effort:</strong> 2-3 projects/month = $10,000-30,000/month</li>
+                    <li><strong>Why it's passive:</strong> Reuse frameworks you've created</li>
+                </ul>
+
+                <h3>7. Build a SaaS (Highest Leverage)</h3>
+                <ul>
+                    <li><strong>Knowledge Market Platform:</strong> Working prototype</li>
+                    <li><strong>Price:</strong> $49-99/year per user</li>
+                    <li><strong>Target:</strong> Companies, schools, research institutions</li>
+                    <li><strong>Effort:</strong> 40-60 hours build, then 5-10 hours/month maintenance</li>
+                    <li><strong>Potential:</strong> $100K-1M/year at scale</li>
+                </ul>
+
+                <h3>8. Partnership & Revenue Sharing (New Audience)</h3>
+                <ul>
+                    <li>Partner with blogs/newsletters in your space</li>
+                    <li>Revenue share: They promote, you split revenue</li>
+                    <li>Example: GiveDirectly recommends your course → 10% commission</li>
+                    <li><strong>Result:</strong> $500-5,000/month with zero marketing effort</li>
+                </ul>
+
+                <h3>Month-by-Month Scaling Plan</h3>
+                <div class="highlight">
+                    <p><strong>Month 1:</strong> Launch basic products → $900-2,700</p>
+                    <p><strong>Month 2:</strong> Add video course → $1,500-3,500</p>
+                    <p><strong>Month 3:</strong> Raise prices + add group coaching → $3,000-6,000</p>
+                    <p><strong>Month 4:</strong> Add Notion templates + affiliates → $4,000-8,000</p>
+                    <p><strong>Month 5:</strong> High-ticket consulting + sponsors → $5,000-12,000</p>
+                    <p><strong>Month 6:</strong> Build SaaS platform → $6,000-15,000</p>
+                    <p><strong>Month 12:</strong> Fully scaled (passive) → $15,000-50,000+/month</p>
+                </div>
+
+                <h3>The Key: Leverage</h3>
+                <p>Every product you create should:</p>
+                <ul>
+                    <li>✓ Require zero marginal cost (digital)</li>
+                    <li>✓ Scale infinitely (SaaS, courses, templates)</li>
+                    <li>✓ Build on previous work (reuse frameworks)</li>
+                    <li>✓ Serve your existing audience (email list)</li>
+                </ul>
+
+                <h3>Your Next 3 Moves (High ROI)</h3>
+                <ol>
+                    <li><strong>Build email list to 5,000</strong> (2-3 months)</li>
+                    <li><strong>Create high-ticket offer ($5K+ projects)</strong> (4-8 weeks)</li>
+                    <li><strong>Build SaaS MVP</strong> (8-12 weeks part-time)</li>
+                </ol>
+
+                <p><strong>These 3 moves alone = $20,000-50,000/month by month 6</strong></p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #475569;">
+            <p style="color: #94a3b8; margin-bottom: 20px;">All files available in workspace. Copy-paste ready.</p>
+            <p style="color: #64748b;">The money follows usefulness. Start with the free book. Build your audience. Then monetize.</p>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        function scrollTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.textContent = '✓ Copied!';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            });
+        }
+    </script>
+</body>
+</html>
