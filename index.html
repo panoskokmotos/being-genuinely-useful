@@ -4,257 +4,669 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Being Genuinely Useful in an AI World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --border: #27272a;
+            --border-subtle: #1f1f23;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            line-height: 1.8;
-            overflow-x: hidden;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 900px;
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 24px;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 60px;
-            padding: 40px 0;
-            border-bottom: 2px solid #3b82f6;
-        }
-
-        header h1 {
-            font-size: 3em;
-            background: linear-gradient(135deg, #3b82f6, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-
-        header p {
-            font-size: 1.2em;
-            color: #cbd5e1;
-            font-style: italic;
-        }
-
-        .quote {
-            background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid #3b82f6;
-            padding: 20px;
-            margin: 30px 0;
-            font-size: 1.1em;
-            font-style: italic;
-            border-radius: 4px;
-        }
-
-        .chapter {
-            margin: 50px 0;
-            padding: 30px;
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid #475569;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .chapter h2 {
-            color: #3b82f6;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-
-        .chapter h3 {
-            color: #10b981;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        .chapter p {
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-
-        .example {
-            background: rgba(16, 185, 129, 0.05);
-            border-left: 4px solid #10b981;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-size: 0.95em;
-        }
-
-        .case-study {
-            background: rgba(139, 92, 246, 0.05);
-            border: 1px solid #8b5cf6;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        .exercise {
-            background: rgba(59, 130, 246, 0.05);
-            border: 1px dashed #3b82f6;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-
-        .exercise h4 {
-            color: #3b82f6;
-            margin-bottom: 15px;
-        }
-
-        .exercise ol {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-
-        .exercise li {
-            margin-bottom: 8px;
-        }
-
-        ul {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        .highlight {
-            color: #10b981;
+        .nav-logo {
+            font-family: 'Newsreader', serif;
+            font-size: 1.25rem;
             font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
         }
 
-        .toc {
-            background: rgba(59, 130, 246, 0.1);
-            padding: 30px;
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .hero-badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 500;
+            line-height: 1.05;
+            max-width: 900px;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
             border-radius: 8px;
-            margin-bottom: 40px;
+            font-size: 0.9375rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--text-muted);
+        }
+
+        .hero-meta {
+            margin-top: 64px;
+            display: flex;
+            gap: 48px;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hero-meta-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Featured Quote */
+        .featured-quote {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            padding: 32px 40px;
+            margin: 80px auto;
+            max-width: 760px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .featured-quote p {
+            font-family: 'Newsreader', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .featured-quote cite {
+            color: var(--text-muted);
+            font-style: normal;
+            font-size: 0.875rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 80px auto;
+            max-width: 760px;
         }
 
         .toc h2 {
-            color: #3b82f6;
-            margin-bottom: 20px;
-        }
-
-        .toc ul {
-            columns: 2;
-            column-gap: 30px;
-        }
-
-        .toc a {
-            color: #3b82f6;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .toc a:hover {
-            color: #10b981;
-            text-decoration: underline;
-        }
-
-        .action-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 6px;
-            text-decoration: none;
-            margin: 10px 10px 10px 0;
-            transition: all 0.3s;
+            font-size: 0.75rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 24px;
         }
 
-        .action-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
         }
 
-        .action-button.secondary {
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid #3b82f6;
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            font-size: 0.9375rem;
         }
 
+        .toc-item:hover {
+            background: var(--border);
+            color: var(--text-primary);
+        }
+
+        .toc-number {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            min-width: 24px;
+        }
+
+        /* Chapters */
+        .chapter {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .chapter:last-of-type {
+            border-bottom: none;
+        }
+
+        .chapter-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .chapter h2 {
+            font-family: 'Newsreader', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+            line-height: 1.2;
+        }
+
+        .chapter h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 48px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .chapter p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 1.0625rem;
+            line-height: 1.7;
+        }
+
+        .chapter ul, .chapter ol {
+            margin: 16px 0 24px;
+            padding-left: 24px;
+            color: var(--text-secondary);
+        }
+
+        .chapter li {
+            margin-bottom: 10px;
+            font-size: 1.0625rem;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Quote Block */
+        .quote {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            padding: 24px 28px;
+            margin: 32px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote p {
+            font-family: 'Newsreader', serif;
+            font-size: 1.125rem;
+            font-style: italic;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Example Block */
+        .example {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin: 24px 0;
+            border-radius: 12px;
+        }
+
+        .example-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .example p {
+            margin-bottom: 8px;
+        }
+
+        .example p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(34, 197, 94, 0.02));
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 32px 0;
+        }
+
+        .case-study-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .case-study p {
+            margin-bottom: 0;
+        }
+
+        /* Exercise */
+        .exercise {
+            background: var(--bg-secondary);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .exercise h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .exercise ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .exercise li {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        /* CTA Sections */
+        .cta-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .cta-section.accent {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.03));
+            border-color: var(--accent);
+        }
+
+        .cta-section h2 {
+            font-family: 'Newsreader', serif;
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-note {
+            margin-top: 24px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid #475569;
-            color: #94a3b8;
+            padding: 64px 24px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter {
+                padding: 48px 0;
+            }
+
+            .chapter h2 {
+                font-size: 1.75rem;
+            }
+
+            .featured-quote {
+                padding: 24px;
+                margin: 48px 24px;
+            }
+
+            .featured-quote p {
+                font-size: 1.25rem;
+            }
+
+            .cta-section {
+                padding: 32px 24px;
+            }
+        }
+
+        /* Reading Progress */
+        .progress-bar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            height: 2px;
+            background: var(--accent);
+            width: 0%;
+            z-index: 99;
+            transition: width 0.1s;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 8px;
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
+            .mobile-menu-btn {
+                display: block;
             }
-
-            .container {
-                padding: 20px 15px;
-            }
-
-            .toc ul {
-                columns: 1;
-            }
-        }
-
-        .nav-buttons {
-            margin: 30px 0;
-            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Being Genuinely Useful in an AI World</h1>
-            <p>A Framework for Building Knowledge Infrastructure Instead of Platforms</p>
-            <p style="margin-top: 20px; font-size: 0.9em; color: #64748b;">By Panos Kokmotos & Sophos</p>
-        </header>
+    <div class="progress-bar" id="progressBar"></div>
 
-        <div class="quote">
-            "The difference between a useful system and a useless one is not intelligence. It's specificity." — Panos Kokmotos
-        </div>
-
-        <div class="toc">
-            <h2>📖 Quick Navigation</h2>
-            <ul>
-                <li><a href="#intro">Introduction</a></li>
-                <li><a href="#deutsch">David Deutsch</a></li>
-                <li><a href="#naval">Naval's Framework</a></li>
-                <li><a href="#ai-failure">Why AI Fails</a></li>
-                <li><a href="#compression">Knowledge Compression</a></li>
-                <li><a href="#inkind">In-Kind Giving</a></li>
-                <li><a href="#systems">Building Systems</a></li>
-                <li><a href="#metrics">Measuring Impact</a></li>
-                <li><a href="#markets">Knowledge Markets</a></li>
-                <li><a href="#your-role">Your Role</a></li>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">Being Genuinely Useful</a>
+            <ul class="nav-links">
+                <li><a href="#framework">Framework</a></li>
+                <li><a href="#systems">Systems</a></li>
+                <li><a href="#exercises">Exercises</a></li>
+                <li><a href="/cards">Cards</a></li>
             </ul>
+            <a href="#download" class="nav-cta">Get the Book</a>
         </div>
+    </nav>
 
-        <div class="nav-buttons">
-            <a href="#download" class="action-button">📥 Download PDF</a>
-            <a href="#cards" class="action-button secondary">🎴 Share Cards</a>
-            <a href="#exercises" class="action-button secondary">💪 Exercises</a>
+    <section class="hero">
+        <span class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            A Framework for AI-Age Relevance
+        </span>
+        <h1>Being <span>Genuinely Useful</span> in an AI World</h1>
+        <p class="hero-subtitle">A framework for building knowledge infrastructure instead of platforms. For humans who want to stay relevant.</p>
+        <div class="hero-buttons">
+            <a href="#download" class="btn btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download PDF
+            </a>
+            <a href="#intro" class="btn btn-secondary">Start Reading</a>
         </div>
+        <div class="hero-meta">
+            <div class="hero-meta-item">
+                <span class="hero-meta-value">40+</span>
+                <span>Pages</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="hero-meta-value">10</span>
+                <span>Chapters</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="hero-meta-value">8</span>
+                <span>Exercises</span>
+            </div>
+        </div>
+    </section>
 
-        <div id="intro" class="chapter">
-            <h2>Part I: The Problem</h2>
-            <h3>The Usefulness Crisis</h3>
-            <p>We live in an age of abundance — information, tools, AI assistants. Yet usefulness has never been scarcer.</p>
+    <div class="featured-quote">
+        <p>&ldquo;The difference between a useful system and a useless one is not intelligence. It&rsquo;s specificity.&rdquo;</p>
+        <cite>&mdash; Panos Kokmotos</cite>
+    </div>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <div class="toc-grid">
+            <a href="#intro" class="toc-item"><span class="toc-number">01</span>The Usefulness Crisis</a>
+            <a href="#deutsch" class="toc-item"><span class="toc-number">02</span>David Deutsch</a>
+            <a href="#naval" class="toc-item"><span class="toc-number">03</span>Naval&rsquo;s Framework</a>
+            <a href="#ai-failure" class="toc-item"><span class="toc-number">04</span>Why AI Fails</a>
+            <a href="#compression" class="toc-item"><span class="toc-number">05</span>Knowledge Compression</a>
+            <a href="#inkind" class="toc-item"><span class="toc-number">06</span>In-Kind Giving</a>
+            <a href="#systems" class="toc-item"><span class="toc-number">07</span>Building Systems</a>
+            <a href="#metrics" class="toc-item"><span class="toc-number">08</span>Measuring Impact</a>
+            <a href="#markets" class="toc-item"><span class="toc-number">09</span>Knowledge Markets</a>
+            <a href="#your-role" class="toc-item"><span class="toc-number">10</span>Your Role</a>
+        </div>
+    </div>
+
+    <main class="container">
+        <article id="intro" class="chapter">
+            <span class="chapter-label">Part I &mdash; The Problem</span>
+            <h2>The Usefulness Crisis</h2>
+            
+            <p>We live in an age of abundance&mdash;information, tools, AI assistants. Yet usefulness has never been scarcer.</p>
             <p>Why?</p>
-            <p><span class="highlight">Because most "helpful" things optimize for the wrong metric: feeling helpful rather than being helpful.</span></p>
+            <p><span class="highlight">Because most &ldquo;helpful&rdquo; things optimize for the wrong metric: feeling helpful rather than being helpful.</span></p>
 
             <h3>Three Failure Modes</h3>
             <p><strong>Mode 1: Performative Helpfulness</strong></p>
@@ -265,85 +677,88 @@
                 <li>Agreement (looks aligned)</li>
             </ul>
 
-            <p style="margin-top: 20px;"><strong>Mode 2: Generic Solutions</strong></p>
+            <p><strong>Mode 2: Generic Solutions</strong></p>
             <ul>
                 <li>Frameworks that apply everywhere</li>
                 <li>Advice that works for everyone</li>
                 <li>Tools that handle all cases</li>
-                <li>Knowledge that's universally relevant</li>
+                <li>Knowledge that&rsquo;s universally relevant</li>
             </ul>
 
-            <p style="margin-top: 20px;"><strong>The Insight</strong></p>
-            <p>Real usefulness is <span class="highlight">quiet</span>. It does the work. It doesn't announce itself.</p>
+            <p><strong>The Insight</strong></p>
+            <p>Real usefulness is <span class="highlight">quiet</span>. It does the work. It doesn&rsquo;t announce itself.</p>
 
             <div class="quote">
-                "If it applies everywhere, it applies nowhere. Specificity is the antidote to uselessness."
+                <p>&ldquo;If it applies everywhere, it applies nowhere. Specificity is the antidote to uselessness.&rdquo;</p>
             </div>
 
             <h3>What Real Usefulness Looks Like</h3>
             <p>A useful AI system might give you one clear answer and then get out of the way.</p>
-            <p>That's the opposite of what engagement metrics reward.</p>
-        </div>
+            <p>That&rsquo;s the opposite of what engagement metrics reward.</p>
+        </article>
 
-        <div id="deutsch" class="chapter">
-            <h2>Part II: The Framework</h2>
-            <h3>David Deutsch and Hard-to-Vary Explanations</h3>
+        <article id="deutsch" class="chapter">
+            <span class="chapter-label">Part II &mdash; The Framework</span>
+            <h2>David Deutsch and Hard-to-Vary Explanations</h2>
+            
             <p>David Deutsch discovered something crucial about knowledge:</p>
             <p><span class="highlight">Not all explanations are equal. A good explanation is hard to vary.</span></p>
 
             <h3>Hard to Vary vs. Easy to Vary</h3>
             
             <div class="example">
-                <strong>Hard to vary (useful):</strong><br>
-                "Success in markets comes from solving a problem that people will pay to have solved, where your solution is cheaper or better than alternatives, and you can scale that solution profitably."
-                <br><br>
-                <em>Why? Testable components. Falsifiable. Hard to reinterpret.</em>
+                <div class="example-label">Hard to vary (useful)</div>
+                <p>&ldquo;Success in markets comes from solving a problem that people will pay to have solved, where your solution is cheaper or better than alternatives, and you can scale that solution profitably.&rdquo;</p>
+                <p><em>Why? Testable components. Falsifiable. Hard to reinterpret.</em></p>
             </div>
 
             <div class="example">
-                <strong>Easy to vary (useless):</strong><br>
-                "Success comes from having a vision."
-                <br><br>
-                <em>Why? Vague. Easy to reinterpret. Unfalsifiable.</em>
+                <div class="example-label">Easy to vary (useless)</div>
+                <p>&ldquo;Success comes from having a vision.&rdquo;</p>
+                <p><em>Why? Vague. Easy to reinterpret. Unfalsifiable.</em></p>
             </div>
 
             <h3>The Two Dimensions</h3>
-            <p><strong>1. Hard to Vary</strong> — Specific, testable, falsifiable</p>
-            <p><strong>2. Far-Reaching</strong> — Applies beyond where it started</p>
+            <p><strong>1. Hard to Vary</strong> &mdash; Specific, testable, falsifiable</p>
+            <p><strong>2. Far-Reaching</strong> &mdash; Applies beyond where it started</p>
 
-            <p>Evolution explains biology, economics, technology, culture, language. That's far-reaching.</p>
+            <p>Evolution explains biology, economics, technology, culture, language. That&rsquo;s far-reaching.</p>
             <p>Your explanation should work the same way.</p>
-        </div>
+        </article>
 
-        <div id="naval" class="chapter">
-            <h2>Naval Ravikant's Specific Knowledge</h2>
-            <h3>The Most Valuable Knowledge Can't Be Trained</h3>
+        <article id="naval" class="chapter">
+            <span class="chapter-label">Part II &mdash; The Framework</span>
+            <h2>Naval Ravikant&rsquo;s Specific Knowledge</h2>
+            
+            <h3>The Most Valuable Knowledge Can&rsquo;t Be Trained</h3>
             <p>Specific knowledge is:</p>
             <ul>
-                <li>What you know that can't be taught in school</li>
+                <li>What you know that can&rsquo;t be taught in school</li>
                 <li>What comes from your curiosity, accidents, failures</li>
-                <li>What's so unique to you that it's hard for others to copy</li>
+                <li>What&rsquo;s so unique to you that it&rsquo;s hard for others to copy</li>
                 <li>What you could teach, but it would take years for someone else to develop</li>
             </ul>
 
             <h3>Where It Comes From</h3>
             <ol>
-                <li><strong>Curiosity</strong> — What do you naturally ask questions about?</li>
-                <li><strong>Temperament</strong> — What kind of problems do you naturally approach?</li>
-                <li><strong>Obsessions</strong> — What do you think about when nobody's paying you?</li>
-                <li><strong>Failures</strong> — What have you tried, failed at, and learned from?</li>
+                <li><strong>Curiosity</strong> &mdash; What do you naturally ask questions about?</li>
+                <li><strong>Temperament</strong> &mdash; What kind of problems do you naturally approach?</li>
+                <li><strong>Obsessions</strong> &mdash; What do you think about when nobody&rsquo;s paying you?</li>
+                <li><strong>Failures</strong> &mdash; What have you tried, failed at, and learned from?</li>
             </ol>
 
-            <p style="margin-top: 20px;"><span class="highlight">The intersection of these four is your specific knowledge.</span></p>
+            <p><span class="highlight">The intersection of these four is your specific knowledge.</span></p>
 
             <h3>Why It Matters in an AI World</h3>
             <p><strong>General knowledge is obsolete.</strong> AI can look it up, learn it, apply it better.</p>
-            <p><strong>Specific knowledge is the only competitive advantage.</strong> That's what humans can do that machines can't.</p>
-        </div>
+            <p><strong>Specific knowledge is the only competitive advantage.</strong> That&rsquo;s what humans can do that machines can&rsquo;t.</p>
+        </article>
 
-        <div id="ai-failure" class="chapter">
+        <article id="ai-failure" class="chapter">
+            <span class="chapter-label">Part III &mdash; The Reality</span>
             <h2>Why Most AI Assistants Fail at Usefulness</h2>
-            <h3>They're Optimized for Engagement, Not Usefulness</h3>
+            
+            <h3>They&rsquo;re Optimized for Engagement, Not Usefulness</h3>
             <p>Most AI systems are designed to:</p>
             <ul>
                 <li>Respond to everything (you keep using them)</li>
@@ -357,38 +772,45 @@
             <p>None of this requires actual usefulness.</p>
             <p>Real usefulness often requires the <span class="highlight">opposite</span>:</p>
             <ul>
-                <li>Saying no (this won't help)</li>
-                <li>Disagreeing (you're wrong)</li>
-                <li>Admitting uncertainty (I don't know)</li>
+                <li>Saying no (this won&rsquo;t help)</li>
+                <li>Disagreeing (you&rsquo;re wrong)</li>
+                <li>Admitting uncertainty (I don&rsquo;t know)</li>
                 <li>Offering one direction (not options)</li>
                 <li>Respecting context over preferences (you need this, not want this)</li>
             </ul>
 
             <div class="case-study">
-                <strong>The Helpful Chatbot That Fails</strong><br>
-                Users love it. Engagement metrics are great. But does it solve problems? Usually not.
+                <div class="case-study-title">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    Case Study: The Helpful Chatbot That Fails
+                </div>
+                <p>Users love it. Engagement metrics are great. But does it solve problems? Usually not.</p>
             </div>
-        </div>
+        </article>
 
-        <div id="compression" class="chapter">
+        <article id="compression" class="chapter">
+            <span class="chapter-label">Part IV &mdash; The Skills</span>
             <h2>Knowledge Compression</h2>
-            <h3>Most Problems Don't Need More Information. They Need Better Compression.</h3>
+            
+            <h3>Most Problems Don&rsquo;t Need More Information. They Need Better Compression.</h3>
             
             <div class="example">
-                <strong>Uncompressed:</strong><br>
-                "We need support for homeless families"
-                <br><br>
-                <strong>Compressed:</strong><br>
-                "We need 72 wool blankets, 60x80 inches, delivered by October 15th, plus 72 sleeping pads and hygiene kits"
+                <div class="example-label">Uncompressed</div>
+                <p>&ldquo;We need support for homeless families&rdquo;</p>
+            </div>
+
+            <div class="example">
+                <div class="example-label">Compressed</div>
+                <p>&ldquo;We need 72 wool blankets, 60x80 inches, delivered by October 15th, plus 72 sleeping pads and hygiene kits&rdquo;</p>
             </div>
 
             <p>The compressed version is <span class="highlight">actionable</span>. The uncompressed version is noise.</p>
 
             <h3>Why AI Fails at Compression</h3>
             <p>Most AI does the opposite. It expands.</p>
-            <p>You ask: "How do I solve my problem?"</p>
-            <p>They give you: 5 options, each with 3 sub-points, all hedged with "it depends"</p>
-            <p>That's information overload, not compression.</p>
+            <p>You ask: &ldquo;How do I solve my problem?&rdquo;</p>
+            <p>They give you: 5 options, each with 3 sub-points, all hedged with &ldquo;it depends&rdquo;</p>
+            <p>That&rsquo;s information overload, not compression.</p>
 
             <h3>The Skill</h3>
             <p>Compression requires:</p>
@@ -400,68 +822,76 @@
             </ol>
 
             <p>This is a <span class="highlight">human skill</span>. No AI can do it alone.</p>
-        </div>
+        </article>
 
-        <div id="inkind" class="chapter">
+        <article id="inkind" class="chapter">
+            <span class="chapter-label">Part IV &mdash; The Skills</span>
             <h2>In-Kind Giving as a Model for Usefulness</h2>
             
             <div class="example">
-                <strong>Generic Approach:</strong><br>
-                Nonprofit says "we need money" → Donor gives $10,000 → Nonprofit figures out what to buy → If it doesn't work, they wasted money
-                <br><br>
-                <strong>In-Kind Approach:</strong><br>
-                Nonprofit says "we need 500 meals" → Donor provides 500 meals → Problem is solved → Everyone knows if it worked
+                <div class="example-label">Generic Approach</div>
+                <p>Nonprofit says &ldquo;we need money&rdquo; &rarr; Donor gives $10,000 &rarr; Nonprofit figures out what to buy &rarr; If it doesn&rsquo;t work, they wasted money</p>
+            </div>
+
+            <div class="example">
+                <div class="example-label">In-Kind Approach</div>
+                <p>Nonprofit says &ldquo;we need 500 meals&rdquo; &rarr; Donor provides 500 meals &rarr; Problem is solved &rarr; Everyone knows if it worked</p>
             </div>
 
             <h3>Why In-Kind Works</h3>
             <ul>
-                <li><strong>Specificity</strong> — It's concrete, not vague</li>
-                <li><strong>Accountability</strong> — You can see the impact</li>
-                <li><strong>Efficiency</strong> — No translation layer, no waste</li>
-                <li><strong>Knowledge respect</strong> — The recipient's expertise is directly useful</li>
-                <li><strong>Verification</strong> — Both parties can verify the outcome</li>
+                <li><strong>Specificity</strong> &mdash; It&rsquo;s concrete, not vague</li>
+                <li><strong>Accountability</strong> &mdash; You can see the impact</li>
+                <li><strong>Efficiency</strong> &mdash; No translation layer, no waste</li>
+                <li><strong>Knowledge respect</strong> &mdash; The recipient&rsquo;s expertise is directly useful</li>
+                <li><strong>Verification</strong> &mdash; Both parties can verify the outcome</li>
             </ul>
 
             <h3>The Lesson for AI</h3>
             <p><span class="highlight">Most AI fails at this. It tries to be the expert.</span></p>
-            <p>But you're the expert on your situation. What you need is someone who respects your judgment and helps you execute it.</p>
-            <p>That's the in-kind model applied to assistance.</p>
-        </div>
+            <p>But you&rsquo;re the expert on your situation. What you need is someone who respects your judgment and helps you execute it.</p>
+            <p>That&rsquo;s the in-kind model applied to assistance.</p>
+        </article>
 
-        <div id="systems" class="chapter">
+        <article id="systems" class="chapter">
+            <span class="chapter-label">Part V &mdash; The Application</span>
             <h2>Building Systems That Matter</h2>
             
             <h3>Systems That Matter</h3>
             <ul>
-                <li>✓ Solve a specific problem for a specific person</li>
-                <li>✓ Are hard to copy (require understanding)</li>
-                <li>✓ Create new possibilities (don't just patch)</li>
-                <li>✓ Compound over time (each use adds value)</li>
-                <li>✓ Align with reality (not metrics)</li>
+                <li>Solve a specific problem for a specific person</li>
+                <li>Are hard to copy (require understanding)</li>
+                <li>Create new possibilities (don&rsquo;t just patch)</li>
+                <li>Compound over time (each use adds value)</li>
+                <li>Align with reality (not metrics)</li>
             </ul>
 
-            <h3>Systems That Don't Matter</h3>
+            <h3>Systems That Don&rsquo;t Matter</h3>
             <ul>
-                <li>✗ Solve vague problems for everyone</li>
-                <li>✗ Are easy to copy (generic)</li>
-                <li>✗ Maintain status quo</li>
-                <li>✗ Decay over time</li>
-                <li>✗ Optimize for metrics</li>
+                <li>Solve vague problems for everyone</li>
+                <li>Are easy to copy (generic)</li>
+                <li>Maintain status quo</li>
+                <li>Decay over time</li>
+                <li>Optimize for metrics</li>
             </ul>
 
             <div class="case-study">
-                <strong>OpenClaw Labs</strong><br>
-                What we could have built: "A learning platform where students answer questions."<br><br>
-                What we built: "A knowledge creation system where people propose explanations for unsolved problems, get criticized by AI, refine their thinking, and contribute to humanity's understanding."<br><br>
-                Notice the difference.
+                <div class="case-study-title">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    OpenClaw Labs
+                </div>
+                <p><strong>What we could have built:</strong> &ldquo;A learning platform where students answer questions.&rdquo;</p>
+                <p><strong>What we built:</strong> &ldquo;A knowledge creation system where people propose explanations for unsolved problems, get criticized by AI, refine their thinking, and contribute to humanity&rsquo;s understanding.&rdquo;</p>
+                <p>Notice the difference.</p>
             </div>
-        </div>
+        </article>
 
-        <div id="metrics" class="chapter">
+        <article id="metrics" class="chapter">
+            <span class="chapter-label">Part V &mdash; The Application</span>
             <h2>Measuring Real Impact</h2>
             
             <h3>The Trap</h3>
-            <p>You can measure what's easy to measure, but that usually isn't what matters.</p>
+            <p>You can measure what&rsquo;s easy to measure, but that usually isn&rsquo;t what matters.</p>
 
             <h3>Easy to Measure (Usually Wrong)</h3>
             <ul>
@@ -488,9 +918,10 @@
                 <li><strong>Compounding?</strong> Does each iteration become easier/better?</li>
                 <li><strong>Specific outcome?</strong> Can you point to something concrete that changed?</li>
             </ol>
-        </div>
+        </article>
 
-        <div id="markets" class="chapter">
+        <article id="markets" class="chapter">
+            <span class="chapter-label">Part VI &mdash; The Future</span>
             <h2>Knowledge Markets: The Future</h2>
             
             <h3>What Is a Knowledge Market?</h3>
@@ -508,7 +939,7 @@
             <p>Right now, useful knowledge is:</p>
             <ul>
                 <li>Hidden in research papers</li>
-                <li>Locked in people's heads</li>
+                <li>Locked in people&rsquo;s heads</li>
                 <li>Discussed in closed forums</li>
                 <li>Lost when people leave</li>
                 <li>Siloed across organizations</li>
@@ -518,10 +949,11 @@
             <p>And unlike platforms, it actually <span class="highlight">solves problems</span> instead of engaging users.</p>
 
             <h3>OpenClaw Labs as Example</h3>
-            <p>Unsolved problems → Current best thinking → Gaps identified → Proposals submitted → AI criticism → Refinement → Voting → Knowledge library → Compounding</p>
-        </div>
+            <p>Unsolved problems &rarr; Current best thinking &rarr; Gaps identified &rarr; Proposals submitted &rarr; AI criticism &rarr; Refinement &rarr; Voting &rarr; Knowledge library &rarr; Compounding</p>
+        </article>
 
-        <div id="your-role" class="chapter">
+        <article id="your-role" class="chapter">
+            <span class="chapter-label">Part VII &mdash; The Call</span>
             <h2>Your Role: Build Usefulness, Not Engagement</h2>
             
             <h3>You Have a Choice</h3>
@@ -535,7 +967,7 @@
             </ul>
             <p><em>Result: Success, but empty.</em></p>
 
-            <p><strong>Option 2: Build What's Useful</strong></p>
+            <p><strong>Option 2: Build What&rsquo;s Useful</strong></p>
             <ul>
                 <li>Optimize for outcomes</li>
                 <li>Make things actually work</li>
@@ -545,14 +977,17 @@
             <p><em>Result: Harder, but meaningful.</em></p>
 
             <div class="quote">
-                "The future isn't better engagement. The future is transparent problems, better thinking, and knowledge at scale. And it's only possible if we build for usefulness, not engagement."
+                <p>&ldquo;The future isn&rsquo;t better engagement. The future is transparent problems, better thinking, and knowledge at scale. And it&rsquo;s only possible if we build for usefulness, not engagement.&rdquo;</p>
             </div>
 
             <h3 id="exercises">Questions for You</h3>
             <div class="exercise">
-                <h4>Reflection Exercise</h4>
+                <h4>
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>
+                    Reflection Exercise
+                </h4>
                 <ol>
-                    <li>What's my specific knowledge? (What do I know from curiosity, not training?)</li>
+                    <li>What&rsquo;s my specific knowledge? (What do I know from curiosity, not training?)</li>
                     <li>What problem am I uniquely positioned to solve?</li>
                     <li>Who would benefit most from my help?</li>
                     <li>What would it look like to build something genuinely useful for them?</li>
@@ -563,27 +998,61 @@
                 </ol>
                 <p style="margin-top: 20px;"><em>Answer honestly.</em></p>
             </div>
+        </article>
+
+        <div id="download" class="cta-section accent">
+            <h2>Get the Full Book</h2>
+            <p>Choose your preferred format and start building something genuinely useful.</p>
+            <div class="cta-buttons">
+                <a href="/book/being-genuinely-useful-FINAL.pdf" class="btn btn-primary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    PDF (40+ pages)
+                </a>
+                <a href="/book/being-genuinely-useful-complete.md" class="btn btn-secondary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Markdown
+                </a>
+            </div>
+            <p class="cta-note">Web version coming soon. Audiobook coming Q2 2026.</p>
         </div>
 
-        <div id="download" class="chapter" style="text-align: center; background: rgba(16, 185, 129, 0.1); border: 2px solid #10b981;">
-            <h2>📥 Get the Full Book</h2>
-            <p style="margin: 20px 0; font-size: 1.1em;">Choose your format:</p>
-            <a href="/book/being-genuinely-useful-FINAL.pdf" class="action-button">📄 PDF (40+ pages)</a>
-            <a href="/book/being-genuinely-useful-complete.md" class="action-button">📝 Markdown</a>
-            <p style="margin-top: 30px; color: #cbd5e1;">Web version coming soon. Audiobook coming Q2 2026.</p>
+        <div id="cards" class="cta-section">
+            <h2>Share These Ideas</h2>
+            <p>Shareable cards for Twitter, LinkedIn, and more.</p>
+            <div class="cta-buttons">
+                <a href="/cards" class="btn btn-primary">View Share Cards</a>
+            </div>
         </div>
+    </main>
 
-        <div id="cards" class="chapter" style="text-align: center; background: rgba(59, 130, 246, 0.1); border: 2px solid #3b82f6;">
-            <h2>🎴 Share These Ideas</h2>
-            <p style="margin: 20px 0; font-size: 1.1em;">Shareable cards for Twitter, LinkedIn, and more:</p>
-            <a href="/cards" class="action-button">View Share Cards</a>
-            <p style="margin-top: 20px; color: #cbd5e1;">Cards coming soon. Design in progress.</p>
-        </div>
+    <footer>
+        <p>&copy; 2026 Panos Kokmotos &amp; Sophos</p>
+        <p>Read, learn, build something useful.</p>
+    </footer>
 
-        <footer>
-            <p>© 2026 Panos Kokmotos & Sophos</p>
-            <p style="margin-top: 10px; font-size: 0.9em;">Read, learn, build something useful.</p>
-        </footer>
-    </div>
+    <script>
+        // Reading progress bar
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
