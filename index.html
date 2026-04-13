@@ -590,6 +590,55 @@
                 display: block;
             }
         }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-secondary);
+            border: 1px solid var(--accent);
+            color: var(--text-primary);
+            padding: 16px 24px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .toast-icon svg {
+            width: 12px;
+            height: 12px;
+            color: var(--bg-primary);
+        }
+
+        /* Print styles */
+        @media print {
+            .nav, .progress-bar, .cta-section, #toast { display: none !important; }
+            body { background: white; color: black; }
+            .chapter { page-break-inside: avoid; }
+        }
     </style>
 </head>
 <body>
@@ -599,12 +648,12 @@
         <div class="nav-inner">
             <a href="/" class="nav-logo">Being Genuinely Useful</a>
             <ul class="nav-links">
-                <li><a href="#framework">Framework</a></li>
+                <li><a href="#deutsch">Framework</a></li>
                 <li><a href="#systems">Systems</a></li>
                 <li><a href="#exercises">Exercises</a></li>
                 <li><a href="/cards">Cards</a></li>
             </ul>
-            <a href="#download" class="nav-cta">Get the Book</a>
+            <a href="/cards" class="nav-cta">Share Cards</a>
         </div>
     </nav>
 
@@ -616,11 +665,11 @@
         <h1>Being <span>Genuinely Useful</span> in an AI World</h1>
         <p class="hero-subtitle">A framework for building knowledge infrastructure instead of platforms. For humans who want to stay relevant.</p>
         <div class="hero-buttons">
-            <a href="#download" class="btn btn-primary">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                Download PDF
+            <a href="#intro" class="btn btn-primary">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                Start Reading
             </a>
-            <a href="#intro" class="btn btn-secondary">Start Reading</a>
+            <a href="/cards" class="btn btn-secondary">View Share Cards</a>
         </div>
         <div class="hero-meta">
             <div class="hero-meta-item">
@@ -1002,18 +1051,18 @@
 
         <div id="download" class="cta-section accent">
             <h2>Get the Full Book</h2>
-            <p>Choose your preferred format and start building something genuinely useful.</p>
+            <p>You&rsquo;re reading the complete web version. Save it for offline access.</p>
             <div class="cta-buttons">
-                <a href="/book/being-genuinely-useful-FINAL.pdf" class="btn btn-primary">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    PDF (40+ pages)
-                </a>
-                <a href="/book/being-genuinely-useful-complete.md" class="btn btn-secondary">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                    Markdown
-                </a>
+                <button onclick="handleDownload()" class="btn btn-primary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                    Save Page
+                </button>
+                <button onclick="copyLink()" class="btn btn-secondary">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                    Copy Link
+                </button>
             </div>
-            <p class="cta-note">Web version coming soon. Audiobook coming Q2 2026.</p>
+            <p class="cta-note">Audiobook coming Q2 2026.</p>
         </div>
 
         <div id="cards" class="cta-section">
@@ -1053,6 +1102,41 @@
                 }
             });
         });
+
+        // Download handler - save page
+        function handleDownload() {
+            // Use browser's built-in save functionality
+            if (window.print) {
+                window.print();
+            }
+        }
+
+        // Copy link to clipboard
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showToast('Link copied to clipboard!');
+            });
+        }
+
+        // Toast notification
+        function showToast(message) {
+            // Create toast if it doesn't exist
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                toast.innerHTML = `
+                    <span class="toast-icon">
+                        <svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    <span id="toastMessage"></span>
+                `;
+                document.body.appendChild(toast);
+            }
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
     </script>
 </body>
 </html>
