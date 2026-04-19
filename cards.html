@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Share Cards - Being Genuinely Useful</title>
+    <meta name="description" content="Shareable quote cards from Being Genuinely Useful in an AI World. Copy, tweet, or download as an image.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Share Cards - Being Genuinely Useful">
+    <meta property="og:description" content="Shareable quote cards from Being Genuinely Useful in an AI World. Copy, tweet, or download as an image.">
+    <meta property="og:url" content="https://beinggenuinelyuseful.com/cards">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Share Cards - Being Genuinely Useful">
+    <meta name="twitter:description" content="Shareable quote cards from Being Genuinely Useful in an AI World.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -388,9 +396,28 @@
             outline: 2px solid var(--accent);
             outline-offset: 4px;
         }
+
+        /* Skip navigation */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            font-weight: 600;
+            z-index: 9999;
+            text-decoration: none;
+            border-radius: 0 0 8px 0;
+            transition: top 0.1s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <nav class="nav">
         <div class="nav-inner">
             <a href="/" class="nav-logo">Being Genuinely Useful</a>
@@ -404,17 +431,17 @@
         </div>
     </nav>
 
-    <main class="container">
+    <main class="container" id="main-content">
         <header class="page-header">
             <h1>Share Cards</h1>
             <p>Click to copy. Share ideas that matter on Twitter, LinkedIn, and anywhere else.</p>
         </header>
 
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="Panos Kokmotos">Panos</button>
-            <button class="filter-btn" data-filter="David Deutsch">Deutsch</button>
-            <button class="filter-btn" data-filter="Naval Ravikant">Naval</button>
+        <div class="filters" role="tablist" aria-label="Filter by author">
+            <button class="filter-btn active" role="tab" aria-selected="true" data-filter="all">All</button>
+            <button class="filter-btn" role="tab" aria-selected="false" data-filter="Panos Kokmotos">Panos</button>
+            <button class="filter-btn" role="tab" aria-selected="false" data-filter="David Deutsch">Deutsch</button>
+            <button class="filter-btn" role="tab" aria-selected="false" data-filter="Naval Ravikant">Naval</button>
         </div>
 
         <div class="cards-grid" id="cardsContainer"></div>
@@ -425,248 +452,224 @@
         <p>Read, learn, build something useful.</p>
     </footer>
 
-    <div class="toast" id="toast">
+    <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <span class="toast-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
         </span>
         <span id="toastMessage">Copied to clipboard!</span>
     </div>
 
     <script>
         const cards = [
-            {
-                quote: "The difference between a useful system and a useless one is not intelligence. It's specificity.",
-                source: "Panos Kokmotos",
-                color: "green"
-            },
-            {
-                quote: "If it applies everywhere, it applies nowhere. Specificity is the antidote to uselessness.",
-                source: "Panos Kokmotos",
-                color: "green"
-            },
-            {
-                quote: "A good explanation is hard to vary. Change any element and it breaks. The parts are essential.",
-                source: "David Deutsch",
-                color: "purple"
-            },
-            {
-                quote: "Good explanations don't just resist variation. They reach far beyond where they started.",
-                source: "David Deutsch",
-                color: "purple"
-            },
-            {
-                quote: "The most valuable knowledge can't be trained. It's specific, developed through curiosity and obsession.",
-                source: "Naval Ravikant",
-                color: "orange"
-            },
-            {
-                quote: "In an AI world, general knowledge is obsolete. Only specific knowledge from your obsessions remains valuable.",
-                source: "Naval Ravikant",
-                color: "orange"
-            },
-            {
-                quote: "Real usefulness is quiet. It does the work. It doesn't announce itself.",
-                source: "Panos Kokmotos",
-                color: "blue"
-            },
-            {
-                quote: "Most AI systems are optimized for engagement, not usefulness. These are opposites.",
-                source: "Panos Kokmotos",
-                color: "green"
-            },
-            {
-                quote: "Most problems don't need more information. They need better compression.",
-                source: "Panos Kokmotos",
-                color: "blue"
-            },
-            {
-                quote: "In-kind giving works because it respects expertise. The person on the ground knows what's needed.",
-                source: "Panos Kokmotos",
-                color: "green"
-            },
-            {
-                quote: "True usefulness means: You stay in control. I help you execute your judgment, not replace it.",
-                source: "Panos Kokmotos",
-                color: "blue"
-            },
-            {
-                quote: "The future isn't better engagement. It's transparent problems, better thinking, and knowledge at scale.",
-                source: "Panos Kokmotos",
-                color: "purple"
-            },
-            {
-                quote: "Knowledge grows through conjecture and criticism. Not through observation alone.",
-                source: "David Deutsch",
-                color: "purple"
-            },
-            {
-                quote: "Problems are soluble. There exists an explanation that hasn't been found yet.",
-                source: "David Deutsch",
-                color: "purple"
-            },
-            {
-                quote: "Be useful, not engaging. Build infrastructure, not platforms. Create knowledge, not content.",
-                source: "Panos Kokmotos",
-                color: "orange"
-            },
-            {
-                quote: "Compression is a human skill. AI can expand. Humans must compress.",
-                source: "Panos Kokmotos",
-                color: "blue"
-            },
-            {
-                quote: "A useful AI system gives you one clear answer and then gets out of the way.",
-                source: "Panos Kokmotos",
-                color: "green"
-            },
-            {
-                quote: "You can measure what's easy. But that usually isn't what matters.",
-                source: "Panos Kokmotos",
-                color: "orange"
-            }
+            { id: 0, quote: "The difference between a useful system and a useless one is not intelligence. It\u2019s specificity.", source: "Panos Kokmotos", color: "green" },
+            { id: 1, quote: "If it applies everywhere, it applies nowhere. Specificity is the antidote to uselessness.", source: "Panos Kokmotos", color: "green" },
+            { id: 2, quote: "A good explanation is hard to vary. Change any element and it breaks. The parts are essential.", source: "David Deutsch", color: "purple" },
+            { id: 3, quote: "Good explanations don\u2019t just resist variation. They reach far beyond where they started.", source: "David Deutsch", color: "purple" },
+            { id: 4, quote: "The most valuable knowledge can\u2019t be trained. It\u2019s specific, developed through curiosity and obsession.", source: "Naval Ravikant", color: "orange" },
+            { id: 5, quote: "In an AI world, general knowledge is obsolete. Only specific knowledge from your obsessions remains valuable.", source: "Naval Ravikant", color: "orange" },
+            { id: 6, quote: "Real usefulness is quiet. It does the work. It doesn\u2019t announce itself.", source: "Panos Kokmotos", color: "blue" },
+            { id: 7, quote: "Most AI systems are optimized for engagement, not usefulness. These are opposites.", source: "Panos Kokmotos", color: "green" },
+            { id: 8, quote: "Most problems don\u2019t need more information. They need better compression.", source: "Panos Kokmotos", color: "blue" },
+            { id: 9, quote: "In-kind giving works because it respects expertise. The person on the ground knows what\u2019s needed.", source: "Panos Kokmotos", color: "green" },
+            { id: 10, quote: "True usefulness means: You stay in control. I help you execute your judgment, not replace it.", source: "Panos Kokmotos", color: "blue" },
+            { id: 11, quote: "The future isn\u2019t better engagement. It\u2019s transparent problems, better thinking, and knowledge at scale.", source: "Panos Kokmotos", color: "purple" },
+            { id: 12, quote: "Knowledge grows through conjecture and criticism. Not through observation alone.", source: "David Deutsch", color: "purple" },
+            { id: 13, quote: "Problems are soluble. There exists an explanation that hasn\u2019t been found yet.", source: "David Deutsch", color: "purple" },
+            { id: 14, quote: "Be useful, not engaging. Build infrastructure, not platforms. Create knowledge, not content.", source: "Panos Kokmotos", color: "orange" },
+            { id: 15, quote: "Compression is a human skill. AI can expand. Humans must compress.", source: "Panos Kokmotos", color: "blue" },
+            { id: 16, quote: "A useful AI system gives you one clear answer and then gets out of the way.", source: "Panos Kokmotos", color: "green" },
+            { id: 17, quote: "You can measure what\u2019s easy. But that usually isn\u2019t what matters.", source: "Panos Kokmotos", color: "orange" }
         ];
 
-        let currentFilter = 'all';
+        // ── Card rendering ────────────────────────────────────────────────────
 
-        function createCards(filter = 'all') {
+        function createCards(filter) {
             const container = document.getElementById('cardsContainer');
             container.innerHTML = '';
-            
-            const filteredCards = filter === 'all' 
-                ? cards 
-                : cards.filter(card => card.source === filter);
-            
-            filteredCards.forEach((card, index) => {
-                const cardEl = document.createElement('div');
-                cardEl.className = 'card';
-                cardEl.setAttribute('data-color', card.color);
-                const safeQuote = card.quote.replace(/'/g, "\\'").replace(/"/g, '\\"');
-                cardEl.innerHTML = `
+
+            const filtered = filter === 'all' ? cards : cards.filter(c => c.source === filter);
+
+            filtered.forEach((card, index) => {
+                const el = document.createElement('div');
+                el.className = 'card';
+                el.setAttribute('data-color', card.color);
+                el.setAttribute('data-card-id', card.id);
+                // Quotes are rendered as text nodes via textContent below — no interpolation into HTML
+                el.innerHTML = `
                     <div class="card-number">Card ${String(index + 1).padStart(2, '0')}</div>
-                    <div class="card-quote">"${card.quote}"</div>
-                    <div class="card-source">${card.source}</div>
+                    <div class="card-quote"></div>
+                    <div class="card-source"></div>
                     <div class="card-buttons">
-                        <button class="card-btn copy" onclick="copyToClipboard('${safeQuote}', '${card.source}')">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <button class="card-btn copy" data-action="copy" aria-label="Copy quote to clipboard">
+                            <svg aria-hidden="true" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                             Copy
                         </button>
-                        <button class="card-btn share" onclick="shareOnTwitter('${encodeURIComponent(`"${card.quote}" — ${card.source}`)}')">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        <button class="card-btn share" data-action="tweet" aria-label="Share on Twitter">
+                            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                             Tweet
                         </button>
-                        <button class="card-btn share" onclick="downloadCardImage('${safeQuote}', '${card.source}', '${card.color}')">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        <button class="card-btn share" data-action="image" aria-label="Download as image">
+                            <svg aria-hidden="true" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                             Image
                         </button>
                     </div>
                 `;
-                container.appendChild(cardEl);
+                // Set text safely via textContent to avoid XSS
+                el.querySelector('.card-quote').textContent = '\u201c' + card.quote + '\u201d';
+                el.querySelector('.card-source').textContent = card.source;
+                container.appendChild(el);
             });
         }
+
+        // ── Event delegation — one listener handles all card buttons ──────────
+
+        document.getElementById('cardsContainer').addEventListener('click', e => {
+            const btn = e.target.closest('[data-action]');
+            if (!btn) return;
+            const cardEl = btn.closest('[data-card-id]');
+            if (!cardEl) return;
+            const card = cards.find(c => c.id === parseInt(cardEl.dataset.cardId, 10));
+            if (!card) return;
+
+            const action = btn.dataset.action;
+            if (action === 'copy') copyToClipboard(card.quote, card.source);
+            else if (action === 'tweet') shareOnTwitter(card.quote, card.source);
+            else if (action === 'image') downloadCardImage(card.quote, card.source, card.color);
+        });
+
+        // ── Actions ───────────────────────────────────────────────────────────
 
         function copyToClipboard(quote, source) {
-            const fullText = `"${quote}"\n\n— ${source}\n\nFrom "Being Genuinely Useful in an AI World"\n${window.location.origin}`;
-            navigator.clipboard.writeText(fullText).then(() => {
-                showToast('Copied to clipboard!');
-            }).catch(() => {
-                // Fallback for older browsers
-                const textarea = document.createElement('textarea');
-                textarea.value = fullText;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showToast('Copied to clipboard!');
-            });
+            const fullText = `\u201c${quote}\u201d\n\n\u2014 ${source}\n\nFrom \u201cBeing Genuinely Useful in an AI World\u201d\n${window.location.origin}`;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(fullText).then(() => {
+                    showToast('Copied to clipboard!');
+                }).catch(() => {
+                    fallbackCopy(fullText);
+                });
+            } else {
+                fallbackCopy(fullText);
+            }
         }
 
-        function shareOnTwitter(text) {
+        function fallbackCopy(text) {
+            try {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                const ok = document.execCommand('copy');
+                document.body.removeChild(textarea);
+                if (ok) {
+                    showToast('Copied to clipboard!');
+                } else {
+                    showToast('Auto-copy failed \u2014 press Ctrl+C / \u2318C to copy.');
+                }
+            } catch (_) {
+                showToast('Auto-copy failed \u2014 press Ctrl+C / \u2318C to copy.');
+            }
+        }
+
+        function shareOnTwitter(quote, source) {
+            const text = encodeURIComponent(`\u201c${quote}\u201d \u2014 ${source}`);
             const url = `https://twitter.com/intent/tweet?text=${text}%0A%0AFrom%20%22Being%20Genuinely%20Useful%22&url=${encodeURIComponent(window.location.origin)}`;
             window.open(url, '_blank', 'width=550,height=420,noopener,noreferrer');
         }
 
-        function shareOnLinkedIn() {
-            const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.origin)}`;
-            window.open(url, '_blank', 'width=550,height=420,noopener,noreferrer');
-        }
-
-        // Download card as image
         async function downloadCardImage(quote, source, color) {
             const canvas = document.createElement('canvas');
             canvas.width = 1200;
             canvas.height = 630;
             const ctx = canvas.getContext('2d');
-            
-            // Background
-            ctx.fillStyle = '#0a0a0a';
-            ctx.fillRect(0, 0, 1200, 630);
-            
-            // Accent bar
-            const colors = { green: '#22c55e', blue: '#3b82f6', orange: '#f59e0b', purple: '#a855f7' };
-            ctx.fillStyle = colors[color] || colors.green;
-            ctx.fillRect(0, 0, 1200, 6);
-            
-            // Quote
-            ctx.fillStyle = '#fafafa';
-            ctx.font = 'italic 36px Georgia, serif';
-            const words = quote.split(' ');
-            let line = '"';
-            let y = 200;
-            words.forEach(word => {
-                const testLine = line + word + ' ';
-                if (ctx.measureText(testLine).width > 1040) {
-                    ctx.fillText(line, 80, y);
-                    line = word + ' ';
-                    y += 50;
-                } else {
-                    line = testLine;
-                }
-            });
-            ctx.fillText(line.trim() + '"', 80, y);
-            
-            // Source
-            ctx.fillStyle = '#71717a';
-            ctx.font = '24px -apple-system, sans-serif';
-            ctx.fillText('— ' + source, 80, y + 80);
-            
-            // Book title
-            ctx.fillStyle = colors[color] || colors.green;
-            ctx.font = 'bold 20px -apple-system, sans-serif';
-            ctx.fillText('Being Genuinely Useful', 80, 560);
-            ctx.fillStyle = '#71717a';
-            ctx.font = '18px -apple-system, sans-serif';
-            ctx.fillText(window.location.origin, 80, 590);
-            
-            // Download
-            const link = document.createElement('a');
-            link.download = 'share-card.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-            showToast('Image downloaded!');
+
+            if (!ctx) {
+                showToast('Image download not supported in this browser.');
+                return;
+            }
+
+            try {
+                const colorMap = { green: '#22c55e', blue: '#3b82f6', orange: '#f59e0b', purple: '#a855f7' };
+                const accent = colorMap[color] || colorMap.green;
+
+                ctx.fillStyle = '#0a0a0a';
+                ctx.fillRect(0, 0, 1200, 630);
+
+                ctx.fillStyle = accent;
+                ctx.fillRect(0, 0, 1200, 6);
+
+                ctx.fillStyle = '#fafafa';
+                ctx.font = 'italic 36px Georgia, serif';
+                const words = ('\u201c' + quote).split(' ');
+                let line = '';
+                let y = 200;
+                words.forEach(word => {
+                    const testLine = line + word + ' ';
+                    if (ctx.measureText(testLine).width > 1040) {
+                        ctx.fillText(line.trim(), 80, y);
+                        line = word + ' ';
+                        y += 50;
+                    } else {
+                        line = testLine;
+                    }
+                });
+                ctx.fillText(line.trim() + '\u201d', 80, y);
+
+                ctx.fillStyle = '#71717a';
+                ctx.font = '24px -apple-system, sans-serif';
+                ctx.fillText('\u2014 ' + source, 80, y + 80);
+
+                ctx.fillStyle = accent;
+                ctx.font = 'bold 20px -apple-system, sans-serif';
+                ctx.fillText('Being Genuinely Useful', 80, 560);
+                ctx.fillStyle = '#71717a';
+                ctx.font = '18px -apple-system, sans-serif';
+                ctx.fillText(window.location.origin, 80, 590);
+
+                const link = document.createElement('a');
+                link.download = 'share-card.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                showToast('Image downloaded!');
+            } catch (_) {
+                showToast('Image download failed. Please try again.');
+            }
         }
+
+        // ── Toast ─────────────────────────────────────────────────────────────
 
         function showToast(message) {
             const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            toastMessage.textContent = message;
+            document.getElementById('toastMessage').textContent = message;
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2500);
+            setTimeout(() => toast.classList.remove('show'), 2500);
         }
 
-        // Filter functionality
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.getAttribute('data-filter');
-                createCards(filter);
+        // ── Filter with URL state ─────────────────────────────────────────────
+
+        function applyFilter(filter) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                const active = b.dataset.filter === filter;
+                b.classList.toggle('active', active);
+                b.setAttribute('aria-selected', active ? 'true' : 'false');
             });
+            createCards(filter);
+            try {
+                const params = filter === 'all' ? '' : '?filter=' + encodeURIComponent(filter);
+                history.replaceState(null, '', location.pathname + params);
+            } catch (_) {}
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
         });
 
-        // Initialize
-        createCards();
+        // Initialize — restore filter from URL if present
+        const initialFilter = new URLSearchParams(location.search).get('filter') || 'all';
+        applyFilter(initialFilter);
     </script>
 </body>
 </html>

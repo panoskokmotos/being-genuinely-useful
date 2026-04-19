@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Being Genuinely Useful in an AI World</title>
+    <meta name="description" content="A framework for building knowledge infrastructure instead of platforms. For humans who want to stay relevant in an AI world.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Being Genuinely Useful in an AI World">
+    <meta property="og:description" content="A framework for building knowledge infrastructure instead of platforms. For humans who want to stay relevant in an AI world.">
+    <meta property="og:url" content="https://beinggenuinelyuseful.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Being Genuinely Useful in an AI World">
+    <meta name="twitter:description" content="A framework for building knowledge infrastructure instead of platforms.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -815,9 +823,28 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Skip navigation */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            font-weight: 600;
+            z-index: 9999;
+            text-decoration: none;
+            border-radius: 0 0 8px 0;
+            transition: top 0.1s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <div class="progress-bar" id="progressBar"></div>
 
     <nav class="nav">
@@ -888,7 +915,7 @@
         </div>
     </div>
 
-    <main class="container">
+    <main class="container" id="main-content">
         <article id="intro" class="chapter">
             <span class="chapter-label">Part I &mdash; The Problem</span>
             <h2>The Usefulness Crisis</h2>
@@ -1256,22 +1283,22 @@
                     <span class="audio-chapter" id="currentChapter">Introduction</span>
                 </div>
                 <div class="audio-controls">
-                    <button class="audio-control-btn" onclick="previousChapter()">
-                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
+                    <button class="audio-control-btn" aria-label="Previous chapter" onclick="previousChapter()">
+                        <svg aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
                     </button>
-                    <button class="audio-control-btn play-pause" onclick="togglePlayPause()" id="playPauseBtn">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="playIcon"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="pauseIcon" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                    <button class="audio-control-btn play-pause" aria-label="Play" onclick="togglePlayPause()" id="playPauseBtn">
+                        <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="playIcon"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                        <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="pauseIcon" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
                     </button>
-                    <button class="audio-control-btn" onclick="nextChapter()">
-                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+                    <button class="audio-control-btn" aria-label="Next chapter" onclick="nextChapter()">
+                        <svg aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
                     </button>
                 </div>
                 <div class="audio-progress">
                     <div class="audio-progress-bar" id="audioProgressBar"></div>
                 </div>
-                <button class="audio-close" onclick="closeAudioPlayer()">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                <button class="audio-close" aria-label="Close audio player" onclick="closeAudioPlayer()">
+                    <svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
         </div>
@@ -1290,16 +1317,25 @@
         <p>Read, learn, build something useful.</p>
     </footer>
 
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
     <script>
-        // Reading progress bar
+        // Reading progress bar + scroll persistence
+        let saveScrollTimer;
         window.addEventListener('scroll', () => {
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrolled = (window.scrollY / docHeight) * 100;
             document.getElementById('progressBar').style.width = scrolled + '%';
+
+            clearTimeout(saveScrollTimer);
+            saveScrollTimer = setTimeout(() => {
+                try { localStorage.setItem('readProgress', window.scrollY); } catch (_) {}
+            }, 300);
         });
+
+        // Restore reading position on load
+        try {
+            const savedPos = parseInt(localStorage.getItem('readProgress') || '0', 10);
+            if (savedPos > 100) window.scrollTo(0, savedPos);
+        } catch (_) {}
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1309,144 +1345,172 @@
                 if (target) {
                     const offset = 80;
                     const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             });
         });
 
-        // PDF Download
-        async function downloadPDF() {
-            const btn = document.getElementById('pdfBtn');
-            btn.classList.add('loading');
-            btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Generating...';
-            
-            try {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF({ unit: 'pt', format: 'letter' });
-                
-                const pageWidth = doc.internal.pageSize.getWidth();
-                const pageHeight = doc.internal.pageSize.getHeight();
-                const margin = 60;
-                const lineHeight = 18;
-                const maxWidth = pageWidth - margin * 2;
-                let y = margin;
-                
-                // Helper to add page if needed
-                function checkPage(height = lineHeight) {
-                    if (y + height > pageHeight - margin) {
-                        doc.addPage();
-                        y = margin;
-                    }
-                }
-                
-                // Title page
-                doc.setFontSize(32);
-                doc.setFont('helvetica', 'bold');
-                y = 200;
-                doc.text('Being Genuinely Useful', pageWidth / 2, y, { align: 'center' });
-                y += 40;
-                doc.setFontSize(18);
-                doc.setFont('helvetica', 'normal');
-                doc.text('in an AI World', pageWidth / 2, y, { align: 'center' });
-                y += 80;
-                doc.setFontSize(12);
-                doc.text('A Framework for Building Knowledge Infrastructure', pageWidth / 2, y, { align: 'center' });
-                y += 30;
-                doc.text('By Panos Kokmotos', pageWidth / 2, y, { align: 'center' });
-                y += 100;
-                doc.setFontSize(10);
-                doc.setTextColor(100);
-                doc.text('openclaw.ai/book', pageWidth / 2, y, { align: 'center' });
-                
-                // Content pages
-                const chapters = document.querySelectorAll('.chapter');
-                chapters.forEach((chapter, i) => {
-                    doc.addPage();
-                    y = margin;
-                    doc.setTextColor(0);
-                    
-                    // Chapter title
-                    const title = chapter.querySelector('h2');
-                    if (title) {
-                        doc.setFontSize(24);
-                        doc.setFont('helvetica', 'bold');
-                        const titleLines = doc.splitTextToSize(title.textContent, maxWidth);
-                        titleLines.forEach(line => {
-                            checkPage(30);
-                            doc.text(line, margin, y);
-                            y += 30;
-                        });
-                        y += 20;
-                    }
-                    
-                    // Get all paragraphs and list items
-                    const content = chapter.querySelectorAll('p, li, h3');
-                    content.forEach(el => {
-                        doc.setFont('helvetica', 'normal');
-                        
-                        if (el.tagName === 'H3') {
-                            y += 10;
-                            doc.setFontSize(14);
-                            doc.setFont('helvetica', 'bold');
-                            const lines = doc.splitTextToSize(el.textContent, maxWidth);
-                            lines.forEach(line => {
-                                checkPage(20);
-                                doc.text(line, margin, y);
-                                y += 20;
-                            });
-                            y += 5;
-                        } else if (el.tagName === 'LI') {
-                            doc.setFontSize(11);
-                            const text = '• ' + el.textContent;
-                            const lines = doc.splitTextToSize(text, maxWidth - 20);
-                            lines.forEach((line, idx) => {
-                                checkPage();
-                                doc.text(idx === 0 ? line : '  ' + line, margin + 10, y);
-                                y += lineHeight;
-                            });
-                        } else {
-                            doc.setFontSize(11);
-                            const lines = doc.splitTextToSize(el.textContent, maxWidth);
-                            lines.forEach(line => {
-                                checkPage();
-                                doc.text(line, margin, y);
-                                y += lineHeight;
-                            });
-                            y += 8;
-                        }
-                    });
-                });
-                
-                // Save
-                doc.save('being-genuinely-useful.pdf');
-                showToast('PDF downloaded successfully!');
-            } catch (err) {
-                console.error('PDF generation failed:', err);
-                showToast('PDF generation failed. Try printing instead.');
-            }
-            
-            btn.classList.remove('loading');
-            btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Download PDF';
+        // ── PDF Download ──────────────────────────────────────────────────────
+
+        function loadJsPDF() {
+            return new Promise((resolve, reject) => {
+                if (window.jspdf) { resolve(window.jspdf); return; }
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+                script.onload = () => resolve(window.jspdf);
+                script.onerror = () => reject(new Error('CDN_LOAD_FAILED'));
+                document.head.appendChild(script);
+            });
         }
 
-        // Audiobook (Text-to-Speech)
-        let synth = window.speechSynthesis;
+        function extractChapters() {
+            return Array.from(document.querySelectorAll('.chapter')).map(ch => ({
+                title: ch.querySelector('h2')?.textContent || '',
+                elements: Array.from(ch.querySelectorAll('p, li, h3')).map(el => ({
+                    tag: el.tagName,
+                    text: el.textContent
+                }))
+            }));
+        }
+
+        function renderPDF(jsPDFLib, chapterData) {
+            const { jsPDF } = jsPDFLib;
+            const doc = new jsPDF({ unit: 'pt', format: 'letter' });
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+            const margin = 60;
+            const lineHeight = 18;
+            const maxWidth = pageWidth - margin * 2;
+            let y = margin;
+
+            function checkPage(height = lineHeight) {
+                if (y + height > pageHeight - margin) {
+                    doc.addPage();
+                    y = margin;
+                }
+            }
+
+            // Title page
+            doc.setFontSize(32);
+            doc.setFont('helvetica', 'bold');
+            y = 200;
+            doc.text('Being Genuinely Useful', pageWidth / 2, y, { align: 'center' });
+            y += 40;
+            doc.setFontSize(18);
+            doc.setFont('helvetica', 'normal');
+            doc.text('in an AI World', pageWidth / 2, y, { align: 'center' });
+            y += 80;
+            doc.setFontSize(12);
+            doc.text('A Framework for Building Knowledge Infrastructure', pageWidth / 2, y, { align: 'center' });
+            y += 30;
+            doc.text('By Panos Kokmotos', pageWidth / 2, y, { align: 'center' });
+            y += 100;
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text('openclaw.ai/book', pageWidth / 2, y, { align: 'center' });
+
+            chapterData.forEach(chapter => {
+                doc.addPage();
+                y = margin;
+                doc.setTextColor(0);
+
+                if (chapter.title) {
+                    doc.setFontSize(24);
+                    doc.setFont('helvetica', 'bold');
+                    doc.splitTextToSize(chapter.title, maxWidth).forEach(line => {
+                        checkPage(30);
+                        doc.text(line, margin, y);
+                        y += 30;
+                    });
+                    y += 20;
+                }
+
+                chapter.elements.forEach(({ tag, text }) => {
+                    doc.setFont('helvetica', 'normal');
+                    if (tag === 'H3') {
+                        y += 10;
+                        doc.setFontSize(14);
+                        doc.setFont('helvetica', 'bold');
+                        doc.splitTextToSize(text, maxWidth).forEach(line => {
+                            checkPage(20);
+                            doc.text(line, margin, y);
+                            y += 20;
+                        });
+                        y += 5;
+                    } else if (tag === 'LI') {
+                        doc.setFontSize(11);
+                        doc.splitTextToSize('• ' + text, maxWidth - 20).forEach((line, idx) => {
+                            checkPage();
+                            doc.text(idx === 0 ? line : '  ' + line, margin + 10, y);
+                            y += lineHeight;
+                        });
+                    } else {
+                        doc.setFontSize(11);
+                        doc.splitTextToSize(text, maxWidth).forEach(line => {
+                            checkPage();
+                            doc.text(line, margin, y);
+                            y += lineHeight;
+                        });
+                        y += 8;
+                    }
+                });
+            });
+
+            doc.save('being-genuinely-useful.pdf');
+        }
+
+        async function downloadPDF() {
+            const btn = document.getElementById('pdfBtn');
+            btn.disabled = true;
+            btn.classList.add('loading');
+            btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Generating PDF\u2026';
+
+            try {
+                const jsPDFLib = await loadJsPDF();
+                renderPDF(jsPDFLib, extractChapters());
+                showToast('PDF downloaded successfully!');
+            } catch (err) {
+                if (err.message === 'CDN_LOAD_FAILED') {
+                    showToast('PDF unavailable \u2014 check your connection and try again.');
+                } else {
+                    showToast('PDF generation failed. Try printing instead (Ctrl+P).');
+                }
+            } finally {
+                btn.disabled = false;
+                btn.classList.remove('loading');
+                btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Download PDF';
+            }
+        }
+
+        // ── Audiobook (Text-to-Speech) ────────────────────────────────────────
+
+        const speechSupported = 'speechSynthesis' in window;
+        const synth = speechSupported ? window.speechSynthesis : null;
         let utterance = null;
         let isPlaying = false;
         let currentChapterIndex = 0;
-        let chapters = [];
+        let audioChapters = [];
+
+        // Disable audio button immediately if browser lacks support
+        if (!speechSupported) {
+            const audioBtn = document.getElementById('audioBtn');
+            audioBtn.disabled = true;
+            audioBtn.setAttribute('aria-disabled', 'true');
+            audioBtn.title = 'Audio not supported in this browser \u2014 try Chrome or Edge';
+        }
 
         function initAudiobook() {
-            chapters = Array.from(document.querySelectorAll('.chapter')).map(ch => ({
+            audioChapters = Array.from(document.querySelectorAll('.chapter')).map(ch => ({
                 title: ch.querySelector('h2')?.textContent || 'Introduction',
                 text: ch.innerText
             }));
         }
 
         function toggleAudiobook() {
+            if (!speechSupported) {
+                showToast('Audio not supported in this browser \u2014 try Chrome or Edge.');
+                return;
+            }
             const player = document.getElementById('audioPlayer');
             if (!player.classList.contains('show')) {
                 player.classList.add('show');
@@ -1458,42 +1522,44 @@
         }
 
         function playChapter(index) {
-            if (index < 0 || index >= chapters.length) return;
-            
+            if (!speechSupported || index < 0 || index >= audioChapters.length) return;
+
             synth.cancel();
             currentChapterIndex = index;
-            
-            document.getElementById('currentChapter').textContent = chapters[index].title;
-            
-            utterance = new SpeechSynthesisUtterance(chapters[index].text);
+
+            document.getElementById('currentChapter').textContent = audioChapters[index].title;
+
+            utterance = new SpeechSynthesisUtterance(audioChapters[index].text);
             utterance.rate = 0.95;
             utterance.pitch = 1;
-            
-            // Try to use a natural voice
+
             const voices = synth.getVoices();
-            const preferredVoice = voices.find(v => v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel'));
+            const preferredVoice = voices.find(v =>
+                v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel')
+            );
             if (preferredVoice) utterance.voice = preferredVoice;
-            
+
             utterance.onend = () => {
-                if (currentChapterIndex < chapters.length - 1) {
+                if (currentChapterIndex < audioChapters.length - 1) {
                     playChapter(currentChapterIndex + 1);
                 } else {
                     isPlaying = false;
                     updatePlayPauseBtn();
                 }
             };
-            
+
             utterance.onboundary = (event) => {
-                const progress = (event.charIndex / chapters[currentChapterIndex].text.length) * 100;
+                const progress = (event.charIndex / audioChapters[currentChapterIndex].text.length) * 100;
                 document.getElementById('audioProgressBar').style.width = progress + '%';
             };
-            
+
             synth.speak(utterance);
             isPlaying = true;
             updatePlayPauseBtn();
         }
 
         function togglePlayPause() {
+            if (!speechSupported) return;
             if (synth.paused) {
                 synth.resume();
                 isPlaying = true;
@@ -1507,48 +1573,51 @@
         }
 
         function updatePlayPauseBtn() {
+            const btn = document.getElementById('playPauseBtn');
             document.getElementById('playIcon').style.display = isPlaying ? 'none' : 'block';
             document.getElementById('pauseIcon').style.display = isPlaying ? 'block' : 'none';
+            btn.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
             document.getElementById('audioBtnText').textContent = isPlaying ? 'Pause Audiobook' : 'Listen to Audiobook';
         }
 
-        function previousChapter() {
-            playChapter(currentChapterIndex - 1);
-        }
-
-        function nextChapter() {
-            playChapter(currentChapterIndex + 1);
-        }
+        function previousChapter() { playChapter(currentChapterIndex - 1); }
+        function nextChapter() { playChapter(currentChapterIndex + 1); }
 
         function closeAudioPlayer() {
-            synth.cancel();
+            if (synth) synth.cancel();
             isPlaying = false;
             updatePlayPauseBtn();
             document.getElementById('audioPlayer').classList.remove('show');
             document.getElementById('audioProgressBar').style.width = '0%';
         }
 
-        // Load voices when available
-        if (synth.onvoiceschanged !== undefined) {
+        if (synth && synth.onvoiceschanged !== undefined) {
             synth.onvoiceschanged = () => {};
         }
 
-        // Copy link to clipboard
+        // ── Copy link ─────────────────────────────────────────────────────────
+
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(() => {
                 showToast('Link copied to clipboard!');
+            }).catch(() => {
+                showToast('Copy failed \u2014 please copy the URL from your address bar.');
             });
         }
 
-        // Toast notification
+        // ── Toast notification ────────────────────────────────────────────────
+
         function showToast(message) {
             let toast = document.getElementById('toast');
             if (!toast) {
                 toast = document.createElement('div');
                 toast.id = 'toast';
+                toast.setAttribute('role', 'alert');
+                toast.setAttribute('aria-live', 'assertive');
+                toast.setAttribute('aria-atomic', 'true');
                 toast.innerHTML = `
                     <span class="toast-icon">
-                        <svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+                        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
                     </span>
                     <span id="toastMessage"></span>
                 `;
