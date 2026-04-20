@@ -1073,40 +1073,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* ── Key Takeaways ── */
-        .takeaways {
-            background: rgba(34,197,94,0.04);
-            border: 1px solid rgba(34,197,94,0.2);
-            border-radius: 12px;
-            padding: 28px 32px;
-            margin: 48px 0 0;
-        }
-
-        .takeaways-label {
-            font-size: 0.6875rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 16px;
-        }
-
-        .takeaways ul {
-            margin: 0;
-            padding-left: 20px;
-            color: var(--text-secondary);
-        }
-
-        .takeaways li {
-            font-size: 0.9375rem;
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-
-        .takeaways li:last-child {
-            margin-bottom: 0;
-        }
-
         /* ── Chapter opening pull quote ── */
         .chapter-opener {
             font-family: 'Newsreader', serif;
@@ -1130,10 +1096,240 @@
             display: block;
         }
 
+        /* ── Sticky Sidebar ── */
+        .sidebar {
+            position: fixed;
+            left: max(24px, calc(50% - 380px - 200px));
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .sidebar.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 5px 8px 5px 0;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            transition: color 0.2s, opacity 0.2s;
+            opacity: 0.45;
+            max-width: 160px;
+        }
+
+        .sidebar-item:hover {
+            opacity: 0.9;
+            color: var(--text-primary);
+        }
+
+        .sidebar-item.active {
+            opacity: 1;
+            color: var(--text-primary);
+        }
+
+        .sidebar-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .sidebar-item.active .sidebar-dot {
+            background: var(--accent);
+            width: 6px;
+            height: 6px;
+            box-shadow: 0 0 6px rgba(34,197,94,0.5);
+        }
+
+        .sidebar-label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 1280px) {
+            .sidebar { display: none; }
+        }
+
+        /* ── Scroll-in animations ── */
+        .js-loaded .chapter,
+        .js-loaded .part-divider {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .js-loaded .chapter.in-view,
+        .js-loaded .part-divider.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Before / After Case Study ── */
+        .case-study-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin: 32px 0;
+        }
+
+        .case-col {
+            padding: 28px;
+        }
+
+        .case-col + .case-col {
+            border-left: 1px solid var(--border);
+        }
+
+        .case-col-before {
+            background: rgba(239,68,68,0.035);
+        }
+
+        .case-col-after {
+            background: rgba(34,197,94,0.035);
+        }
+
+        .case-col-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .case-col-before .case-col-tag { color: #f87171; }
+        .case-col-after  .case-col-tag { color: var(--accent); }
+
+        .case-col p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.65;
+            margin-bottom: 8px;
+        }
+
+        .case-col p:last-child { margin-bottom: 0; }
+
+        @media (max-width: 600px) {
+            .case-study-split { grid-template-columns: 1fr; }
+            .case-col + .case-col { border-left: none; border-top: 1px solid var(--border); }
+        }
+
+        /* ── Chapter Summary Card (end-of-chapter feel) ── */
+        .takeaways {
+            position: relative;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 0;
+            margin: 56px 0 0;
+            overflow: hidden;
+        }
+
+        .takeaways::before {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, rgba(34,197,94,0.15) 100%);
+        }
+
+        .takeaways-inner {
+            padding: 28px 32px 32px;
+        }
+
+        .takeaways-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .takeaways-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0;
+        }
+
+        .takeaways-chapter-tag {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .takeaways ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .takeaways li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.9375rem;
+            margin-bottom: 0;
+            padding: 12px 0;
+            border-top: 1px solid var(--border-subtle);
+            line-height: 1.55;
+        }
+
+        .takeaways li:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .takeaways li::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+            margin-top: 8px;
+            opacity: 0.65;
+        }
+
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="sidebar" id="chapterSidebar" aria-label="Chapter navigation">
+        <a href="#intro"     class="sidebar-item" data-chapter="intro">    <span class="sidebar-dot"></span><span class="sidebar-label">The Usefulness Crisis</span></a>
+        <a href="#deutsch"   class="sidebar-item" data-chapter="deutsch">  <span class="sidebar-dot"></span><span class="sidebar-label">David Deutsch</span></a>
+        <a href="#naval"     class="sidebar-item" data-chapter="naval">    <span class="sidebar-dot"></span><span class="sidebar-label">Specific Knowledge</span></a>
+        <a href="#ai-failure"class="sidebar-item" data-chapter="ai-failure"><span class="sidebar-dot"></span><span class="sidebar-label">Why AI Fails</span></a>
+        <a href="#compression"class="sidebar-item"data-chapter="compression"><span class="sidebar-dot"></span><span class="sidebar-label">Knowledge Compression</span></a>
+        <a href="#inkind"    class="sidebar-item" data-chapter="inkind">   <span class="sidebar-dot"></span><span class="sidebar-label">In-Kind Giving</span></a>
+        <a href="#systems"   class="sidebar-item" data-chapter="systems">  <span class="sidebar-dot"></span><span class="sidebar-label">Building Systems</span></a>
+        <a href="#metrics"   class="sidebar-item" data-chapter="metrics">  <span class="sidebar-dot"></span><span class="sidebar-label">Measuring Impact</span></a>
+        <a href="#markets"   class="sidebar-item" data-chapter="markets">  <span class="sidebar-dot"></span><span class="sidebar-label">Knowledge Markets</span></a>
+        <a href="#your-role" class="sidebar-item" data-chapter="your-role"><span class="sidebar-dot"></span><span class="sidebar-label">Your Role</span></a>
+    </nav>
 
     <nav class="nav">
         <div class="nav-inner">
@@ -1265,12 +1461,16 @@
             <p>That&rsquo;s the opposite of what engagement metrics reward. The metric that matters is not sessions per user. It is problems solved per session.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>Feeling helpful and being helpful are different optimization targets</li>
                     <li>Generic, available, agreeable&mdash;these describe performative helpfulness, not real usefulness</li>
                     <li>Specificity is the one thing that separates signal from noise</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1329,12 +1529,16 @@
             </div>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>A hard-to-vary explanation has load-bearing parts&mdash;remove one and it fails</li>
                     <li>Easy-to-vary advice is unfalsifiable, and therefore useless</li>
                     <li>Good frameworks are specific enough to be wrong&mdash;that&rsquo;s what makes them trustworthy</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1384,12 +1588,16 @@
             <p>This is not abstract. If your value at work is knowing the answer to questions that can be Googled, AI has already replaced you. If your value is knowing which question matters and why&mdash;that comes from specific knowledge.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>Specific knowledge is built from curiosity, temperament, obsession, and failure&mdash;not training data</li>
                     <li>AI commoditizes general knowledge; your specific knowledge is your actual advantage</li>
                     <li>Ask: what do I know that couldn&rsquo;t be trained into a model?</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1441,14 +1649,24 @@
                 <li>Respecting context over comfort&mdash;you need this, not what you want</li>
             </ul>
 
-            <div class="case-study">
-                <div class="case-study-title">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                    Case Study: The Helpful Chatbot That Fails
+            <div class="case-study-split">
+                <div class="case-col case-col-before">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        Engagement-Optimised
+                    </p>
+                    <p>User asks: &ldquo;Should I quit my job and start a company?&rdquo;</p>
+                    <p>Response: 5 frameworks, 12 bullet points, &ldquo;follow your passion,&rdquo; hedged throughout. User feels heard. Returns tomorrow with the same question rephrased.</p>
+                    <p>Chatbot succeeds by its own metrics. Problem unsolved.</p>
                 </div>
-                <p>A user asks an AI chatbot: &ldquo;Should I quit my job and start a company?&rdquo;</p>
-                <p>The engagement-optimized response lists pros, cons, frameworks, and encourages the user to &ldquo;follow their passion.&rdquo; The user feels heard. They return tomorrow with another question. The chatbot has succeeded by its own metrics.</p>
-                <p>But nothing was solved. The user still doesn&rsquo;t know what to do. The chatbot gave them feeling-of-help, not actual help.</p>
+                <div class="case-col case-col-after">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                        Usefulness-Optimised
+                    </p>
+                    <p>Same question. Response: &ldquo;What&rsquo;s your runway if you quit today? Do you have one paying customer yet?&rdquo;</p>
+                    <p>Two specific questions expose the real decision. User either has answers (quit) or doesn&rsquo;t (not yet). One exchange. Done.</p>
+                </div>
             </div>
 
             <h3>The Deeper Issue</h3>
@@ -1456,12 +1674,16 @@
             <p><span class="highlight">A system that maximizes return visits cannot simultaneously maximize problems solved per session.</span> These are conflicting objectives.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>AI assistants are often optimized for engagement, not usefulness&mdash;these conflict</li>
                     <li>Genuine usefulness requires saying no, disagreeing, admitting uncertainty&mdash;all of which reduce engagement</li>
                     <li>The metric you reward determines the behavior you get</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1526,12 +1748,16 @@
             <p>This is a <span class="highlight">human skill</span>. AI can assist with steps 1 and 4. Steps 2 and 3 require judgment that only comes from caring about the outcome.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>Most problems are stuck because of information overload, not information scarcity</li>
                     <li>Compression turns a statement of suffering into an actionable request</li>
                     <li>The hardest part&mdash;knowing what to leave out&mdash;is a human judgment, not a computation</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1583,12 +1809,16 @@
             <p>The best tools are transparent about what they do and don&rsquo;t do. They don&rsquo;t hide behind &ldquo;comprehensive solutions&rdquo;&mdash;they make a specific promise and keep it.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>In-kind giving works because it is specific, verifiable, and respects the recipient&rsquo;s expertise</li>
                     <li>The best assistance gives people what they asked for&mdash;not what you think they need</li>
                     <li>Verifiability is not a nice-to-have. It is what separates real help from the feeling of help.</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1637,14 +1867,23 @@
                 <li>Optimize for engagement metrics that diverge from actual value delivered</li>
             </ul>
 
-            <div class="case-study">
-                <div class="case-study-title">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                    OpenClaw Labs: A Real Distinction
+            <div class="case-study-split">
+                <div class="case-col case-col-before">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        Platform Thinking
+                    </p>
+                    <p>&ldquo;A learning platform where students answer questions.&rdquo;</p>
+                    <p>Generic. Any competitor with more funding could build the same thing. Decays as competitors arrive. Success measured in DAUs.</p>
                 </div>
-                <p><strong>What we could have built:</strong> &ldquo;A learning platform where students answer questions.&rdquo; This is generic. Any competitor with more funding could build it.</p>
-                <p><strong>What we built:</strong> &ldquo;A knowledge creation system where people propose explanations for unsolved problems, get criticized by AI, refine their thinking, and contribute to a compounding library of humanity&rsquo;s understanding.&rdquo;</p>
-                <p>The second version is specific, hard to copy, and compounds. The first version describes a feature. The second describes a system that matters.</p>
+                <div class="case-col case-col-after">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                        Systems Thinking
+                    </p>
+                    <p>&ldquo;A knowledge creation system where people propose explanations for unsolved problems, get criticised by AI, refine their thinking, and contribute to a compounding library of humanity&rsquo;s understanding.&rdquo;</p>
+                    <p>Specific, hard to copy, compounds. Success measured in problems solved.</p>
+                </div>
             </div>
 
             <h3>The Design Test</h3>
@@ -1657,12 +1896,16 @@
             <p>If you cannot answer all three, you are building a feature, not a system.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>Systems that matter are built around specific problems, not around generic opportunity</li>
                     <li>Compounding is the hallmark of a real system&mdash;each use makes it more valuable</li>
                     <li>If you can&rsquo;t describe concretely what &ldquo;solved&rdquo; looks like, you haven&rsquo;t defined the problem</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1723,12 +1966,16 @@
             <p>Talk to users who churned. Ask them what didn&rsquo;t work. Their answers will be more useful than your dashboard.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>Optimizing for easy-to-measure metrics eventually displaces the real goal</li>
                     <li>The best measure of usefulness is a concrete change in someone&rsquo;s situation&mdash;verifiable, not inferred</li>
                     <li>Qualitative feedback from churned users is more diagnostic than engagement dashboards</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1791,12 +2038,16 @@
             <p>Knowledge markets fail when they become social networks. The incentive to look smart is stronger than the incentive to be useful. Building a knowledge market requires resisting that pull&mdash;constantly, structurally, by design.</p>
 
             <div class="takeaways">
-                <p class="takeaways-label">Key Takeaways</p>
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
                 <ul>
                     <li>Most valuable knowledge is trapped; making it liquid is a systems problem, not just a technology problem</li>
                     <li>Knowledge markets work when contributions compound&mdash;each one makes future ones more valuable</li>
                     <li>The hardest part is resisting the social dynamics that turn knowledge systems into status systems</li>
                 </ul>
+                </div>
             </div>
 
             <div class="chapter-nav">
@@ -1953,12 +2204,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
+        // Enable JS-driven animations (prevents flash of invisible content without JS)
+        document.body.classList.add('js-loaded');
+
         // Reading progress bar
         window.addEventListener('scroll', () => {
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrolled = (window.scrollY / docHeight) * 100;
             document.getElementById('progressBar').style.width = scrolled + '%';
         });
+
+        // ── Scroll-in animations ──
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    animObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.chapter, .part-divider').forEach(el => animObserver.observe(el));
+
+        // ── Sticky sidebar: show/hide + active chapter tracking ──
+        const sidebar      = document.getElementById('chapterSidebar');
+        const coverSection = document.querySelector('.cover');
+        const chapters     = Array.from(document.querySelectorAll('.chapter'));
+        const sidebarItems = Array.from(sidebar.querySelectorAll('.sidebar-item'));
+
+        // Show sidebar only after cover has scrolled out of view
+        const coverObserver = new IntersectionObserver((entries) => {
+            sidebar.classList.toggle('visible', !entries[0].isIntersecting);
+        }, { threshold: 0 });
+        coverObserver.observe(coverSection);
+
+        // Highlight the chapter currently dominating the viewport
+        let activeId = null;
+        const chapterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    activeId = entry.target.id;
+                }
+            });
+            sidebarItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.chapter === activeId);
+            });
+        }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+        chapters.forEach(ch => chapterObserver.observe(ch));
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
