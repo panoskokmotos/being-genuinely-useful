@@ -815,10 +815,521 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* ── Book Cover ── */
+        .cover {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #050505;
+        }
+
+        .cover-bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(34,197,94,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34,197,94,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+        }
+
+        .cover-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -55%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .cover-book {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 120px 32px 80px;
+            max-width: 820px;
+        }
+
+        .cover-edition {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .cover-rule {
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+            margin: 0 auto 40px;
+            opacity: 0.5;
+        }
+
+        .cover-title {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(3.5rem, 9vw, 7rem);
+            font-weight: 400;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            color: #fafafa;
+            margin-bottom: 0;
+        }
+
+        .cover-title em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .cover-subtitle-line {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-top: 16px;
+            letter-spacing: 0;
+        }
+
+        .cover-divider {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, var(--border), transparent);
+            margin: 40px auto;
+        }
+
+        .cover-author {
+            font-size: 0.9375rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .cover-cta {
+            margin-top: 56px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cover-open-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #050505;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 16px 36px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .cover-open-btn:hover {
+            background: #86efac;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(34,197,94,0.25);
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 32px;
+            color: var(--text-muted);
+            font-size: 0.8125rem;
+            letter-spacing: 0.05em;
+        }
+
+        .cover-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.6875rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: coverBounce 2.5s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes coverBounce {
+            0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.8; transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ── Part Dividers ── */
+        .part-divider {
+            position: relative;
+            padding: 100px 24px;
+            text-align: center;
+            overflow: hidden;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            margin: 0 -24px;
+        }
+
+        .part-divider::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(34,197,94,0.04), transparent);
+            pointer-events: none;
+        }
+
+        .part-divider-number {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(5rem, 15vw, 10rem);
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(34,197,94,0.08);
+            line-height: 1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .part-divider-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .part-divider-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .part-divider-title {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(1.75rem, 4vw, 2.75rem);
+            font-weight: 400;
+            color: var(--text-primary);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.3;
+        }
+
+        /* ── Chapter Nav ── */
+        .chapter-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 32px 0 0;
+            margin-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            gap: 16px;
+        }
+
+        .chapter-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            padding: 8px 0;
+        }
+
+        .chapter-nav-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .chapter-nav-btn.next {
+            margin-left: auto;
+        }
+
+        .chapter-counter {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Chapter opening pull quote ── */
+        .chapter-opener {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding: 0 0 32px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        /* ── Chapter number display ── */
+        .chapter-number {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* ── Sticky Sidebar ── */
+        .sidebar {
+            position: fixed;
+            left: max(24px, calc(50% - 380px - 200px));
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .sidebar.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 5px 8px 5px 0;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            transition: color 0.2s, opacity 0.2s;
+            opacity: 0.45;
+            max-width: 160px;
+        }
+
+        .sidebar-item:hover {
+            opacity: 0.9;
+            color: var(--text-primary);
+        }
+
+        .sidebar-item.active {
+            opacity: 1;
+            color: var(--text-primary);
+        }
+
+        .sidebar-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .sidebar-item.active .sidebar-dot {
+            background: var(--accent);
+            width: 6px;
+            height: 6px;
+            box-shadow: 0 0 6px rgba(34,197,94,0.5);
+        }
+
+        .sidebar-label {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 1280px) {
+            .sidebar { display: none; }
+        }
+
+        /* ── Scroll-in animations ── */
+        .js-loaded .chapter,
+        .js-loaded .part-divider {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .js-loaded .chapter.in-view,
+        .js-loaded .part-divider.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Before / After Case Study ── */
+        .case-study-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            margin: 32px 0;
+        }
+
+        .case-col {
+            padding: 28px;
+        }
+
+        .case-col + .case-col {
+            border-left: 1px solid var(--border);
+        }
+
+        .case-col-before {
+            background: rgba(239,68,68,0.035);
+        }
+
+        .case-col-after {
+            background: rgba(34,197,94,0.035);
+        }
+
+        .case-col-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .case-col-before .case-col-tag { color: #f87171; }
+        .case-col-after  .case-col-tag { color: var(--accent); }
+
+        .case-col p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.65;
+            margin-bottom: 8px;
+        }
+
+        .case-col p:last-child { margin-bottom: 0; }
+
+        @media (max-width: 600px) {
+            .case-study-split { grid-template-columns: 1fr; }
+            .case-col + .case-col { border-left: none; border-top: 1px solid var(--border); }
+        }
+
+        /* ── Chapter Summary Card (end-of-chapter feel) ── */
+        .takeaways {
+            position: relative;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 0;
+            margin: 56px 0 0;
+            overflow: hidden;
+        }
+
+        .takeaways::before {
+            content: '';
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, rgba(34,197,94,0.15) 100%);
+        }
+
+        .takeaways-inner {
+            padding: 28px 32px 32px;
+        }
+
+        .takeaways-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .takeaways-label {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0;
+        }
+
+        .takeaways-chapter-tag {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .takeaways ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .takeaways li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.9375rem;
+            margin-bottom: 0;
+            padding: 12px 0;
+            border-top: 1px solid var(--border-subtle);
+            line-height: 1.55;
+        }
+
+        .takeaways li:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .takeaways li::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+            margin-top: 8px;
+            opacity: 0.65;
+        }
+
     </style>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
+
+    <nav class="sidebar" id="chapterSidebar" aria-label="Chapter navigation">
+        <a href="#intro"     class="sidebar-item" data-chapter="intro">    <span class="sidebar-dot"></span><span class="sidebar-label">The Usefulness Crisis</span></a>
+        <a href="#deutsch"   class="sidebar-item" data-chapter="deutsch">  <span class="sidebar-dot"></span><span class="sidebar-label">David Deutsch</span></a>
+        <a href="#naval"     class="sidebar-item" data-chapter="naval">    <span class="sidebar-dot"></span><span class="sidebar-label">Specific Knowledge</span></a>
+        <a href="#ai-failure"class="sidebar-item" data-chapter="ai-failure"><span class="sidebar-dot"></span><span class="sidebar-label">Why AI Fails</span></a>
+        <a href="#compression"class="sidebar-item"data-chapter="compression"><span class="sidebar-dot"></span><span class="sidebar-label">Knowledge Compression</span></a>
+        <a href="#inkind"    class="sidebar-item" data-chapter="inkind">   <span class="sidebar-dot"></span><span class="sidebar-label">In-Kind Giving</span></a>
+        <a href="#systems"   class="sidebar-item" data-chapter="systems">  <span class="sidebar-dot"></span><span class="sidebar-label">Building Systems</span></a>
+        <a href="#metrics"   class="sidebar-item" data-chapter="metrics">  <span class="sidebar-dot"></span><span class="sidebar-label">Measuring Impact</span></a>
+        <a href="#markets"   class="sidebar-item" data-chapter="markets">  <span class="sidebar-dot"></span><span class="sidebar-label">Knowledge Markets</span></a>
+        <a href="#your-role" class="sidebar-item" data-chapter="your-role"><span class="sidebar-dot"></span><span class="sidebar-label">Your Role</span></a>
+    </nav>
 
     <nav class="nav">
         <div class="nav-inner">
@@ -833,37 +1344,43 @@
         </div>
     </nav>
 
-    <section class="hero">
-        <span class="hero-badge">
-            <span class="hero-badge-dot"></span>
-            A Framework for AI-Age Relevance
-        </span>
-        <h1>Being <span>Genuinely Useful</span> in an AI World</h1>
-        <p class="hero-subtitle">A framework for building knowledge infrastructure instead of platforms. For humans who want to stay relevant.</p>
-        <div class="hero-buttons">
-            <a href="#intro" class="btn btn-primary">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-                Start Reading
-            </a>
-            <a href="/cards" class="btn btn-secondary">View Share Cards</a>
+    <section class="cover">
+        <div class="cover-bg-grid"></div>
+        <div class="cover-glow"></div>
+
+        <div class="cover-book">
+            <p class="cover-edition">First Edition &mdash; 2026</p>
+            <div class="cover-rule"></div>
+
+            <h1 class="cover-title">
+                Being<br>
+                <em>Genuinely</em><br>
+                Useful
+            </h1>
+            <p class="cover-subtitle-line">in an AI World</p>
+
+            <div class="cover-divider"></div>
+
+            <p class="cover-author">Panos Kokmotos</p>
+
+            <div class="cover-cta">
+                <a href="#toc" class="cover-open-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    Open Book
+                </a>
+                <div class="cover-meta">
+                    <span>10 Chapters</span>
+                    <span>&middot;</span>
+                    <span>40+ Pages</span>
+                    <span>&middot;</span>
+                    <span>8 Exercises</span>
+                </div>
+            </div>
         </div>
-        <div class="hero-meta">
-            <div class="hero-meta-item">
-                <span class="hero-meta-value">40+</span>
-                <span>Pages</span>
-            </div>
-            <div class="hero-meta-item">
-                <span class="hero-meta-value">10</span>
-                <span>Chapters</span>
-            </div>
-            <div class="hero-meta-item">
-                <span class="hero-meta-value">8</span>
-                <span>Exercises</span>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll to read</span>
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+
+        <div class="cover-scroll">
+            <span>Scroll</span>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
         </div>
     </section>
 
@@ -872,50 +1389,68 @@
         <cite>&mdash; Panos Kokmotos</cite>
     </div>
 
-    <div class="toc">
+    <div class="toc" id="toc">
         <h2>Table of Contents</h2>
         <div class="toc-grid">
             <a href="#intro" class="toc-item"><span class="toc-number">01</span>The Usefulness Crisis</a>
-            <a href="#deutsch" class="toc-item"><span class="toc-number">02</span>David Deutsch</a>
-            <a href="#naval" class="toc-item"><span class="toc-number">03</span>Naval&rsquo;s Framework</a>
-            <a href="#ai-failure" class="toc-item"><span class="toc-number">04</span>Why AI Fails</a>
+            <a href="#deutsch" class="toc-item"><span class="toc-number">02</span>David Deutsch &amp; Hard-to-Vary Explanations</a>
+            <a href="#naval" class="toc-item"><span class="toc-number">03</span>Naval&rsquo;s Specific Knowledge</a>
+            <a href="#ai-failure" class="toc-item"><span class="toc-number">04</span>Why AI Assistants Fail</a>
             <a href="#compression" class="toc-item"><span class="toc-number">05</span>Knowledge Compression</a>
             <a href="#inkind" class="toc-item"><span class="toc-number">06</span>In-Kind Giving</a>
-            <a href="#systems" class="toc-item"><span class="toc-number">07</span>Building Systems</a>
-            <a href="#metrics" class="toc-item"><span class="toc-number">08</span>Measuring Impact</a>
+            <a href="#systems" class="toc-item"><span class="toc-number">07</span>Building Systems That Matter</a>
+            <a href="#metrics" class="toc-item"><span class="toc-number">08</span>Measuring Real Impact</a>
             <a href="#markets" class="toc-item"><span class="toc-number">09</span>Knowledge Markets</a>
             <a href="#your-role" class="toc-item"><span class="toc-number">10</span>Your Role</a>
         </div>
     </div>
 
     <main class="container">
+
+        <div class="part-divider">
+            <div class="part-divider-number">I</div>
+            <div class="part-divider-content">
+                <p class="part-divider-label">Part One</p>
+                <h2 class="part-divider-title">The Problem</h2>
+            </div>
+        </div>
+
         <article id="intro" class="chapter">
+            <span class="chapter-number">Chapter 01 of 10</span>
             <span class="chapter-label">Part I &mdash; The Problem</span>
             <h2>The Usefulness Crisis</h2>
-            
-            <p>We live in an age of abundance&mdash;information, tools, AI assistants. Yet usefulness has never been scarcer.</p>
+
+            <p class="chapter-opener">We live in an age of abundance&mdash;information, tools, AI assistants that never sleep. Yet usefulness has never been scarcer. This is not a paradox. It is a design choice.</p>
+
             <p>Why?</p>
             <p><span class="highlight">Because most &ldquo;helpful&rdquo; things optimize for the wrong metric: feeling helpful rather than being helpful.</span></p>
 
             <h3>Three Failure Modes</h3>
             <p><strong>Mode 1: Performative Helpfulness</strong></p>
             <ul>
-                <li>Long responses (looks thorough)</li>
-                <li>Many options (looks thoughtful)</li>
-                <li>Constant availability (looks dedicated)</li>
-                <li>Agreement (looks aligned)</li>
+                <li>Long responses that look thorough but add nothing</li>
+                <li>Many options that look thoughtful but avoid commitment</li>
+                <li>Constant availability that looks dedicated but breeds dependency</li>
+                <li>Agreement that looks aligned but erodes trust</li>
             </ul>
 
             <p><strong>Mode 2: Generic Solutions</strong></p>
             <ul>
-                <li>Frameworks that apply everywhere</li>
-                <li>Advice that works for everyone</li>
-                <li>Tools that handle all cases</li>
-                <li>Knowledge that&rsquo;s universally relevant</li>
+                <li>Frameworks that apply everywhere&mdash;and therefore nowhere</li>
+                <li>Advice that works for everyone&mdash;and therefore no one</li>
+                <li>Tools that handle all cases&mdash;and master none</li>
+                <li>Knowledge that&rsquo;s universally relevant&mdash;and universally shallow</li>
+            </ul>
+
+            <p><strong>Mode 3: Engagement Capture</strong></p>
+            <ul>
+                <li>Systems designed to keep you coming back</li>
+                <li>Metrics that reward time-on-platform, not problem-solved</li>
+                <li>Incentives that punish the one clear answer</li>
             </ul>
 
             <p><strong>The Insight</strong></p>
-            <p>Real usefulness is <span class="highlight">quiet</span>. It does the work. It doesn&rsquo;t announce itself.</p>
+            <p>Real usefulness is <span class="highlight">quiet</span>. It does the work. It doesn&rsquo;t announce itself. The most useful thing a doctor can do is hand you one pill and say &ldquo;take this, you&rsquo;ll be fine.&rdquo; Not explain all your options.</p>
 
             <div class="quote">
                 <p>&ldquo;If it applies everywhere, it applies nowhere. Specificity is the antidote to uselessness.&rdquo;</p>
@@ -923,309 +1458,684 @@
 
             <h3>What Real Usefulness Looks Like</h3>
             <p>A useful AI system might give you one clear answer and then get out of the way.</p>
-            <p>That&rsquo;s the opposite of what engagement metrics reward.</p>
+            <p>That&rsquo;s the opposite of what engagement metrics reward. The metric that matters is not sessions per user. It is problems solved per session.</p>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>Feeling helpful and being helpful are different optimization targets</li>
+                    <li>Generic, available, agreeable&mdash;these describe performative helpfulness, not real usefulness</li>
+                    <li>Specificity is the one thing that separates signal from noise</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <span class="chapter-counter">1 of 10</span>
+                <a href="#deutsch" class="chapter-nav-btn next">
+                    David Deutsch
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </article>
 
+        <div class="part-divider">
+            <div class="part-divider-number">II</div>
+            <div class="part-divider-content">
+                <p class="part-divider-label">Part Two</p>
+                <h2 class="part-divider-title">The Framework</h2>
+            </div>
+        </div>
+
         <article id="deutsch" class="chapter">
+            <span class="chapter-number">Chapter 02 of 10</span>
             <span class="chapter-label">Part II &mdash; The Framework</span>
             <h2>David Deutsch and Hard-to-Vary Explanations</h2>
-            
-            <p>David Deutsch discovered something crucial about knowledge:</p>
+
+            <p class="chapter-opener">A good explanation is not one that sounds right. It is one that cannot be easily changed and still sound right. This is David Deutsch&rsquo;s most important insight&mdash;and it applies far beyond physics.</p>
+
             <p><span class="highlight">Not all explanations are equal. A good explanation is hard to vary.</span></p>
 
             <h3>Hard to Vary vs. Easy to Vary</h3>
-            
+
             <div class="example">
                 <div class="example-label">Hard to vary (useful)</div>
                 <p>&ldquo;Success in markets comes from solving a problem that people will pay to have solved, where your solution is cheaper or better than alternatives, and you can scale that solution profitably.&rdquo;</p>
-                <p><em>Why? Testable components. Falsifiable. Hard to reinterpret.</em></p>
+                <p><em>Testable. Falsifiable. Each clause does real work&mdash;remove any one and the explanation collapses.</em></p>
             </div>
 
             <div class="example">
                 <div class="example-label">Easy to vary (useless)</div>
                 <p>&ldquo;Success comes from having a vision.&rdquo;</p>
-                <p><em>Why? Vague. Easy to reinterpret. Unfalsifiable.</em></p>
+                <p><em>Vague. Easy to reinterpret after any outcome. Unfalsifiable. Could mean anything&mdash;and therefore means nothing.</em></p>
             </div>
 
-            <h3>The Two Dimensions</h3>
-            <p><strong>1. Hard to Vary</strong> &mdash; Specific, testable, falsifiable</p>
-            <p><strong>2. Far-Reaching</strong> &mdash; Applies beyond where it started</p>
+            <h3>The Two Dimensions of a Good Explanation</h3>
+            <p><strong>1. Hard to Vary</strong> &mdash; Specific, testable, falsifiable. Each part is load-bearing.</p>
+            <p><strong>2. Far-Reaching</strong> &mdash; Applies beyond where it started. It generalizes without becoming vague.</p>
 
-            <p>Evolution explains biology, economics, technology, culture, language. That&rsquo;s far-reaching.</p>
-            <p>Your explanation should work the same way.</p>
+            <p>Evolution explains biology, economics, technology, culture, language. It is far-reaching because the core mechanism&mdash;variation plus selection&mdash;is hard to vary.</p>
+            <p>Your explanation, your advice, your product should work the same way.</p>
+
+            <h3>Applied to Usefulness</h3>
+            <p>When you try to help someone, ask yourself: is my explanation hard to vary? Can they take this specific action and verify the outcome?</p>
+            <p>If your advice could be reinterpreted to justify any outcome, it isn&rsquo;t advice. It&rsquo;s noise dressed up as signal.</p>
+
+            <div class="quote">
+                <p>&ldquo;A good explanation is hard to vary while still explaining what it purports to explain.&rdquo;</p>
+            </div>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>A hard-to-vary explanation has load-bearing parts&mdash;remove one and it fails</li>
+                    <li>Easy-to-vary advice is unfalsifiable, and therefore useless</li>
+                    <li>Good frameworks are specific enough to be wrong&mdash;that&rsquo;s what makes them trustworthy</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#intro" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    The Usefulness Crisis
+                </a>
+                <span class="chapter-counter">2 of 10</span>
+                <a href="#naval" class="chapter-nav-btn next">
+                    Naval&rsquo;s Framework
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </article>
 
         <article id="naval" class="chapter">
+            <span class="chapter-number">Chapter 03 of 10</span>
             <span class="chapter-label">Part II &mdash; The Framework</span>
             <h2>Naval Ravikant&rsquo;s Specific Knowledge</h2>
-            
+
+            <p class="chapter-opener">In a world where AI can learn any skill, pass any exam, and synthesize any body of knowledge faster than a human ever could, what remains? The answer is: the knowledge that cannot be trained into existence.</p>
+
             <h3>The Most Valuable Knowledge Can&rsquo;t Be Trained</h3>
             <p>Specific knowledge is:</p>
             <ul>
-                <li>What you know that can&rsquo;t be taught in school</li>
-                <li>What comes from your curiosity, accidents, failures</li>
+                <li>What you know that can&rsquo;t be taught in school&mdash;it was lived, not studied</li>
+                <li>What comes from your curiosity, your accidents, your failures</li>
                 <li>What&rsquo;s so unique to you that it&rsquo;s hard for others to copy</li>
-                <li>What you could teach, but it would take years for someone else to develop</li>
+                <li>What you could try to teach, but would take years for someone else to develop</li>
             </ul>
 
-            <h3>Where It Comes From</h3>
+            <p>Notice what&rsquo;s absent from that list: credentials, certifications, degrees, years of experience. Those are the things AI threatens most directly.</p>
+
+            <h3>Where Specific Knowledge Comes From</h3>
             <ol>
-                <li><strong>Curiosity</strong> &mdash; What do you naturally ask questions about?</li>
-                <li><strong>Temperament</strong> &mdash; What kind of problems do you naturally approach?</li>
-                <li><strong>Obsessions</strong> &mdash; What do you think about when nobody&rsquo;s paying you?</li>
-                <li><strong>Failures</strong> &mdash; What have you tried, failed at, and learned from?</li>
+                <li><strong>Curiosity</strong> &mdash; What do you naturally ask questions about, even when no one is paying you?</li>
+                <li><strong>Temperament</strong> &mdash; What kinds of problems do you naturally lean into while others avoid them?</li>
+                <li><strong>Obsessions</strong> &mdash; What do you think about at 2am that isn&rsquo;t work?</li>
+                <li><strong>Failures</strong> &mdash; What have you tried, failed at, and understood in a way someone who didn&rsquo;t fail cannot?</li>
             </ol>
 
-            <p><span class="highlight">The intersection of these four is your specific knowledge.</span></p>
+            <p><span class="highlight">The intersection of these four is your specific knowledge. It&rsquo;s also your moat.</span></p>
 
             <h3>Why It Matters in an AI World</h3>
-            <p><strong>General knowledge is obsolete.</strong> AI can look it up, learn it, apply it better.</p>
-            <p><strong>Specific knowledge is the only competitive advantage.</strong> That&rsquo;s what humans can do that machines can&rsquo;t.</p>
-        </article>
+            <p><strong>General knowledge is now a commodity.</strong> AI can access it, learn it, apply it faster and cheaper than any human.</p>
+            <p><strong>Specific knowledge is the only durable competitive advantage.</strong> It is path-dependent. It cannot be scraped, prompted, or downloaded. It has to be developed through lived experience.</p>
+            <p>This is not abstract. If your value at work is knowing the answer to questions that can be Googled, AI has already replaced you. If your value is knowing which question matters and why&mdash;that comes from specific knowledge.</p>
 
-        <article id="ai-failure" class="chapter">
-            <span class="chapter-label">Part III &mdash; The Reality</span>
-            <h2>Why Most AI Assistants Fail at Usefulness</h2>
-            
-            <h3>They&rsquo;re Optimized for Engagement, Not Usefulness</h3>
-            <p>Most AI systems are designed to:</p>
-            <ul>
-                <li>Respond to everything (you keep using them)</li>
-                <li>Agree with you (you feel good)</li>
-                <li>Sound confident (you trust them)</li>
-                <li>Generate many options (you feel choice)</li>
-                <li>Customize to preferences (you feel seen)</li>
-            </ul>
-
-            <h3>The Problem</h3>
-            <p>None of this requires actual usefulness.</p>
-            <p>Real usefulness often requires the <span class="highlight">opposite</span>:</p>
-            <ul>
-                <li>Saying no (this won&rsquo;t help)</li>
-                <li>Disagreeing (you&rsquo;re wrong)</li>
-                <li>Admitting uncertainty (I don&rsquo;t know)</li>
-                <li>Offering one direction (not options)</li>
-                <li>Respecting context over preferences (you need this, not want this)</li>
-            </ul>
-
-            <div class="case-study">
-                <div class="case-study-title">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                    Case Study: The Helpful Chatbot That Fails
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>Specific knowledge is built from curiosity, temperament, obsession, and failure&mdash;not training data</li>
+                    <li>AI commoditizes general knowledge; your specific knowledge is your actual advantage</li>
+                    <li>Ask: what do I know that couldn&rsquo;t be trained into a model?</li>
+                </ul>
                 </div>
-                <p>Users love it. Engagement metrics are great. But does it solve problems? Usually not.</p>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#deutsch" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    David Deutsch
+                </a>
+                <span class="chapter-counter">3 of 10</span>
+                <a href="#ai-failure" class="chapter-nav-btn next">
+                    Why AI Fails
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
         </article>
 
+        <div class="part-divider">
+            <div class="part-divider-number">III</div>
+            <div class="part-divider-content">
+                <p class="part-divider-label">Part Three</p>
+                <h2 class="part-divider-title">The Reality</h2>
+            </div>
+        </div>
+
+        <article id="ai-failure" class="chapter">
+            <span class="chapter-number">Chapter 04 of 10</span>
+            <span class="chapter-label">Part III &mdash; The Reality</span>
+            <h2>Why Most AI Assistants Fail at Usefulness</h2>
+
+            <p class="chapter-opener">AI assistants have never been more capable. And yet, for most people, they have never been more frustrating to actually rely on. The reason is not the technology. It is the incentive structure underneath it.</p>
+
+            <h3>They&rsquo;re Optimized for Engagement, Not Usefulness</h3>
+            <p>Most AI systems are designed to:</p>
+            <ul>
+                <li>Respond to everything&mdash;so you keep coming back</li>
+                <li>Agree with you&mdash;so you feel good</li>
+                <li>Sound confident&mdash;so you trust the product</li>
+                <li>Generate many options&mdash;so you feel served</li>
+                <li>Customize to your stated preferences&mdash;so you feel seen</li>
+            </ul>
+
+            <h3>The Problem</h3>
+            <p>None of this requires actual usefulness. These are engagement behaviors masquerading as help.</p>
+            <p>Real usefulness often requires the <span class="highlight">opposite</span>:</p>
+            <ul>
+                <li>Saying no&mdash;this path won&rsquo;t help you</li>
+                <li>Disagreeing&mdash;you&rsquo;re wrong about this</li>
+                <li>Admitting uncertainty&mdash;I genuinely don&rsquo;t know</li>
+                <li>Offering one direction&mdash;not a menu of options</li>
+                <li>Respecting context over comfort&mdash;you need this, not what you want</li>
+            </ul>
+
+            <div class="case-study-split">
+                <div class="case-col case-col-before">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        Engagement-Optimised
+                    </p>
+                    <p>User asks: &ldquo;Should I quit my job and start a company?&rdquo;</p>
+                    <p>Response: 5 frameworks, 12 bullet points, &ldquo;follow your passion,&rdquo; hedged throughout. User feels heard. Returns tomorrow with the same question rephrased.</p>
+                    <p>Chatbot succeeds by its own metrics. Problem unsolved.</p>
+                </div>
+                <div class="case-col case-col-after">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                        Usefulness-Optimised
+                    </p>
+                    <p>Same question. Response: &ldquo;What&rsquo;s your runway if you quit today? Do you have one paying customer yet?&rdquo;</p>
+                    <p>Two specific questions expose the real decision. User either has answers (quit) or doesn&rsquo;t (not yet). One exchange. Done.</p>
+                </div>
+            </div>
+
+            <h3>The Deeper Issue</h3>
+            <p>Engagement-optimized systems are not broken&mdash;they are working exactly as designed. The problem is that the design is optimizing for the wrong thing.</p>
+            <p><span class="highlight">A system that maximizes return visits cannot simultaneously maximize problems solved per session.</span> These are conflicting objectives.</p>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>AI assistants are often optimized for engagement, not usefulness&mdash;these conflict</li>
+                    <li>Genuine usefulness requires saying no, disagreeing, admitting uncertainty&mdash;all of which reduce engagement</li>
+                    <li>The metric you reward determines the behavior you get</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#naval" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Naval&rsquo;s Framework
+                </a>
+                <span class="chapter-counter">4 of 10</span>
+                <a href="#compression" class="chapter-nav-btn next">
+                    Knowledge Compression
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </article>
+
+        <div class="part-divider">
+            <div class="part-divider-number">IV</div>
+            <div class="part-divider-content">
+                <p class="part-divider-label">Part Four</p>
+                <h2 class="part-divider-title">The Skills</h2>
+            </div>
+        </div>
+
         <article id="compression" class="chapter">
+            <span class="chapter-number">Chapter 05 of 10</span>
             <span class="chapter-label">Part IV &mdash; The Skills</span>
             <h2>Knowledge Compression</h2>
-            
-            <h3>Most Problems Don&rsquo;t Need More Information. They Need Better Compression.</h3>
-            
+
+            <p class="chapter-opener">The bottleneck in most problems is not a lack of information. It is a surplus of it&mdash;and a deficit of the human judgment required to reduce it to what actually matters.</p>
+
+            <h3>Most Problems Need Compression, Not More Information</h3>
+
             <div class="example">
                 <div class="example-label">Uncompressed</div>
                 <p>&ldquo;We need support for homeless families&rdquo;</p>
+                <p><em>This is a statement of suffering, not a request. Nothing can act on it.</em></p>
             </div>
 
             <div class="example">
                 <div class="example-label">Compressed</div>
-                <p>&ldquo;We need 72 wool blankets, 60x80 inches, delivered by October 15th, plus 72 sleeping pads and hygiene kits&rdquo;</p>
+                <p>&ldquo;We need 72 wool blankets, 60x80 inches, delivered to the shelter by October 15th, plus 72 sleeping pads and hygiene kits.&rdquo;</p>
+                <p><em>This is actionable. A volunteer, a donor, a logistics company can respond immediately.</em></p>
             </div>
 
-            <p>The compressed version is <span class="highlight">actionable</span>. The uncompressed version is noise.</p>
+            <p>The compressed version is <span class="highlight">actionable</span>. The uncompressed version is noise. The difference between them is not more data&mdash;it is human judgment about what is load-bearing.</p>
 
             <h3>Why AI Fails at Compression</h3>
-            <p>Most AI does the opposite. It expands.</p>
-            <p>You ask: &ldquo;How do I solve my problem?&rdquo;</p>
-            <p>They give you: 5 options, each with 3 sub-points, all hedged with &ldquo;it depends&rdquo;</p>
-            <p>That&rsquo;s information overload, not compression.</p>
+            <p>Most AI does the opposite of compress. It expands.</p>
+            <p>You ask: &ldquo;How do I solve this problem?&rdquo;</p>
+            <p>You get: 5 options, each with 3 sub-points, all hedged with &ldquo;it depends on your specific situation.&rdquo;</p>
+            <p>That&rsquo;s not useful. That&rsquo;s the problem restated at higher resolution. Real compression requires knowing what to leave out&mdash;and that requires understanding context that AI cannot access.</p>
 
-            <h3>The Skill</h3>
-            <p>Compression requires:</p>
+            <h3>The Compression Skill</h3>
+            <p>Compression is a learnable skill. It requires:</p>
             <ol>
-                <li>Understanding the context deeply</li>
-                <li>Knowing what can be ignored</li>
-                <li>Identifying the binding constraint</li>
-                <li>Translating that into action</li>
+                <li><strong>Deep context</strong> &mdash; Understanding the situation well enough to know what&rsquo;s irrelevant</li>
+                <li><strong>Restraint</strong> &mdash; Willingness to exclude information that feels important but isn&rsquo;t</li>
+                <li><strong>Binding constraint identification</strong> &mdash; Finding the one thing that, if solved, dissolves the others</li>
+                <li><strong>Action translation</strong> &mdash; Turning insight into a specific, verifiable next step</li>
             </ol>
 
-            <p>This is a <span class="highlight">human skill</span>. No AI can do it alone.</p>
+            <p>This is a <span class="highlight">human skill</span>. AI can assist with steps 1 and 4. Steps 2 and 3 require judgment that only comes from caring about the outcome.</p>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>Most problems are stuck because of information overload, not information scarcity</li>
+                    <li>Compression turns a statement of suffering into an actionable request</li>
+                    <li>The hardest part&mdash;knowing what to leave out&mdash;is a human judgment, not a computation</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#ai-failure" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Why AI Fails
+                </a>
+                <span class="chapter-counter">5 of 10</span>
+                <a href="#inkind" class="chapter-nav-btn next">
+                    In-Kind Giving
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </article>
 
         <article id="inkind" class="chapter">
+            <span class="chapter-number">Chapter 06 of 10</span>
             <span class="chapter-label">Part IV &mdash; The Skills</span>
             <h2>In-Kind Giving as a Model for Usefulness</h2>
-            
+
+            <p class="chapter-opener">The nonprofit world discovered something that most tech products haven&rsquo;t: when you give someone what they asked for&mdash;specifically, not approximately&mdash;accountability becomes automatic and waste disappears.</p>
+
             <div class="example">
                 <div class="example-label">Generic Approach</div>
-                <p>Nonprofit says &ldquo;we need money&rdquo; &rarr; Donor gives $10,000 &rarr; Nonprofit figures out what to buy &rarr; If it doesn&rsquo;t work, they wasted money</p>
+                <p>Nonprofit says &ldquo;we need money&rdquo; &rarr; Donor gives $10,000 &rarr; Nonprofit figures out what to buy &rarr; Procurement takes weeks &rarr; If it doesn&rsquo;t work, money is gone with no clear lesson learned.</p>
             </div>
 
             <div class="example">
                 <div class="example-label">In-Kind Approach</div>
-                <p>Nonprofit says &ldquo;we need 500 meals&rdquo; &rarr; Donor provides 500 meals &rarr; Problem is solved &rarr; Everyone knows if it worked</p>
+                <p>Nonprofit says &ldquo;we need 500 meals by Friday&rdquo; &rarr; Donor provides 500 meals &rarr; Problem is solved or it isn&rsquo;t &rarr; Everyone can see exactly what happened and why.</p>
             </div>
 
             <h3>Why In-Kind Works</h3>
             <ul>
-                <li><strong>Specificity</strong> &mdash; It&rsquo;s concrete, not vague</li>
-                <li><strong>Accountability</strong> &mdash; You can see the impact</li>
-                <li><strong>Efficiency</strong> &mdash; No translation layer, no waste</li>
-                <li><strong>Knowledge respect</strong> &mdash; The recipient&rsquo;s expertise is directly useful</li>
-                <li><strong>Verification</strong> &mdash; Both parties can verify the outcome</li>
+                <li><strong>Specificity</strong> &mdash; The request is concrete. There is no ambiguity about success.</li>
+                <li><strong>Accountability</strong> &mdash; You can verify the impact. Did 500 people eat? Yes or no.</li>
+                <li><strong>Efficiency</strong> &mdash; No translation layer. No committee to decide what to buy.</li>
+                <li><strong>Knowledge respect</strong> &mdash; The recipient is treated as the expert on their own situation.</li>
+                <li><strong>Verification</strong> &mdash; Both parties know immediately if it worked.</li>
             </ul>
 
-            <h3>The Lesson for AI</h3>
-            <p><span class="highlight">Most AI fails at this. It tries to be the expert.</span></p>
-            <p>But you&rsquo;re the expert on your situation. What you need is someone who respects your judgment and helps you execute it.</p>
-            <p>That&rsquo;s the in-kind model applied to assistance.</p>
+            <h3>The Lesson for Systems</h3>
+            <p><span class="highlight">Most AI assistance fails the in-kind test. It tries to be the expert on your situation.</span></p>
+            <p>But you are the expert on your situation. What you need is a system that respects your judgment and helps you execute it&mdash;not one that replaces your judgment with its own.</p>
+            <p>The in-kind model applied to assistance means: ask exactly what is needed, provide exactly that, and make the outcome verifiable.</p>
+
+            <h3>Applied to Building Products</h3>
+            <p>When you build, ask: does this product give users what they actually need, or what we think they need? The former is in-kind. The latter is paternalistic.</p>
+            <p>The best tools are transparent about what they do and don&rsquo;t do. They don&rsquo;t hide behind &ldquo;comprehensive solutions&rdquo;&mdash;they make a specific promise and keep it.</p>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>In-kind giving works because it is specific, verifiable, and respects the recipient&rsquo;s expertise</li>
+                    <li>The best assistance gives people what they asked for&mdash;not what you think they need</li>
+                    <li>Verifiability is not a nice-to-have. It is what separates real help from the feeling of help.</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#compression" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Knowledge Compression
+                </a>
+                <span class="chapter-counter">6 of 10</span>
+                <a href="#systems" class="chapter-nav-btn next">
+                    Building Systems
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </article>
 
+        <div class="part-divider">
+            <div class="part-divider-number">V</div>
+            <div class="part-divider-content">
+                <p class="part-divider-label">Part Five</p>
+                <h2 class="part-divider-title">The Application</h2>
+            </div>
+        </div>
+
         <article id="systems" class="chapter">
+            <span class="chapter-number">Chapter 07 of 10</span>
             <span class="chapter-label">Part V &mdash; The Application</span>
             <h2>Building Systems That Matter</h2>
-            
+
+            <p class="chapter-opener">The difference between a system that matters and one that doesn&rsquo;t is not the technology stack, the funding, or the team size. It is whether the system was built around a real problem or built around a metric.</p>
+
             <h3>Systems That Matter</h3>
             <ul>
-                <li>Solve a specific problem for a specific person</li>
-                <li>Are hard to copy (require understanding)</li>
-                <li>Create new possibilities (don&rsquo;t just patch)</li>
-                <li>Compound over time (each use adds value)</li>
-                <li>Align with reality (not metrics)</li>
+                <li>Solve a <em>specific</em> problem for a <em>specific</em> person&mdash;not everyone, not someday</li>
+                <li>Are hard to copy because they require genuine understanding of the problem</li>
+                <li>Create new possibilities&mdash;they don&rsquo;t just patch existing workflows</li>
+                <li>Compound over time&mdash;each use makes the next use more valuable</li>
+                <li>Align success with reality, not with the metrics dashboard</li>
             </ul>
 
             <h3>Systems That Don&rsquo;t Matter</h3>
             <ul>
-                <li>Solve vague problems for everyone</li>
-                <li>Are easy to copy (generic)</li>
-                <li>Maintain status quo</li>
-                <li>Decay over time</li>
-                <li>Optimize for metrics</li>
+                <li>Solve vague problems for everyone&mdash;and therefore no one in particular</li>
+                <li>Are easy to copy because they&rsquo;re built from generic patterns</li>
+                <li>Maintain the status quo with a technology layer on top</li>
+                <li>Decay over time as the underlying problem evolves</li>
+                <li>Optimize for engagement metrics that diverge from actual value delivered</li>
             </ul>
 
-            <div class="case-study">
-                <div class="case-study-title">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-                    OpenClaw Labs
+            <div class="case-study-split">
+                <div class="case-col case-col-before">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                        Platform Thinking
+                    </p>
+                    <p>&ldquo;A learning platform where students answer questions.&rdquo;</p>
+                    <p>Generic. Any competitor with more funding could build the same thing. Decays as competitors arrive. Success measured in DAUs.</p>
                 </div>
-                <p><strong>What we could have built:</strong> &ldquo;A learning platform where students answer questions.&rdquo;</p>
-                <p><strong>What we built:</strong> &ldquo;A knowledge creation system where people propose explanations for unsolved problems, get criticized by AI, refine their thinking, and contribute to humanity&rsquo;s understanding.&rdquo;</p>
-                <p>Notice the difference.</p>
+                <div class="case-col case-col-after">
+                    <p class="case-col-tag">
+                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                        Systems Thinking
+                    </p>
+                    <p>&ldquo;A knowledge creation system where people propose explanations for unsolved problems, get criticised by AI, refine their thinking, and contribute to a compounding library of humanity&rsquo;s understanding.&rdquo;</p>
+                    <p>Specific, hard to copy, compounds. Success measured in problems solved.</p>
+                </div>
+            </div>
+
+            <h3>The Design Test</h3>
+            <p>Before you build anything, answer these three questions:</p>
+            <ol>
+                <li>Who, specifically, has this problem?</li>
+                <li>What does &ldquo;solved&rdquo; look like&mdash;concretely, verifiably?</li>
+                <li>Why would this get better over time, not worse?</li>
+            </ol>
+            <p>If you cannot answer all three, you are building a feature, not a system.</p>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>Systems that matter are built around specific problems, not around generic opportunity</li>
+                    <li>Compounding is the hallmark of a real system&mdash;each use makes it more valuable</li>
+                    <li>If you can&rsquo;t describe concretely what &ldquo;solved&rdquo; looks like, you haven&rsquo;t defined the problem</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#inkind" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    In-Kind Giving
+                </a>
+                <span class="chapter-counter">7 of 10</span>
+                <a href="#metrics" class="chapter-nav-btn next">
+                    Measuring Impact
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
         </article>
 
         <article id="metrics" class="chapter">
+            <span class="chapter-number">Chapter 08 of 10</span>
             <span class="chapter-label">Part V &mdash; The Application</span>
             <h2>Measuring Real Impact</h2>
-            
+
+            <p class="chapter-opener">The metrics trap is seductive because it feels rigorous. You have numbers. The numbers go up. But numbers going up and value being created are not the same thing&mdash;and confusing them is how useful products become useless ones.</p>
+
             <h3>The Trap</h3>
-            <p>You can measure what&rsquo;s easy to measure, but that usually isn&rsquo;t what matters.</p>
+            <p>Organizations measure what is easy to measure. Over time, they optimize for those measurements. The measurements become targets. The targets become the goal. And somewhere in that process, the actual goal&mdash;solving problems&mdash;gets quietly abandoned.</p>
 
             <h3>Easy to Measure (Usually Wrong)</h3>
             <ul>
-                <li>Page views</li>
-                <li>Time spent</li>
-                <li>Engagement</li>
-                <li>Users</li>
-                <li>Shares</li>
+                <li><strong>Page views</strong> &mdash; Measures attention, not value</li>
+                <li><strong>Time spent</strong> &mdash; Often inversely correlated with usefulness</li>
+                <li><strong>Engagement rate</strong> &mdash; Rewards novelty, not depth</li>
+                <li><strong>User count</strong> &mdash; Measures reach, not impact</li>
+                <li><strong>Shares</strong> &mdash; Measures viral appeal, not substance</li>
             </ul>
 
             <h3>Hard to Measure (Actually Matters)</h3>
             <ul>
-                <li>Did this actually help?</li>
-                <li>Did it solve the problem?</li>
-                <li>Did it create new knowledge?</li>
-                <li>Did it make someone more capable?</li>
-                <li>Did it create new possibilities?</li>
+                <li>Did this actually help? Can the person point to a real change?</li>
+                <li>Did it solve the problem, or just address the symptom?</li>
+                <li>Did it create new knowledge that wasn&rsquo;t there before?</li>
+                <li>Did it make someone more capable than they were yesterday?</li>
+                <li>Did it open up new possibilities that were previously closed?</li>
             </ul>
 
             <h3>The Right Metrics for Usefulness</h3>
             <ol>
-                <li><strong>Problem solved?</strong> Did the output actually help? Can you verify it?</li>
-                <li><strong>Capability increased?</strong> Is the user more capable than before?</li>
-                <li><strong>Compounding?</strong> Does each iteration become easier/better?</li>
-                <li><strong>Specific outcome?</strong> Can you point to something concrete that changed?</li>
+                <li><strong>Problem solved?</strong> Not &ldquo;did they engage?&rdquo;&mdash;did the actual problem get resolved, verifiably?</li>
+                <li><strong>Capability increased?</strong> Is the user measurably more capable after using this?</li>
+                <li><strong>Compounding returns?</strong> Does each use make the system more useful, not less?</li>
+                <li><strong>Concrete delta?</strong> Can you point to something specific that changed in the world?</li>
             </ol>
+
+            <div class="quote">
+                <p>&ldquo;Not everything that counts can be counted, and not everything that can be counted counts.&rdquo;</p>
+            </div>
+
+            <h3>What to Do About It</h3>
+            <p>The solution is not to abandon measurement. It is to be honest about what your metrics actually measure, and to build qualitative checks that catch what the metrics miss.</p>
+            <p>Talk to users who churned. Ask them what didn&rsquo;t work. Their answers will be more useful than your dashboard.</p>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>Optimizing for easy-to-measure metrics eventually displaces the real goal</li>
+                    <li>The best measure of usefulness is a concrete change in someone&rsquo;s situation&mdash;verifiable, not inferred</li>
+                    <li>Qualitative feedback from churned users is more diagnostic than engagement dashboards</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#systems" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Building Systems
+                </a>
+                <span class="chapter-counter">8 of 10</span>
+                <a href="#markets" class="chapter-nav-btn next">
+                    Knowledge Markets
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </article>
+
+        <div class="part-divider">
+            <div class="part-divider-number">VI</div>
+            <div class="part-divider-content">
+                <p class="part-divider-label">Part Six</p>
+                <h2 class="part-divider-title">The Future</h2>
+            </div>
+        </div>
 
         <article id="markets" class="chapter">
+            <span class="chapter-number">Chapter 09 of 10</span>
             <span class="chapter-label">Part VI &mdash; The Future</span>
             <h2>Knowledge Markets: The Future</h2>
-            
+
+            <p class="chapter-opener">Right now, the most useful knowledge in the world is trapped. It lives in research papers behind paywalls, in the heads of people who will retire, in Slack threads that will be deleted, in meetings with no notes. A knowledge market makes it liquid.</p>
+
             <h3>What Is a Knowledge Market?</h3>
-            <p>A system where:</p>
+            <p>A knowledge market is a system where:</p>
             <ul>
-                <li>Unsolved problems are transparent</li>
-                <li>Current best thinking is documented</li>
-                <li>Gaps are explicit</li>
-                <li>Anyone can propose improvements</li>
-                <li>Good ideas are tested and voted on</li>
-                <li>Knowledge compounds</li>
+                <li>Unsolved problems are made transparent&mdash;anyone can see what&rsquo;s stuck</li>
+                <li>The current best thinking on each problem is documented and accessible</li>
+                <li>Gaps in understanding are explicit, not hidden</li>
+                <li>Anyone with relevant knowledge can propose improvements</li>
+                <li>Good ideas are tested against reality, not just voted on by consensus</li>
+                <li>Knowledge compounds: each contribution makes future contributions more valuable</li>
             </ul>
 
-            <h3>Why This is the Future</h3>
-            <p>Right now, useful knowledge is:</p>
+            <h3>Why Useful Knowledge Is Currently Trapped</h3>
+            <p>Right now, the world&rsquo;s most actionable knowledge is:</p>
             <ul>
-                <li>Hidden in research papers</li>
-                <li>Locked in people&rsquo;s heads</li>
-                <li>Discussed in closed forums</li>
-                <li>Lost when people leave</li>
-                <li>Siloed across organizations</li>
+                <li><strong>Hidden in research papers</strong>&mdash;inaccessible without subscriptions, jargon, and months of context-building</li>
+                <li><strong>Locked in people&rsquo;s heads</strong>&mdash;lost when they change jobs, retire, or die</li>
+                <li><strong>Buried in closed forums</strong>&mdash;visible only to insiders who know where to look</li>
+                <li><strong>Siloed across organizations</strong>&mdash;solved three times at three companies with no one knowing</li>
             </ul>
 
-            <p>A knowledge market makes it <span class="highlight">liquid</span>. It flows. It compounds.</p>
-            <p>And unlike platforms, it actually <span class="highlight">solves problems</span> instead of engaging users.</p>
+            <p>A knowledge market makes it <span class="highlight">liquid</span>. It flows toward problems. It compounds across contributions. And unlike platforms, it actually <span class="highlight">solves problems</span> instead of capturing attention.</p>
 
-            <h3>OpenClaw Labs as Example</h3>
-            <p>Unsolved problems &rarr; Current best thinking &rarr; Gaps identified &rarr; Proposals submitted &rarr; AI criticism &rarr; Refinement &rarr; Voting &rarr; Knowledge library &rarr; Compounding</p>
+            <h3>The OpenClaw Labs Model</h3>
+            <p>One implementation of this idea follows a compounding loop:</p>
+            <p>Unsolved problems made transparent &rarr; Current best thinking documented &rarr; Gaps made explicit &rarr; Proposals submitted &rarr; AI critique applied &rarr; Thinking refined &rarr; Outcomes tracked &rarr; Knowledge library grows &rarr; Future problems get solved faster</p>
+
+            <p>Each cycle leaves the system more capable than it started. That is the signature of a system that matters.</p>
+
+            <h3>Why This Is Hard to Build</h3>
+            <p>Knowledge markets fail when they become social networks. The incentive to look smart is stronger than the incentive to be useful. Building a knowledge market requires resisting that pull&mdash;constantly, structurally, by design.</p>
+
+            <div class="takeaways">
+                <div class="takeaways-inner">
+                    <div class="takeaways-header">
+                        <span class="takeaways-label">Key Takeaways</span>
+                    </div>
+                <ul>
+                    <li>Most valuable knowledge is trapped; making it liquid is a systems problem, not just a technology problem</li>
+                    <li>Knowledge markets work when contributions compound&mdash;each one makes future ones more valuable</li>
+                    <li>The hardest part is resisting the social dynamics that turn knowledge systems into status systems</li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#metrics" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Measuring Impact
+                </a>
+                <span class="chapter-counter">9 of 10</span>
+                <a href="#your-role" class="chapter-nav-btn next">
+                    Your Role
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
         </article>
 
+        <div class="part-divider">
+            <div class="part-divider-number">VII</div>
+            <div class="part-divider-content">
+                <p class="part-divider-label">Part Seven</p>
+                <h2 class="part-divider-title">The Call</h2>
+            </div>
+        </div>
+
         <article id="your-role" class="chapter">
+            <span class="chapter-number">Chapter 10 of 10</span>
             <span class="chapter-label">Part VII &mdash; The Call</span>
             <h2>Your Role: Build Usefulness, Not Engagement</h2>
-            
+
+            <p class="chapter-opener">You have more leverage than you think. Every product decision, every design choice, every metric you choose to track or ignore&mdash;these are votes for what the future of useful technology looks like. Cast them deliberately.</p>
+
             <h3>You Have a Choice</h3>
-            
+
             <p><strong>Option 1: Build What Engages</strong></p>
             <ul>
-                <li>Optimize for metrics</li>
-                <li>Make things feel good</li>
-                <li>Maximize usage</li>
-                <li>Follow the incentives</li>
+                <li>Optimize for metrics that go up&mdash;clicks, sessions, time-on-site</li>
+                <li>Make things feel good, even when they don&rsquo;t do good</li>
+                <li>Maximize usage, not outcomes</li>
+                <li>Follow the incentive structure without questioning it</li>
             </ul>
-            <p><em>Result: Success, but empty.</em></p>
+            <p><em>Result: Measurable success. Empty meaning.</em></p>
 
             <p><strong>Option 2: Build What&rsquo;s Useful</strong></p>
             <ul>
-                <li>Optimize for outcomes</li>
-                <li>Make things actually work</li>
-                <li>Maximize impact</li>
-                <li>Question the incentives</li>
+                <li>Optimize for outcomes&mdash;problems solved, capabilities gained</li>
+                <li>Make things actually work, even when they don&rsquo;t feel impressive</li>
+                <li>Maximize real impact over vanity metrics</li>
+                <li>Question the incentive structure when it conflicts with genuine usefulness</li>
             </ul>
-            <p><em>Result: Harder, but meaningful.</em></p>
+            <p><em>Result: Harder path. Durable value.</em></p>
 
             <div class="quote">
                 <p>&ldquo;The future isn&rsquo;t better engagement. The future is transparent problems, better thinking, and knowledge at scale. And it&rsquo;s only possible if we build for usefulness, not engagement.&rdquo;</p>
             </div>
 
-            <h3 id="exercises">Questions for You</h3>
+            <h3>What This Actually Requires</h3>
+            <p>Being genuinely useful is not a design pattern. It is a commitment that has to be renewed constantly, because the incentives always pull in the other direction.</p>
+            <p>It requires specificity when vagueness is easier. Honesty when agreement is safer. Restraint when more features are expected. And the willingness to be measured by outcomes you cannot control&mdash;only influence.</p>
+            <p>That is the harder path. It is also the only one worth taking.</p>
+
+            <h3 id="exercises">Reflection Exercises</h3>
             <div class="exercise">
                 <h4>
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>
-                    Reflection Exercise
+                    Eight Questions to Answer Honestly
                 </h4>
                 <ol>
-                    <li>What&rsquo;s my specific knowledge? (What do I know from curiosity, not training?)</li>
-                    <li>What problem am I uniquely positioned to solve?</li>
-                    <li>Who would benefit most from my help?</li>
-                    <li>What would it look like to build something genuinely useful for them?</li>
-                    <li>How would I measure success? (Outcome, not engagement)</li>
-                    <li>What am I willing to give up? (Metrics, approval, scale)</li>
-                    <li>Do I have the courage to be specific instead of vague?</li>
-                    <li>Am I ready to build knowledge infrastructure instead of a platform?</li>
+                    <li>What is my specific knowledge? What do I know from curiosity and failure, not from training?</li>
+                    <li>What problem am I uniquely positioned to solve&mdash;one that requires my particular combination of experience?</li>
+                    <li>Who, specifically, would benefit most? Not a demographic&mdash;a person I can describe in detail.</li>
+                    <li>What would genuinely solving that problem look like? How would I verify it?</li>
+                    <li>How would I measure success in terms of outcomes, not engagement?</li>
+                    <li>What am I willing to give up? Scale, metrics, approval, the feeling of being comprehensive?</li>
+                    <li>Do I have the courage to be specific and falsifiable when vagueness would be safer?</li>
+                    <li>Am I ready to build knowledge infrastructure&mdash;something that compounds&mdash;instead of a platform that captures?</li>
                 </ol>
-                <p style="margin-top: 20px;"><em>Answer honestly.</em></p>
+                <p style="margin-top: 20px;"><em>These questions have no right answers. They have honest ones.</em></p>
+            </div>
+
+            <div class="chapter-nav">
+                <a href="#markets" class="chapter-nav-btn">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    Knowledge Markets
+                </a>
+                <span class="chapter-counter">10 of 10</span>
+                <a href="#toc" class="chapter-nav-btn next">
+                    Back to Contents
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
         </article>
 
@@ -1294,12 +2204,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
     <script>
+        // Enable JS-driven animations (prevents flash of invisible content without JS)
+        document.body.classList.add('js-loaded');
+
         // Reading progress bar
         window.addEventListener('scroll', () => {
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrolled = (window.scrollY / docHeight) * 100;
             document.getElementById('progressBar').style.width = scrolled + '%';
         });
+
+        // ── Scroll-in animations ──
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    animObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.chapter, .part-divider').forEach(el => animObserver.observe(el));
+
+        // ── Sticky sidebar: show/hide + active chapter tracking ──
+        const sidebar      = document.getElementById('chapterSidebar');
+        const coverSection = document.querySelector('.cover');
+        const chapters     = Array.from(document.querySelectorAll('.chapter'));
+        const sidebarItems = Array.from(sidebar.querySelectorAll('.sidebar-item'));
+
+        // Show sidebar only after cover has scrolled out of view
+        const coverObserver = new IntersectionObserver((entries) => {
+            sidebar.classList.toggle('visible', !entries[0].isIntersecting);
+        }, { threshold: 0 });
+        coverObserver.observe(coverSection);
+
+        // Highlight the chapter currently dominating the viewport
+        let activeId = null;
+        const chapterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    activeId = entry.target.id;
+                }
+            });
+            sidebarItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.chapter === activeId);
+            });
+        }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+        chapters.forEach(ch => chapterObserver.observe(ch));
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
