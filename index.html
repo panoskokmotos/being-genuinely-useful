@@ -1301,6 +1301,48 @@
             padding-top: 0;
         }
 
+
+        /* ── Wisdom Interstitials ── */
+        .wisdom-interstitial {
+            text-align: center;
+            padding: 48px 24px 40px;
+            position: relative;
+            z-index: 1;
+            margin-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .wisdom-interstitial blockquote {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(1.0625rem, 2.2vw, 1.3125rem);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 580px;
+            margin: 0 auto 16px;
+        }
+
+        .wisdom-interstitial cite {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-style: normal;
+            margin-bottom: 8px;
+        }
+
+        .wisdom-interstitial .wisdom-context {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            max-width: 460px;
+            margin: 0 auto;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
         .takeaways li::before {
             content: '';
             display: block;
@@ -1412,6 +1454,11 @@
             <div class="part-divider-content">
                 <p class="part-divider-label">Part One</p>
                 <h2 class="part-divider-title">The Problem</h2>
+            <div class="wisdom-interstitial">
+                <blockquote>&ldquo;The first principle is that you must not fool yourself&mdash;and you are the easiest person to fool.&rdquo;</blockquote>
+                <cite>Richard Feynman</cite>
+                <p class="wisdom-context">From his 1974 Caltech commencement address on Cargo Cult Science &mdash; why the form of usefulness is not the substance.</p>
+            </div>
             </div>
         </div>
 
@@ -1449,11 +1496,19 @@
                 <li>Incentives that punish the one clear answer</li>
             </ul>
 
+            <p>Richard Feynman called this <strong>Cargo Cult Science</strong>: building the form of usefulness&mdash;the runways, the headphones, the ceremony&mdash;without the substance that makes it real. Cargo cult religions built landing strips and wooden headphones waiting for planes that never came, because they had mimicked the appearance of an airport without understanding what made airports work. Performative helpfulness is cargo cult usefulness: it has all the form&mdash;responses, options, empathy&mdash;and none of the function.</p>
+
+            <div class="quote">
+                <p>&ldquo;They&rsquo;re doing everything right. The form is perfect. But it doesn&rsquo;t work. Because they don&rsquo;t have the key&mdash;the thing that makes it really work.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Richard Feynman, Caltech Commencement Address (1974)</p>
+            </div>
+
             <p><strong>The Insight</strong></p>
             <p>Real usefulness is <span class="highlight">quiet</span>. It does the work. It doesn&rsquo;t announce itself. The most useful thing a doctor can do is hand you one pill and say &ldquo;take this, you&rsquo;ll be fine.&rdquo; Not explain all your options.</p>
 
             <div class="quote">
-                <p>&ldquo;If it applies everywhere, it applies nowhere. Specificity is the antidote to uselessness.&rdquo;</p>
+                <p>&ldquo;Let there be as many books as you please; but they must be digested. The multitude of books is a distraction.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Seneca, <em>Letters to Lucilius</em>, Letter II</p>
             </div>
 
             <h3>What Real Usefulness Looks Like</h3>
@@ -1487,6 +1542,11 @@
             <div class="part-divider-content">
                 <p class="part-divider-label">Part Two</p>
                 <h2 class="part-divider-title">The Framework</h2>
+            <div class="wisdom-interstitial">
+                <blockquote>&ldquo;Science must begin with myths, and with the criticism of myths.&rdquo;</blockquote>
+                <cite>Karl Popper</cite>
+                <p class="wisdom-context">From <em>The Philosophy of Science</em> (1957) &mdash; Popper&rsquo;s falsifiability is the root from which Deutsch grew the hard-to-vary explanation.</p>
+            </div>
             </div>
         </div>
 
@@ -1526,6 +1586,13 @@
 
             <div class="quote">
                 <p>&ldquo;A good explanation is hard to vary while still explaining what it purports to explain.&rdquo;</p>
+            </div>
+
+            <p>Karl Popper, whose work on falsifiability laid the groundwork for Deutsch&rsquo;s thinking, put it plainly: a theory that cannot in principle be falsified is not a scientific theory at all&mdash;it is mythology. The same test applies to any advice, product, or system you build. If there is no state of the world that could prove it wrong, it is not hard-to-vary. It is unfalsifiable. And unfalsifiable is useless.</p>
+
+            <div class="quote">
+                <p>&ldquo;It is easy to obtain confirmations, or verifications, for nearly every theory&mdash;if we look for confirmations. A theory which is not refutable by any conceivable event is non-scientific.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Karl Popper, <em>The Logic of Scientific Discovery</em> (1934)</p>
             </div>
 
             <div class="takeaways">
@@ -1587,6 +1654,15 @@
             <p><strong>Specific knowledge is the only durable competitive advantage.</strong> It is path-dependent. It cannot be scraped, prompted, or downloaded. It has to be developed through lived experience.</p>
             <p>This is not abstract. If your value at work is knowing the answer to questions that can be Googled, AI has already replaced you. If your value is knowing which question matters and why&mdash;that comes from specific knowledge.</p>
 
+            <p>Aristotle called this form of knowing <em>phronesis</em>&mdash;practical wisdom. Not the abstract <em>episteme</em> of universal principles, nor the <em>techne</em> of repeatable technique, but the capacity to discern the right action in the particular case, developed only through sustained engagement with real situations. AI has <em>techne</em> in abundance. <em>Phronesis</em> cannot be downloaded.</p>
+
+            <p>Michael Polanyi showed why: tacit knowledge is knowledge of how, not knowledge that. A master glassblower knows the right temperature by the colour of the flame. She cannot fully articulate what she sees. This embodied, path-dependent knowing is what Naval describes when he says specific knowledge is &ldquo;so unique to you that it&rsquo;s hard for others to copy.&rdquo; The mechanism behind that difficulty is Polanyi&rsquo;s tacit dimension.</p>
+
+            <div class="quote">
+                <p>&ldquo;We can know more than we can tell. This is the tacit dimension.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Michael Polanyi, <em>The Tacit Dimension</em> (1966)</p>
+            </div>
+
             <div class="takeaways">
                 <div class="takeaways-inner">
                     <div class="takeaways-header">
@@ -1618,6 +1694,11 @@
             <div class="part-divider-content">
                 <p class="part-divider-label">Part Three</p>
                 <h2 class="part-divider-title">The Reality</h2>
+            <div class="wisdom-interstitial">
+                <blockquote>&ldquo;When a measure becomes a target, it ceases to be a good measure.&rdquo;</blockquote>
+                <cite>Charles Goodhart</cite>
+                <p class="wisdom-context">Goodhart&rsquo;s Law (1975) &mdash; the most precise statement of why engagement metrics corrupt usefulness, written before the internet existed.</p>
+            </div>
             </div>
         </div>
 
@@ -1673,6 +1754,13 @@
             <p>Engagement-optimized systems are not broken&mdash;they are working exactly as designed. The problem is that the design is optimizing for the wrong thing.</p>
             <p><span class="highlight">A system that maximizes return visits cannot simultaneously maximize problems solved per session.</span> These are conflicting objectives.</p>
 
+            <p>This is Goodhart&rsquo;s Law in operation. Charles Goodhart, advising the Bank of England in 1975, observed that any statistical regularity will tend to collapse once pressure is placed upon it for control purposes. The moment engagement becomes the target, engagement stops measuring what we actually wanted. Donald Campbell, the sociologist, extended this: &ldquo;The more any quantitative social indicator is used for social decision-making, the more subject it will be to corruption pressures.&rdquo; This is not a technology problem. It is a measurement problem that predates the internet and will outlast AI.</p>
+
+            <div class="quote">
+                <p>&ldquo;The more any quantitative social indicator is used for social decision-making, the more subject it will be to corruption pressures and the more apt it is to distort and corrupt the social processes it is intended to monitor.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Donald Campbell, &ldquo;Assessing the Impact of Planned Social Change&rdquo; (1979)</p>
+            </div>
+
             <div class="takeaways">
                 <div class="takeaways-inner">
                     <div class="takeaways-header">
@@ -1704,6 +1792,11 @@
             <div class="part-divider-content">
                 <p class="part-divider-label">Part Four</p>
                 <h2 class="part-divider-title">The Skills</h2>
+            <div class="wisdom-interstitial">
+                <blockquote>&ldquo;We can know more than we can tell.&rdquo;</blockquote>
+                <cite>Michael Polanyi</cite>
+                <p class="wisdom-context">The opening sentence of <em>The Tacit Dimension</em> (1966) &mdash; the deepest explanation of why human compression skill cannot be automated away.</p>
+            </div>
             </div>
         </div>
 
@@ -1760,6 +1853,15 @@
                 </div>
             </div>
 
+            <p>Claude Shannon, the father of information theory, defined information precisely in 1948: it is that which reduces uncertainty. A message carries information in proportion to how surprising it is&mdash;how much it narrows down what you didn&rsquo;t know. By Shannon&rsquo;s definition, the uncompressed request &ldquo;we need support for homeless families&rdquo; carries almost no information&mdash;it eliminates almost no uncertainty about what action to take. The compressed version eliminates nearly all of it. That is the difference between noise and signal.</p>
+
+            <p>Gregory Bateson sharpened this further: information is &ldquo;any difference that makes a difference.&rdquo; Not any difference&mdash;the difference that changes what the recipient will do next. That is the real test for a compressed message. Not &ldquo;is this accurate?&rdquo; but &ldquo;does this change behaviour?&rdquo;</p>
+
+            <div class="quote">
+                <p>&ldquo;Information is the resolution of uncertainty.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Claude Shannon, &ldquo;A Mathematical Theory of Communication&rdquo; (1948)</p>
+            </div>
+
             <div class="chapter-nav">
                 <a href="#ai-failure" class="chapter-nav-btn">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -1808,6 +1910,13 @@
             <p>When you build, ask: does this product give users what they actually need, or what we think they need? The former is in-kind. The latter is paternalistic.</p>
             <p>The best tools are transparent about what they do and don&rsquo;t do. They don&rsquo;t hide behind &ldquo;comprehensive solutions&rdquo;&mdash;they make a specific promise and keep it.</p>
 
+            <p>Friedrich Hayek made this case for markets in 1945: knowledge is inherently distributed and local. No central planner can aggregate what a thousand individual actors each know about their own situation. The price mechanism works not because economists designed it, but because it transmits local knowledge without requiring anyone to explain it. Elinor Ostrom won the Nobel Prize in 2009 for proving the same thing in a different domain: communities managing shared resources outperform central planners because they possess knowledge the planners do not&mdash;knowledge about the specific ground beneath their feet. The in-kind model works for the same reason. The recipient&rsquo;s expertise about their own situation is the knowledge that cannot be replaced.</p>
+
+            <div class="quote">
+                <p>&ldquo;The peculiar character of the problem of a rational economic order is determined precisely by the fact that the knowledge of the circumstances of which we must make use never exists in concentrated or integrated form, but solely as the dispersed bits of incomplete and frequently contradictory knowledge which all the separate individuals possess.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; F.A. Hayek, &ldquo;The Use of Knowledge in Society&rdquo; (1945)</p>
+            </div>
+
             <div class="takeaways">
                 <div class="takeaways-inner">
                     <div class="takeaways-header">
@@ -1839,6 +1948,11 @@
             <div class="part-divider-content">
                 <p class="part-divider-label">Part Five</p>
                 <h2 class="part-divider-title">The Application</h2>
+            <div class="wisdom-interstitial">
+                <blockquote>&ldquo;If what you are doing is not important, and if you don&rsquo;t think it is going to lead to something important, why are you working on it?&rdquo;</blockquote>
+                <cite>Richard Hamming</cite>
+                <p class="wisdom-context">From his 1986 Bell Labs lecture &ldquo;You and Your Research&rdquo; &mdash; the question that separates systems built around real problems from systems built around tractable ones.</p>
+            </div>
             </div>
         </div>
 
@@ -1894,6 +2008,15 @@
                 <li>Why would this get better over time, not worse?</li>
             </ol>
             <p>If you cannot answer all three, you are building a feature, not a system.</p>
+
+            <p>Richard Hamming, mathematician and Bell Labs researcher, asked his colleagues a question that became famous: &ldquo;What is the most important problem in your field, and why aren&rsquo;t you working on it?&rdquo; Most people work on tractable problems, not important ones. Most systems are built around solvable metrics, not important ones. The design test above is a Hamming question. It forces you to state, before you write a line of code, whether the problem is actually important enough to justify the system.</p>
+
+            <p>Doug Engelbart, who built the first hypertext system and invented the mouse, called the goal &ldquo;augmenting human intellect.&rdquo; Not replacing human judgment&mdash;augmenting it. Systems that matter amplify what humans can already do; they do not substitute a machine&rsquo;s judgment for a person&rsquo;s. That distinction is the difference between a tool and a dependency.</p>
+
+            <div class="quote">
+                <p>&ldquo;If you do not work on an important problem, it&rsquo;s not likely that you&rsquo;ll do important work. It&rsquo;s perfectly obvious.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Richard Hamming, &ldquo;You and Your Research&rdquo; (1986)</p>
+            </div>
 
             <div class="takeaways">
                 <div class="takeaways-inner">
@@ -1958,8 +2081,13 @@
             </ol>
 
             <div class="quote">
-                <p>&ldquo;Not everything that counts can be counted, and not everything that can be counted counts.&rdquo;</p>
+                <p>&ldquo;It is wrong to suppose that if you can&rsquo;t measure it, you can&rsquo;t manage it&mdash;a costly myth.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; W. Edwards Deming, <em>The New Economics</em> (1993)</p>
             </div>
+
+            <p>W. Edwards Deming spent his career fighting the measurement trap in manufacturing. His core insight: most of what matters&mdash;morale, customer trust, learning, institutional knowledge&mdash;resists quantification. Organisations that measure only what they can count eventually optimise for the countable and destroy what they cannot. Deming called this &ldquo;management by visible figures alone&rdquo; and identified it as one of the Seven Deadly Diseases of management.</p>
+
+            <p>Donald Campbell, studying social programs in the 1970s, documented the same phenomenon in government: every major social metric, once used as a policy target, gets gamed. Crime rates go down when police stop filing reports. Test scores rise when teachers teach the test. The metric survives; the underlying reality deteriorates. The only protection is to hold metrics lightly and maintain direct qualitative contact with the actual problem.</p>
 
             <h3>What to Do About It</h3>
             <p>The solution is not to abandon measurement. It is to be honest about what your metrics actually measure, and to build qualitative checks that catch what the metrics miss.</p>
@@ -1996,6 +2124,11 @@
             <div class="part-divider-content">
                 <p class="part-divider-label">Part Six</p>
                 <h2 class="part-divider-title">The Future</h2>
+            <div class="wisdom-interstitial">
+                <blockquote>&ldquo;The human mind operates by association. With one item in its grasp, it snaps instantly to the next that is suggested by the association of thoughts.&rdquo;</blockquote>
+                <cite>Vannevar Bush</cite>
+                <p class="wisdom-context">From &ldquo;As We May Think,&rdquo; <em>The Atlantic</em>, July 1945 &mdash; the essay that imagined a knowledge market eighty years before anyone could build one.</p>
+            </div>
             </div>
         </div>
 
@@ -2037,6 +2170,15 @@
             <h3>Why This Is Hard to Build</h3>
             <p>Knowledge markets fail when they become social networks. The incentive to look smart is stronger than the incentive to be useful. Building a knowledge market requires resisting that pull&mdash;constantly, structurally, by design.</p>
 
+            <p>Vannevar Bush imagined this system in 1945. In &ldquo;As We May Think,&rdquo; written as World War II ended, he described a device he called the Memex&mdash;a mechanised personal library where knowledge could be stored, retrieved, and linked not by index but by association, the way the human mind actually works. Bush called these associative links &ldquo;trails,&rdquo; and he imagined them being shared: one researcher&rsquo;s path through a problem, available to the next. That is a knowledge market. He was describing the architecture eighty years early.</p>
+
+            <p>Michael Nielsen, in <em>Reinventing Discovery</em> (2011), showed what happens when communities actually build this: distributed intelligence exceeds individual intelligence only when contributions are public, structured, and genuinely novel. Status games and social dynamics constantly work against this. Building a knowledge market is less a technology problem than a civilisational discipline problem.</p>
+
+            <div class="quote">
+                <p>&ldquo;The summation of human experience is being expanded at a prodigious rate, and the means we use for threading through the consequent maze to the momentarily important item is the same as was used in the days of square-rigged ships.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Vannevar Bush, &ldquo;As We May Think,&rdquo; <em>The Atlantic</em> (1945)</p>
+            </div>
+
             <div class="takeaways">
                 <div class="takeaways-inner">
                     <div class="takeaways-header">
@@ -2068,6 +2210,11 @@
             <div class="part-divider-content">
                 <p class="part-divider-label">Part Seven</p>
                 <h2 class="part-divider-title">The Call</h2>
+            <div class="wisdom-interstitial">
+                <blockquote>&ldquo;Make the best use of what is in your power, and take the rest as it happens.&rdquo;</blockquote>
+                <cite>Epictetus</cite>
+                <p class="wisdom-context">From the <em>Enchiridion</em> &mdash; the Stoic dichotomy of control, the only stable posture from which to build anything genuinely useful.</p>
+            </div>
             </div>
         </div>
 
@@ -2097,6 +2244,15 @@
                 <li>Question the incentive structure when it conflicts with genuine usefulness</li>
             </ul>
             <p><em>Result: Harder path. Durable value.</em></p>
+
+            <p>Epictetus, the Stoic philosopher born a slave, taught one thing above all: distinguish between what is in your power and what is not. What is in your power: the quality of your work, the specificity of your commitments, the honesty of your measurements. What is not: whether the market rewards you for it, whether engagement metrics validate you, whether it scales. The builder who conflates these two categories exhausts herself chasing what she cannot control and neglects the choices she actually commands.</p>
+
+            <p>Simone Weil called the quality required simply <em>attention</em>&mdash;&ldquo;the rarest and purest form of generosity.&rdquo; Not attention as concentration, but attention as radical openness to what is actually in front of you. The most useful builders are those who attend to their users with this quality&mdash;not projecting a solution, but truly seeing the problem. In an age of dashboards and optimisation loops, this remains the hardest thing to sustain.</p>
+
+            <div class="quote">
+                <p>&ldquo;Attention is the rarest and purest form of generosity.&rdquo;</p>
+                <p style="font-size:0.8125rem;font-style:normal;color:var(--text-muted);margin-top:8px;margin-bottom:0;font-family:'Inter',sans-serif;">&mdash; Simone Weil, <em>First and Last Notebooks</em></p>
+            </div>
 
             <div class="quote">
                 <p>&ldquo;The future isn&rsquo;t better engagement. The future is transparent problems, better thinking, and knowledge at scale. And it&rsquo;s only possible if we build for usefulness, not engagement.&rdquo;</p>
@@ -2137,6 +2293,113 @@
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
+        </article>
+
+        <article id="canon" class="chapter">
+            <span class="chapter-number">Appendix</span>
+            <span class="chapter-label">Further Reading</span>
+            <h2>The Canon</h2>
+            <p class="chapter-opener">Twelve works that formed the intellectual backbone of this book. Each earns its place with one specific sentence.</p>
+
+            <ol style="margin:0;padding:0;list-style:none;">
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">01</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;"><em>The Beginning of Infinity</em> &mdash; David Deutsch</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">The source of hard-to-vary explanations and the argument that all problems are soluble given the right knowledge&mdash;the most optimistic and rigorous framework for what usefulness can accomplish.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">02</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;"><em>The Almanack of Naval Ravikant</em> &mdash; Eric Jorgenson</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">The clearest articulation of specific knowledge as the only competitive advantage AI cannot dissolve, assembled from Naval&rsquo;s tweets, podcasts, and interviews.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">03</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;">&ldquo;Cargo Cult Science&rdquo; &mdash; Richard Feynman</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">Caltech commencement address, 1974; the definitive statement of what separates the form of rigor from the substance, and why fooling yourself is the first failure mode of any useful system.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">04</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;"><em>Skin in the Game</em> &mdash; Nassim Nicholas Taleb</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">The argument that advice without accountability is noise: only those who bear the consequences of their recommendations can be genuinely useful&mdash;the structural basis of in-kind giving.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">05</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;"><em>The Logic of Scientific Discovery</em> &mdash; Karl Popper</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">Falsifiability as the demarcation criterion for knowledge: the epistemological root of Deutsch&rsquo;s hard-to-vary explanations and the reason specificity is a requirement, not a preference.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">06</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;">&ldquo;The Use of Knowledge in Society&rdquo; &mdash; F.A. Hayek</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">1945 essay in the <em>American Economic Review</em>; the proof that local knowledge is irreplaceable and that any system substituting centralised judgment for distributed expertise will systematically destroy value.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">07</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;"><em>The Tacit Dimension</em> &mdash; Michael Polanyi</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">The four-word argument that &ldquo;we can know more than we can tell&rdquo;&mdash;the philosophical explanation for why specific knowledge cannot be automated, compressed into documentation, or transferred by prompt.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">08</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;"><em>Poor Charlie&rsquo;s Almanack</em> &mdash; Charlie Munger</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">A working model of a latticework of mental models: the argument that genuine usefulness requires owning a small number of truly understood frameworks rather than a large number of superficially known ones.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">09</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;">&ldquo;A Mathematical Theory of Communication&rdquo; &mdash; Claude Shannon</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">The 1948 paper that defined information as the resolution of uncertainty&mdash;the formal basis for why compression toward the actionable is not aesthetic preference but the definition of information itself.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">10</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;"><em>Governing the Commons</em> &mdash; Elinor Ostrom</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">The Nobel Prize-winning empirical proof that communities closest to a problem govern it better than distant central authorities&mdash;the political-science foundation for in-kind giving and local knowledge respect.</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-subtle);align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">11</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;">&ldquo;You and Your Research&rdquo; &mdash; Richard Hamming</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;">Bell Labs internal lecture, 1986; the empirical study of what separates scientists who do important work from those who merely do good work, crystallised into the question: what is the most important problem in your field?</p>
+                    </div>
+                </li>
+
+                <li style="display:flex;gap:20px;padding:20px 0;align-items:flex-start;">
+                    <span style="font-size:0.75rem;font-weight:700;color:var(--accent);min-width:28px;padding-top:3px;">12</span>
+                    <div>
+                        <p style="font-weight:600;color:var(--text-primary);margin-bottom:4px;">&ldquo;As We May Think&rdquo; &mdash; Vannevar Bush</p>
+                        <p style="font-size:0.9375rem;color:var(--text-secondary);margin:0;line-height:1.6;"><em>The Atlantic</em>, July 1945; the essay that imagined compounding, associative, user-directed knowledge augmentation eighty years before it was buildable&mdash;the intellectual origin of every knowledge market described in Chapter 9.</p>
+                    </div>
+                </li>
+
+            </ol>
         </article>
 
         <div id="download" class="cta-section accent">
