@@ -1,6 +1,20 @@
 {
   "buildCommand": "echo 'No build needed'",
   "outputDirectory": ".",
-  "cleanUrls": true,
-  "trailingSlash": false
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/scaling",
+      "destination": "/scaling.html"
+    },
+    {
+      "source": "/distribution",
+      "destination": "/distribution.html"
+    },
+    {
+      "source": "/cards",
+      "destination": "/cards.html"
+    }
+  ]
 }
