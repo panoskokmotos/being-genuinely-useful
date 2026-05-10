@@ -26,7 +26,9 @@ const server = http.createServer((req, res) => {
     let urlPath = req.url.split('?')[0];
     
     // Clean URL routing - map routes to files
-    if (urlPath === '/' || urlPath === '/index') {
+    if (urlPath === '/') {
+        urlPath = '/landing.html';
+    } else if (urlPath === '/index' || urlPath === '/read') {
         urlPath = '/index.html';
     } else if (urlPath === '/cards') {
         urlPath = '/cards.html';

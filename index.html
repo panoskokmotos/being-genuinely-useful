@@ -528,6 +528,61 @@
             color: var(--text-muted);
         }
 
+        /* Email form inside CTA section */
+        .cta-email-icon {
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+        .cta-mc-form { margin: 0 auto; max-width: 520px; }
+        .cta-mc-fields {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .cta-mc-input {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9375rem;
+            padding: 11px 14px;
+            flex: 1;
+            min-width: 160px;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        .cta-mc-input:focus { border-color: var(--accent); }
+        .cta-mc-input::placeholder { color: var(--text-muted); }
+        .cta-pdf-link { margin-top: 4px !important; margin-bottom: 0 !important; font-size: 0.8125rem !important; }
+        .btn-text-link {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.8125rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            padding: 0;
+            transition: color 0.15s;
+        }
+        .btn-text-link:hover { color: var(--accent); }
+
+        /* Preface byline */
+        .chapter-byline {
+            text-align: right;
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+            margin-top: 32px;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -657,9 +712,46 @@
 
         /* Print styles */
         @media print {
-            .nav, .progress-bar, .cta-section, #toast, .audio-player { display: none !important; }
-            body { background: white; color: black; }
-            .chapter { page-break-inside: avoid; }
+            .nav, .sidebar, .progress-bar, .cta-section, #toast,
+            .audio-player, .chapter-nav, .cover-scroll,
+            .scroll-indicator, footer { display: none !important; }
+
+            body {
+                background: white !important;
+                color: #1a1a1a !important;
+                font-size: 11pt;
+                line-height: 1.65;
+            }
+
+            .cover {
+                background: white !important;
+                min-height: 100vh;
+                page-break-after: always;
+            }
+            .cover-title { color: #1a1a1a !important; font-size: 48pt; }
+            .cover-subtitle-line, .cover-author { color: #555 !important; }
+            .cover-open-btn, .cover-scroll, .cover-bg-grid,
+            .cover-glow { display: none !important; }
+
+            .part-divider { page-break-before: always; page-break-after: always; }
+            .part-divider-number { color: #e0e0e0 !important; }
+            .part-divider-title { color: #1a1a1a !important; }
+
+            .chapter { page-break-inside: avoid; padding: 40pt 0; border: none !important; }
+            .chapter h2 { color: #1a1a1a !important; font-size: 22pt; }
+            .chapter h3 { color: #333 !important; }
+            .chapter p, .chapter li { color: #333 !important; }
+
+            .highlight, .chapter-label, .chapter-number,
+            .takeaways-label, .case-col-tag { color: #2d6a3f !important; }
+
+            .quote { border-left: 2pt solid #2d6a3f !important; background: #f9f9f9 !important; }
+            .quote p { color: #1a1a1a !important; }
+
+            .canon-item { border: 1pt solid #ddd !important; background: white !important; }
+
+            @page { margin: 2cm 2.5cm; }
+            @page :first { margin-top: 0; }
         }
 
         /* Audio Player */
@@ -1361,6 +1453,7 @@
     <div class="progress-bar" id="progressBar"></div>
 
     <nav class="sidebar" id="chapterSidebar" aria-label="Chapter navigation">
+        <a href="#preface"   class="sidebar-item" data-chapter="preface">  <span class="sidebar-dot"></span><span class="sidebar-label">Preface</span></a>
         <a href="#intro"     class="sidebar-item" data-chapter="intro">    <span class="sidebar-dot"></span><span class="sidebar-label">The Usefulness Crisis</span></a>
         <a href="#deutsch"   class="sidebar-item" data-chapter="deutsch">  <span class="sidebar-dot"></span><span class="sidebar-label">David Deutsch</span></a>
         <a href="#naval"     class="sidebar-item" data-chapter="naval">    <span class="sidebar-dot"></span><span class="sidebar-label">Specific Knowledge</span></a>
@@ -1448,6 +1541,16 @@
     </div>
 
     <main class="container">
+
+        <article id="preface" class="chapter">
+            <span class="chapter-label">Preface</span>
+            <h2 class="chapter-title">Before We Begin</h2>
+            <p class="chapter-opener">I built a system that performed. Every metric I was tracking went in the right direction. Users returned. Engagement was high. The thing worked &mdash; by its own definition of working.</p>
+            <p>The problem I eventually found was that nobody&rsquo;s situation had actually improved. The system was very good at producing the feeling of progress. It gave people responses, options, activity &mdash; all the signals that something useful was happening. But when I asked what had changed, the honest answer was: nothing. The engagement was real. The usefulness wasn&rsquo;t.</p>
+            <p>That experience is why this book exists. Not because I have answers that eluded everyone else, but because the failure was specific enough to be instructive. Feynman called what I&rsquo;d built &ldquo;cargo cult science&rdquo; &mdash; the correct form, without the substance that makes the form work. Understanding that diagnosis is the beginning of building something better.</p>
+            <p>The framework in these pages draws on thinkers I found while trying to understand what went wrong: Deutsch on explanations that earn their confidence, Naval on knowledge that can&rsquo;t be commoditised, Hayek on why distributed judgment beats central planning, Polanyi on what cannot be taught. If any of it is useful to you, it&rsquo;s because they were useful to me first.</p>
+            <p class="chapter-byline">&mdash; Panos Kokmotos, 2026</p>
+        </article>
 
         <div class="part-divider">
             <div class="part-divider-number">I</div>
@@ -2403,22 +2506,27 @@
         </article>
 
         <div id="download" class="cta-section accent">
-            <h2>Get the Full Book</h2>
-            <p>Download, listen, or share the complete guide.</p>
-            <div class="cta-buttons">
-                <button onclick="downloadPDF()" class="btn btn-primary" id="pdfBtn">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                    Download PDF
-                </button>
-                <button onclick="toggleAudiobook()" class="btn btn-secondary" id="audioBtn">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                    <span id="audioBtnText">Listen to Audiobook</span>
-                </button>
-                <button onclick="copyLink()" class="btn btn-secondary">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                    Copy Link
-                </button>
+            <div class="cta-email-icon">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
+            <h2>Stay in the loop</h2>
+            <p>New chapters, case studies, and tools from OpenClaw Labs &mdash; direct to your inbox.</p>
+            <!-- MAILCHIMP: replace action URL with your Mailchimp embed URL -->
+            <form class="cta-mc-form" action="https://YOURDOMAIN.us1.list-manage.com/subscribe/post" method="POST" target="_blank" novalidate>
+                <input type="hidden" name="u" value="MAILCHIMP_USER_ID">
+                <input type="hidden" name="id" value="MAILCHIMP_AUDIENCE_ID">
+                <div class="cta-mc-fields">
+                    <input type="text" name="FNAME" placeholder="First name" class="cta-mc-input" autocomplete="given-name">
+                    <input type="email" name="EMAIL" placeholder="Email address" class="cta-mc-input" required autocomplete="email">
+                    <button type="submit" class="btn btn-primary">Subscribe &rarr;</button>
+                </div>
+            </form>
+            <p class="cta-pdf-link">
+                <button onclick="window.print()" class="btn-text-link">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Print / Save as PDF
+                </button>
+            </p>
         </div>
 
         <!-- Audio Player Bar -->
@@ -2463,9 +2571,6 @@
         <p>Read, learn, build something useful.</p>
     </footer>
 
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
     <script>
         // Enable JS-driven animations (prevents flash of invisible content without JS)
         document.body.classList.add('js-loaded');
@@ -2532,120 +2637,6 @@
             });
         });
 
-        // PDF Download
-        async function downloadPDF() {
-            const btn = document.getElementById('pdfBtn');
-            btn.classList.add('loading');
-            btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Generating...';
-            
-            try {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF({ unit: 'pt', format: 'letter' });
-                
-                const pageWidth = doc.internal.pageSize.getWidth();
-                const pageHeight = doc.internal.pageSize.getHeight();
-                const margin = 60;
-                const lineHeight = 18;
-                const maxWidth = pageWidth - margin * 2;
-                let y = margin;
-                
-                // Helper to add page if needed
-                function checkPage(height = lineHeight) {
-                    if (y + height > pageHeight - margin) {
-                        doc.addPage();
-                        y = margin;
-                    }
-                }
-                
-                // Title page
-                doc.setFontSize(32);
-                doc.setFont('helvetica', 'bold');
-                y = 200;
-                doc.text('Being Genuinely Useful', pageWidth / 2, y, { align: 'center' });
-                y += 40;
-                doc.setFontSize(18);
-                doc.setFont('helvetica', 'normal');
-                doc.text('in an AI World', pageWidth / 2, y, { align: 'center' });
-                y += 80;
-                doc.setFontSize(12);
-                doc.text('A Framework for Building Knowledge Infrastructure', pageWidth / 2, y, { align: 'center' });
-                y += 30;
-                doc.text('By Panos Kokmotos', pageWidth / 2, y, { align: 'center' });
-                y += 100;
-                doc.setFontSize(10);
-                doc.setTextColor(100);
-                doc.text('openclaw.ai/book', pageWidth / 2, y, { align: 'center' });
-                
-                // Content pages
-                const chapters = document.querySelectorAll('.chapter');
-                chapters.forEach((chapter, i) => {
-                    doc.addPage();
-                    y = margin;
-                    doc.setTextColor(0);
-                    
-                    // Chapter title
-                    const title = chapter.querySelector('h2');
-                    if (title) {
-                        doc.setFontSize(24);
-                        doc.setFont('helvetica', 'bold');
-                        const titleLines = doc.splitTextToSize(title.textContent, maxWidth);
-                        titleLines.forEach(line => {
-                            checkPage(30);
-                            doc.text(line, margin, y);
-                            y += 30;
-                        });
-                        y += 20;
-                    }
-                    
-                    // Get all paragraphs and list items
-                    const content = chapter.querySelectorAll('p, li, h3');
-                    content.forEach(el => {
-                        doc.setFont('helvetica', 'normal');
-                        
-                        if (el.tagName === 'H3') {
-                            y += 10;
-                            doc.setFontSize(14);
-                            doc.setFont('helvetica', 'bold');
-                            const lines = doc.splitTextToSize(el.textContent, maxWidth);
-                            lines.forEach(line => {
-                                checkPage(20);
-                                doc.text(line, margin, y);
-                                y += 20;
-                            });
-                            y += 5;
-                        } else if (el.tagName === 'LI') {
-                            doc.setFontSize(11);
-                            const text = '• ' + el.textContent;
-                            const lines = doc.splitTextToSize(text, maxWidth - 20);
-                            lines.forEach((line, idx) => {
-                                checkPage();
-                                doc.text(idx === 0 ? line : '  ' + line, margin + 10, y);
-                                y += lineHeight;
-                            });
-                        } else {
-                            doc.setFontSize(11);
-                            const lines = doc.splitTextToSize(el.textContent, maxWidth);
-                            lines.forEach(line => {
-                                checkPage();
-                                doc.text(line, margin, y);
-                                y += lineHeight;
-                            });
-                            y += 8;
-                        }
-                    });
-                });
-                
-                // Save
-                doc.save('being-genuinely-useful.pdf');
-                showToast('PDF downloaded successfully!');
-            } catch (err) {
-                console.error('PDF generation failed:', err);
-                showToast('PDF generation failed. Try printing instead.');
-            }
-            
-            btn.classList.remove('loading');
-            btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Download PDF';
-        }
 
         // Audiobook (Text-to-Speech)
         let synth = window.speechSynthesis;

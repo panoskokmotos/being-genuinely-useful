@@ -2,5 +2,9 @@
   "buildCommand": "echo 'No build needed'",
   "outputDirectory": ".",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/",     "destination": "/landing.html" },
+    { "source": "/read", "destination": "/index.html"   }
+  ]
 }
