@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Being Genuinely Useful in an AI World</title>
+    <meta name="description" content="A framework for building knowledge infrastructure that actually helps people. 10 chapters on specificity, compression, and why most AI assistants fail at usefulness. Free ebook by Panos Kokmotos.">
+    <meta property="og:title" content="Being Genuinely Useful in an AI World">
+    <meta property="og:description" content="10 chapters on specificity, compression, and why most AI assistants fail at usefulness. Free ebook by Panos Kokmotos.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Being Genuinely Useful in an AI World">
+    <meta name="twitter:description" content="10 chapters on specificity, compression, and why most AI assistants fail at usefulness.">
+    <link rel="canonical" href="https://being-genuinely-useful.vercel.app/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -609,7 +618,24 @@
 
         @media (max-width: 768px) {
             .mobile-menu-btn {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: -24px;
+                right: -24px;
+                background: rgba(10, 10, 10, 0.97);
+                backdrop-filter: blur(20px);
+                padding: 16px 24px 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+                z-index: 99;
             }
         }
 
@@ -1374,14 +1400,17 @@
     </nav>
 
     <nav class="nav">
-        <div class="nav-inner">
+        <div class="nav-inner" style="position:relative">
             <a href="/" class="nav-logo">Being Genuinely Useful</a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#deutsch">Framework</a></li>
                 <li><a href="#systems">Systems</a></li>
                 <li><a href="#exercises">Exercises</a></li>
                 <li><a href="/cards">Cards</a></li>
             </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation" aria-expanded="false">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
             <a href="/cards" class="nav-cta">Share Cards</a>
         </div>
     </nav>
@@ -2429,21 +2458,21 @@
                     <span class="audio-chapter" id="currentChapter">Introduction</span>
                 </div>
                 <div class="audio-controls">
-                    <button class="audio-control-btn" onclick="previousChapter()">
+                    <button class="audio-control-btn" onclick="previousChapter()" aria-label="Previous chapter">
                         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg>
                     </button>
-                    <button class="audio-control-btn play-pause" onclick="togglePlayPause()" id="playPauseBtn">
+                    <button class="audio-control-btn play-pause" onclick="togglePlayPause()" id="playPauseBtn" aria-label="Play">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="playIcon"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" id="pauseIcon" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
                     </button>
-                    <button class="audio-control-btn" onclick="nextChapter()">
+                    <button class="audio-control-btn" onclick="nextChapter()" aria-label="Next chapter">
                         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
                     </button>
                 </div>
-                <div class="audio-progress">
+                <div class="audio-progress" role="progressbar" aria-label="Chapter progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     <div class="audio-progress-bar" id="audioProgressBar"></div>
                 </div>
-                <button class="audio-close" onclick="closeAudioPlayer()">
+                <button class="audio-close" onclick="closeAudioPlayer()" aria-label="Close audio player">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             </div>
@@ -2463,12 +2492,28 @@
         <p>Read, learn, build something useful.</p>
     </footer>
 
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    
     <script>
-        // Enable JS-driven animations (prevents flash of invisible content without JS)
-        document.body.classList.add('js-loaded');
+        // Add js-loaded after first paint to avoid flash of invisible content
+        requestAnimationFrame(() => document.body.classList.add('js-loaded'));
+
+        // Mobile navigation
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinksEl    = document.getElementById('navLinks');
+        if (mobileMenuBtn && navLinksEl) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = navLinksEl.classList.toggle('mobile-open');
+                mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+                mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+            });
+            // Close menu on nav link click
+            navLinksEl.addEventListener('click', e => {
+                if (e.target.tagName === 'A') {
+                    navLinksEl.classList.remove('mobile-open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.setAttribute('aria-label', 'Open navigation');
+                }
+            });
+        }
 
         // Reading progress bar
         window.addEventListener('scroll', () => {
@@ -2537,8 +2582,18 @@
             const btn = document.getElementById('pdfBtn');
             btn.classList.add('loading');
             btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Generating...';
-            
+
             try {
+                if (!window.jspdf) {
+                    await new Promise((resolve, reject) => {
+                        const s = document.createElement('script');
+                        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+                        s.crossOrigin = 'anonymous';
+                        s.onload = resolve;
+                        s.onerror = () => reject(new Error('Failed to load PDF library'));
+                        document.head.appendChild(s);
+                    });
+                }
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF({ unit: 'pt', format: 'letter' });
                 
@@ -2574,7 +2629,7 @@
                 y += 100;
                 doc.setFontSize(10);
                 doc.setTextColor(100);
-                doc.text('openclaw.ai/book', pageWidth / 2, y, { align: 'center' });
+                doc.text(window.location.origin, pageWidth / 2, y, { align: 'center' });
                 
                 // Content pages
                 const chapters = document.querySelectorAll('.chapter');
@@ -2648,14 +2703,15 @@
         }
 
         // Audiobook (Text-to-Speech)
+        // NOTE: audiobookChapters is distinct from the sidebar `chapters` array declared above.
         let synth = window.speechSynthesis;
         let utterance = null;
         let isPlaying = false;
         let currentChapterIndex = 0;
-        let chapters = [];
+        let audiobookChapters = [];
 
         function initAudiobook() {
-            chapters = Array.from(document.querySelectorAll('.chapter')).map(ch => ({
+            audiobookChapters = Array.from(document.querySelectorAll('.chapter')).map(ch => ({
                 title: ch.querySelector('h2')?.textContent || 'Introduction',
                 text: ch.innerText
             }));
@@ -2672,40 +2728,56 @@
             }
         }
 
+        function getPreferredVoice() {
+            return synth.getVoices().find(v =>
+                v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel')
+            ) || null;
+        }
+
         function playChapter(index) {
-            if (index < 0 || index >= chapters.length) return;
-            
+            if (index < 0 || index >= audiobookChapters.length) return;
+
             synth.cancel();
             currentChapterIndex = index;
-            
-            document.getElementById('currentChapter').textContent = chapters[index].title;
-            
-            utterance = new SpeechSynthesisUtterance(chapters[index].text);
+            const chapter = audiobookChapters[index];
+
+            document.getElementById('currentChapter').textContent = chapter.title;
+
+            utterance = new SpeechSynthesisUtterance(chapter.text);
             utterance.rate = 0.95;
             utterance.pitch = 1;
-            
-            // Try to use a natural voice
-            const voices = synth.getVoices();
-            const preferredVoice = voices.find(v => v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('Daniel'));
-            if (preferredVoice) utterance.voice = preferredVoice;
-            
+
             utterance.onend = () => {
-                if (currentChapterIndex < chapters.length - 1) {
+                if (currentChapterIndex < audiobookChapters.length - 1) {
                     playChapter(currentChapterIndex + 1);
                 } else {
                     isPlaying = false;
                     updatePlayPauseBtn();
                 }
             };
-            
+
             utterance.onboundary = (event) => {
-                const progress = (event.charIndex / chapters[currentChapterIndex].text.length) * 100;
+                const progress = (event.charIndex / chapter.text.length) * 100;
                 document.getElementById('audioProgressBar').style.width = progress + '%';
             };
-            
-            synth.speak(utterance);
-            isPlaying = true;
-            updatePlayPauseBtn();
+
+            const speakWithVoice = () => {
+                const voice = getPreferredVoice();
+                if (voice) utterance.voice = voice;
+                synth.speak(utterance);
+                isPlaying = true;
+                updatePlayPauseBtn();
+            };
+
+            // Voices may not be ready yet on Chrome — wait for them if needed
+            if (synth.getVoices().length) {
+                speakWithVoice();
+            } else {
+                synth.onvoiceschanged = () => {
+                    synth.onvoiceschanged = null;
+                    speakWithVoice();
+                };
+            }
         }
 
         function togglePlayPause() {
@@ -2724,6 +2796,7 @@
         function updatePlayPauseBtn() {
             document.getElementById('playIcon').style.display = isPlaying ? 'none' : 'block';
             document.getElementById('pauseIcon').style.display = isPlaying ? 'block' : 'none';
+            document.getElementById('playPauseBtn').setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
             document.getElementById('audioBtnText').textContent = isPlaying ? 'Pause Audiobook' : 'Listen to Audiobook';
         }
 
@@ -2743,16 +2816,24 @@
             document.getElementById('audioProgressBar').style.width = '0%';
         }
 
-        // Load voices when available
-        if (synth.onvoiceschanged !== undefined) {
-            synth.onvoiceschanged = () => {};
-        }
+        // Kick off async voice loading so voices are ready before the user clicks play
+        synth.getVoices();
 
         // Copy link to clipboard
         function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                showToast('Link copied to clipboard!');
-            });
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => showToast('Link copied to clipboard!'))
+                .catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = window.location.href;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showToast('Link copied to clipboard!');
+                });
         }
 
         // Toast notification

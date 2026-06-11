@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Share Cards - Being Genuinely Useful</title>
+    <meta name="description" content="Shareable quote cards from Being Genuinely Useful in an AI World. Copy and share ideas from Deutsch, Naval, Feynman, Popper, and more.">
+    <meta property="og:title" content="Share Cards — Being Genuinely Useful">
+    <meta property="og:description" content="Shareable quote cards for Twitter, LinkedIn, and more.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Share Cards — Being Genuinely Useful">
+    <meta name="twitter:description" content="Shareable quote cards for Twitter, LinkedIn, and more.">
+    <link rel="canonical" href="https://being-genuinely-useful.vercel.app/cards">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -410,19 +419,19 @@
             <p>Click to copy. Share ideas that matter on Twitter, LinkedIn, and anywhere else.</p>
         </header>
 
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="Panos Kokmotos">Panos</button>
-            <button class="filter-btn" data-filter="David Deutsch">Deutsch</button>
-            <button class="filter-btn" data-filter="Naval Ravikant">Naval</button>
-            <button class="filter-btn" data-filter="Richard Feynman">Feynman</button>
-            <button class="filter-btn" data-filter="Karl Popper">Popper</button>
-            <button class="filter-btn" data-filter="Michael Polanyi">Polanyi</button>
-            <button class="filter-btn" data-filter="Claude Shannon">Shannon</button>
-            <button class="filter-btn" data-filter="F.A. Hayek">Hayek</button>
-            <button class="filter-btn" data-filter="Richard Hamming">Hamming</button>
-            <button class="filter-btn" data-filter="Vannevar Bush">Bush</button>
-            <button class="filter-btn" data-filter="Epictetus">Epictetus</button>
+        <div class="filters" role="group" aria-label="Filter cards by author">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-btn" data-filter="Panos Kokmotos" aria-pressed="false">Panos</button>
+            <button class="filter-btn" data-filter="David Deutsch" aria-pressed="false">Deutsch</button>
+            <button class="filter-btn" data-filter="Naval Ravikant" aria-pressed="false">Naval</button>
+            <button class="filter-btn" data-filter="Richard Feynman" aria-pressed="false">Feynman</button>
+            <button class="filter-btn" data-filter="Karl Popper" aria-pressed="false">Popper</button>
+            <button class="filter-btn" data-filter="Michael Polanyi" aria-pressed="false">Polanyi</button>
+            <button class="filter-btn" data-filter="Claude Shannon" aria-pressed="false">Shannon</button>
+            <button class="filter-btn" data-filter="F.A. Hayek" aria-pressed="false">Hayek</button>
+            <button class="filter-btn" data-filter="Richard Hamming" aria-pressed="false">Hamming</button>
+            <button class="filter-btn" data-filter="Vannevar Bush" aria-pressed="false">Bush</button>
+            <button class="filter-btn" data-filter="Epictetus" aria-pressed="false">Epictetus</button>
         </div>
 
         <div class="cards-grid" id="cardsContainer"></div>
@@ -602,6 +611,10 @@
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                             Tweet
                         </button>
+                        <button class="card-btn share" onclick="shareOnLinkedIn()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            Share
+                        </button>
                         <button class="card-btn share" onclick="downloadCardImage('${safeQuote}', '${card.source}', '${card.color}')">
                             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
                             Image
@@ -706,8 +719,12 @@
         // Filter functionality
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
+                });
                 btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
                 const filter = btn.getAttribute('data-filter');
                 createCards(filter);
             });

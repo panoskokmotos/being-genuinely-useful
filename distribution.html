@@ -4,262 +4,264 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distribution Hub - Being Genuinely Useful</title>
+    <meta name="description" content="All distribution templates, email courses, Twitter threads, monetization strategies and 30-day plans for Being Genuinely Useful in an AI World.">
+    <meta property="og:title" content="Distribution Hub — Being Genuinely Useful">
+    <meta property="og:description" content="Email course, Twitter threads, monetization strategies, and a 30-day action plan.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://being-genuinely-useful.vercel.app/distribution">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            padding: 40px 20px;
-        }
-
-        .container {
+        .page-container {
             max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 24px 80px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-header h1 {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .page-header .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            background: linear-gradient(135deg, #3b82f6, #10b981);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #cbd5e1;
-            font-size: 1.1em;
-        }
-
-        .grid {
+        /* Quick-nav grid */
+        .hub-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 64px;
         }
 
-        .card {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid #3b82f6;
+        .hub-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s;
-            cursor: pointer;
+            padding: 28px;
+            transition: all 0.25s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
-            border-color: #10b981;
+        .hub-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .card h2 {
-            color: #3b82f6;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .card p {
-            color: #cbd5e1;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .card-meta {
-            font-size: 0.9em;
-            color: #64748b;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.3s;
+        .hub-card h2 {
+            font-size: 1.125rem;
             font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
         }
 
-        .btn:hover {
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
-            transform: translateY(-2px);
+        .hub-card-meta {
+            font-size: 0.8125rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-weight: 500;
         }
 
-        .btn-secondary {
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid #3b82f6;
-        }
-
-        .section {
-            margin-bottom: 60px;
-            background: rgba(30, 41, 59, 0.5);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #475569;
-        }
-
-        .section h2 {
-            color: #10b981;
-            font-size: 2em;
-            margin-bottom: 30px;
-        }
-
-        .content {
-            color: #cbd5e1;
-            line-height: 1.8;
-            font-size: 1em;
-        }
-
-        .content h3 {
-            color: #3b82f6;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-        }
-
-        .content p, .content li {
-            margin-bottom: 15px;
-        }
-
-        .content ul, .content ol {
-            margin-left: 25px;
+        .hub-card p {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        .content li {
-            margin-bottom: 10px;
-        }
-
-        .copy-btn {
-            background: #10b981;
-            padding: 8px 15px;
-            font-size: 0.85em;
-            margin-left: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .copy-btn:hover {
-            background: #059669;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #10b981;
-            color: white;
-            padding: 15px 20px;
+        .hub-card .btn {
+            padding: 10px 18px;
+            font-size: 0.875rem;
             border-radius: 6px;
-            display: none;
-            z-index: 1000;
         }
 
-        .toast.show {
-            display: block;
-            animation: slideIn 0.3s ease-out;
+        /* Sections */
+        .dist-section {
+            margin-bottom: 56px;
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-            }
-            to {
-                transform: translateX(0);
-            }
+        .dist-section h2 {
+            font-family: 'Newsreader', serif;
+            font-size: 1.75rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 28px;
+        }
+
+        .dist-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 0.9375rem;
+        }
+
+        .dist-content h3 {
+            font-size: 1.0625rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+
+        .dist-content h3:first-child {
+            margin-top: 0;
+        }
+
+        .dist-content p {
+            margin-bottom: 12px;
+        }
+
+        .dist-content ul,
+        .dist-content ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .dist-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-block {
+            background: rgba(34, 197, 94, 0.06);
+            border-left: 3px solid var(--accent);
+            padding: 20px 24px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .highlight-block p {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .highlight-block p:last-child {
+            margin-bottom: 0;
         }
 
         code {
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
             padding: 2px 6px;
-            border-radius: 3px;
+            border-radius: 4px;
             font-family: 'Courier New', monospace;
-            font-size: 0.9em;
+            font-size: 0.875em;
+            color: var(--accent);
         }
 
-        .highlight {
-            background: rgba(59, 130, 246, 0.1);
-            border-left: 4px solid #3b82f6;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
+        .page-footer-note {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 88px 16px 60px;
+            }
+
+            .dist-section {
+                padding: 28px 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📚 Distribution Hub</h1>
-            <p class="subtitle">Being Genuinely Useful in an AI World</p>
-            <p class="subtitle">All templates, courses, threads, and strategies in one place</p>
+    <nav class="nav">
+        <div class="nav-inner" style="position:relative">
+            <a href="/" class="nav-logo">Being Genuinely Useful</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/#deutsch">Framework</a></li>
+                <li><a href="/#systems">Systems</a></li>
+                <li><a href="/cards">Cards</a></li>
+                <li><a href="/distribution" class="active">Distribution</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation" aria-expanded="false">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <a href="/" class="nav-cta">Read the Book</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <header class="page-header">
+            <h1>Distribution Hub</h1>
+            <p class="page-subtitle">All templates, courses, threads, and strategies in one place</p>
         </header>
 
-        <div class="grid">
-            <div class="card">
-                <h2>📧 Email Course</h2>
-                <p class="card-meta">7 days, copy-paste ready</p>
+        <div class="hub-grid">
+            <div class="hub-card">
+                <h2>Email Course</h2>
+                <p class="hub-card-meta">7 days · copy-paste ready</p>
                 <p>Complete 7-day email course. Free version builds your list. Paid version monetizes.</p>
-                <button class="btn" onclick="scrollTo('email-course')">View Course</button>
+                <button class="btn btn-primary" onclick="scrollToSection('email-course')">View Course</button>
             </div>
 
-            <div class="card">
-                <h2>𝕏 Twitter Threads</h2>
-                <p class="card-meta">52 weeks of content</p>
-                <p>One complete thread per week for a year. Post 3x/week. Copy-paste ready.</p>
-                <button class="btn" onclick="scrollTo('twitter')">View Threads</button>
+            <div class="hub-card">
+                <h2>Twitter / X Threads</h2>
+                <p class="hub-card-meta">52 weeks of content</p>
+                <p>One complete thread per week for a year. Post 3×/week. Copy-paste ready.</p>
+                <button class="btn btn-primary" onclick="scrollToSection('twitter')">View Threads</button>
             </div>
 
-            <div class="card">
-                <h2>💰 Monetization</h2>
-                <p class="card-meta">8 revenue streams</p>
+            <div class="hub-card">
+                <h2>Monetization</h2>
+                <p class="hub-card-meta">8 revenue streams</p>
                 <p>Complete strategy: pricing, product creation, timeline, revenue projections.</p>
-                <button class="btn" onclick="scrollTo('monetization')">View Strategy</button>
+                <button class="btn btn-primary" onclick="scrollToSection('monetization')">View Strategy</button>
             </div>
 
-            <div class="card">
-                <h2>📋 30-Day Plan</h2>
-                <p class="card-meta">Action checklist</p>
+            <div class="hub-card">
+                <h2>30-Day Plan</h2>
+                <p class="hub-card-meta">Action checklist</p>
                 <p>Daily/weekly tasks. What to do each day. Expected results and metrics.</p>
-                <button class="btn" onclick="scrollTo('30day')">View Plan</button>
+                <button class="btn btn-primary" onclick="scrollToSection('30day')">View Plan</button>
             </div>
 
-            <div class="card">
-                <h2>📝 Medium</h2>
-                <p class="card-meta">Serialization</p>
+            <div class="hub-card">
+                <h2>Medium</h2>
+                <p class="hub-card-meta">Serialization</p>
                 <p>Publish one chapter per week on Medium. SEO + audience building.</p>
-                <button class="btn" onclick="scrollTo('medium')">View Strategy</button>
+                <button class="btn btn-primary" onclick="scrollToSection('medium')">View Strategy</button>
             </div>
 
-            <div class="card">
-                <h2>🎙️ Podcast</h2>
-                <p class="card-meta">Episode outlines</p>
+            <div class="hub-card">
+                <h2>Podcast</h2>
+                <p class="hub-card-meta">Episode outlines</p>
                 <p>8-10 episode outline. Discuss each chapter with guests. Build authority.</p>
-                <button class="btn" onclick="scrollTo('podcast')">View Outline</button>
+                <button class="btn btn-primary" onclick="scrollToSection('podcast')">View Outline</button>
             </div>
         </div>
 
         <!-- EMAIL COURSE -->
-        <div id="email-course" class="section">
+        <div id="email-course" class="dist-section">
             <h2>📧 Email Course: 7-Day Free Series</h2>
-            <div class="content">
+            <div class="dist-content">
                 <p><strong>Free version builds your list from 0 → 500+ subscribers.</strong></p>
                 <p>Send one email per day. Then offer paid version for those who want more.</p>
 
                 <h3>Day 1: The Usefulness Crisis</h3>
                 <p><strong>Subject:</strong> Why most AI assistants are useless (hint: it's not intelligence)</p>
-                <div class="highlight">
+                <div class="highlight-block">
                     <p>Hi [NAME],</p>
                     <p>You're drowning in helpful tools. Chatbots that respond to everything. AI that generates a thousand options. Apps that customize to your every preference.</p>
                     <p>Yet you're less productive than ever.</p>
@@ -272,7 +274,7 @@
                     <p><strong>CTA:</strong> Reply with your biggest question about usefulness.</p>
                 </div>
                 
-                <p style="margin-top: 30px;"><strong>Days 2-7:</strong> See full course in <code>/distribution/email-course.md</code></p>
+                <p style="margin-top: 30px;"><strong>Days 2-7:</strong> Follow the same format — one core idea per day, a personal story, one takeaway, and a soft CTA to the next email.</p>
                 <p><strong>Expected:</strong> 100-500 subscribers week 1, 2-10 sales of paid version</p>
 
                 <h3>How to Use</h3>
@@ -296,13 +298,13 @@
         </div>
 
         <!-- TWITTER THREADS -->
-        <div id="twitter" class="section">
+        <div id="twitter" class="dist-section">
             <h2>𝕏 Twitter: 52 Weeks of Threads</h2>
-            <div class="content">
+            <div class="dist-content">
                 <p><strong>One complete thread per week. Post 3x/week. 52 weeks = 1 year of content.</strong></p>
 
                 <h3>WEEK 1: The Usefulness Crisis</h3>
-                <div class="highlight">
+                <div class="highlight-block">
                     <p>1/ Most AI assistants are useless. Not because they're dumb. Because they optimize for engagement, not outcomes.</p>
                     <p>A chatbot that responds to everything isn't helpful. It's noise.</p>
                     <p>An AI that gives 5 options isn't thinking. It's decision paralysis.</p>
@@ -314,7 +316,7 @@
                     <p><br/>[Continues with 3-5 more tweets...]</p>
                 </div>
 
-                <p style="margin-top: 30px;"><strong>Weeks 2-52:</strong> See all threads in <code>/distribution/twitter-threads.md</code></p>
+                <p style="margin-top: 30px;"><strong>Weeks 2-52:</strong> Rotate through the 10 book chapters, each chapter generating 4-5 threads. Mix insights, case studies, and exercises.</p>
 
                 <h3>How to Use</h3>
                 <ol>
@@ -336,9 +338,9 @@
         </div>
 
         <!-- MONETIZATION -->
-        <div id="monetization" class="section">
+        <div id="monetization" class="dist-section">
             <h2>💰 Monetization: 8 Revenue Streams</h2>
-            <div class="content">
+            <div class="dist-content">
                 <h3>Revenue Streams (in priority order)</h3>
                 
                 <h3>1. Email Course ($29)</h3>
@@ -419,9 +421,9 @@
         </div>
 
         <!-- 30-DAY PLAN -->
-        <div id="30day" class="section">
+        <div id="30day" class="dist-section">
             <h2>📋 30-Day Action Plan</h2>
-            <div class="content">
+            <div class="dist-content">
                 <h3>Week 1: Launch (6 hours total)</h3>
                 <ul>
                     <li>☐ Substack newsletter (30 min) → Email course</li>
@@ -468,9 +470,9 @@
         </div>
 
         <!-- MEDIUM SERIALIZATION -->
-        <div id="medium" class="section">
+        <div id="medium" class="dist-section">
             <h2>📝 Medium: Serialize Your Book</h2>
-            <div class="content">
+            <div class="dist-content">
                 <h3>Strategy: 1 Chapter Per Week</h3>
                 <ul>
                     <li>11 chapters = 11 weeks of content</li>
@@ -507,9 +509,9 @@
         </div>
 
         <!-- PODCAST -->
-        <div id="podcast" class="section">
+        <div id="podcast" class="dist-section">
             <h2>🎙️ Podcast: 8-Episode Series</h2>
-            <div class="content">
+            <div class="dist-content">
                 <h3>Format: 30-45 min discussions</h3>
                 <p>Discuss each chapter with a guest expert or solo commentary.</p>
 
@@ -544,9 +546,9 @@
         </div>
 
         <!-- HOW TO INCREASE PASSIVE INCOME -->
-        <div id="passive" class="section">
+        <div id="passive" class="dist-section">
             <h2>🚀 How to Increase Passive Income (Beyond Month 1)</h2>
-            <div class="content">
+            <div class="dist-content">
                 <h3>Increase Income Without Increasing Time</h3>
 
                 <h3>1. Raise Prices (10-30% more revenue instantly)</h3>
@@ -619,7 +621,7 @@
                 </ul>
 
                 <h3>Month-by-Month Scaling Plan</h3>
-                <div class="highlight">
+                <div class="highlight-block">
                     <p><strong>Month 1:</strong> Launch basic products → $900-2,700</p>
                     <p><strong>Month 2:</strong> Add video course → $1,500-3,500</p>
                     <p><strong>Month 3:</strong> Raise prices + add group coaching → $3,000-6,000</p>
@@ -649,26 +651,59 @@
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #475569;">
-            <p style="color: #94a3b8; margin-bottom: 20px;">All files available in workspace. Copy-paste ready.</p>
-            <p style="color: #64748b;">The money follows usefulness. Start with the free book. Build your audience. Then monetize.</p>
-        </div>
+        <p class="page-footer-note">The money follows usefulness. Start with the free book. Build your audience. Then monetize.</p>
     </div>
 
-    <div class="toast" id="toast"></div>
+    <footer>
+        <p>&copy; 2026 Panos Kokmotos &amp; Sophos</p>
+        <p>Read, learn, build something useful.</p>
+    </footer>
+
+    <div class="toast" id="toast">
+        <span class="toast-icon">
+            <svg fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        </span>
+        <span id="toastMessage">Copied!</span>
+    </div>
 
     <script>
-        function scrollTo(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        // Mobile navigation
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinksEl    = document.getElementById('navLinks');
+        if (mobileMenuBtn && navLinksEl) {
+            mobileMenuBtn.addEventListener('click', () => {
+                const isOpen = navLinksEl.classList.toggle('mobile-open');
+                mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+                mobileMenuBtn.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+            });
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
 
         function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('toast');
-                toast.textContent = '✓ Copied!';
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2000);
-            });
+            navigator.clipboard.writeText(text)
+                .then(() => showToast('Copied!'))
+                .catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    showToast('Copied!');
+                });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
         }
     </script>
 </body>
