@@ -2539,6 +2539,12 @@
             btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Generating...';
             
             try {
+                if (!window.jspdf) {
+                    showToast('PDF library failed to load. Try refreshing the page.');
+                    btn.classList.remove('loading');
+                    btn.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Download PDF';
+                    return;
+                }
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF({ unit: 'pt', format: 'letter' });
                 
@@ -2574,7 +2580,7 @@
                 y += 100;
                 doc.setFontSize(10);
                 doc.setTextColor(100);
-                doc.text('openclaw.ai/book', pageWidth / 2, y, { align: 'center' });
+                doc.text('being-genuinely-useful.vercel.app', pageWidth / 2, y, { align: 'center' });
                 
                 // Content pages
                 const chapters = document.querySelectorAll('.chapter');
@@ -2652,10 +2658,10 @@
         let utterance = null;
         let isPlaying = false;
         let currentChapterIndex = 0;
-        let chapters = [];
+        let audiobookChapters = [];
 
         function initAudiobook() {
-            chapters = Array.from(document.querySelectorAll('.chapter')).map(ch => ({
+            audiobookChapters = Array.from(document.querySelectorAll('.chapter')).map(ch => ({
                 title: ch.querySelector('h2')?.textContent || 'Introduction',
                 text: ch.innerText
             }));
@@ -2673,14 +2679,14 @@
         }
 
         function playChapter(index) {
-            if (index < 0 || index >= chapters.length) return;
-            
+            if (index < 0 || index >= audiobookChapters.length) return;
+
             synth.cancel();
             currentChapterIndex = index;
-            
-            document.getElementById('currentChapter').textContent = chapters[index].title;
-            
-            utterance = new SpeechSynthesisUtterance(chapters[index].text);
+
+            document.getElementById('currentChapter').textContent = audiobookChapters[index].title;
+
+            utterance = new SpeechSynthesisUtterance(audiobookChapters[index].text);
             utterance.rate = 0.95;
             utterance.pitch = 1;
             
@@ -2690,16 +2696,16 @@
             if (preferredVoice) utterance.voice = preferredVoice;
             
             utterance.onend = () => {
-                if (currentChapterIndex < chapters.length - 1) {
+                if (currentChapterIndex < audiobookChapters.length - 1) {
                     playChapter(currentChapterIndex + 1);
                 } else {
                     isPlaying = false;
                     updatePlayPauseBtn();
                 }
             };
-            
+
             utterance.onboundary = (event) => {
-                const progress = (event.charIndex / chapters[currentChapterIndex].text.length) * 100;
+                const progress = (event.charIndex / audiobookChapters[currentChapterIndex].text.length) * 100;
                 document.getElementById('audioProgressBar').style.width = progress + '%';
             };
             
@@ -2752,6 +2758,8 @@
         function copyLink() {
             navigator.clipboard.writeText(window.location.href).then(() => {
                 showToast('Link copied to clipboard!');
+            }).catch(() => {
+                showToast('Copy failed — please copy the URL manually.');
             });
         }
 

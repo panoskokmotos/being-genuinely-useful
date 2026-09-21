@@ -199,6 +199,11 @@
     </style>
 </head>
 <body>
+    <div style="padding: 16px 40px; border-bottom: 1px solid #334155; background: rgba(15,23,42,0.9); position: sticky; top: 0; z-index: 100;">
+        <a href="/" style="color: #10b981; text-decoration: none; font-weight: 600; font-size: 0.9rem;">← Back to Book</a>
+        <a href="/cards" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; margin-left: 24px;">Share Cards</a>
+        <a href="/scaling" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; margin-left: 24px;">Scaling Guide</a>
+    </div>
     <div class="container">
         <header>
             <h1>📚 Distribution Hub</h1>
@@ -211,42 +216,42 @@
                 <h2>📧 Email Course</h2>
                 <p class="card-meta">7 days, copy-paste ready</p>
                 <p>Complete 7-day email course. Free version builds your list. Paid version monetizes.</p>
-                <button class="btn" onclick="scrollTo('email-course')">View Course</button>
+                <button class="btn" onclick="scrollToSection('email-course')">View Course</button>
             </div>
 
             <div class="card">
                 <h2>𝕏 Twitter Threads</h2>
                 <p class="card-meta">52 weeks of content</p>
                 <p>One complete thread per week for a year. Post 3x/week. Copy-paste ready.</p>
-                <button class="btn" onclick="scrollTo('twitter')">View Threads</button>
+                <button class="btn" onclick="scrollToSection('twitter')">View Threads</button>
             </div>
 
             <div class="card">
                 <h2>💰 Monetization</h2>
                 <p class="card-meta">8 revenue streams</p>
                 <p>Complete strategy: pricing, product creation, timeline, revenue projections.</p>
-                <button class="btn" onclick="scrollTo('monetization')">View Strategy</button>
+                <button class="btn" onclick="scrollToSection('monetization')">View Strategy</button>
             </div>
 
             <div class="card">
                 <h2>📋 30-Day Plan</h2>
                 <p class="card-meta">Action checklist</p>
                 <p>Daily/weekly tasks. What to do each day. Expected results and metrics.</p>
-                <button class="btn" onclick="scrollTo('30day')">View Plan</button>
+                <button class="btn" onclick="scrollToSection('30day')">View Plan</button>
             </div>
 
             <div class="card">
                 <h2>📝 Medium</h2>
                 <p class="card-meta">Serialization</p>
                 <p>Publish one chapter per week on Medium. SEO + audience building.</p>
-                <button class="btn" onclick="scrollTo('medium')">View Strategy</button>
+                <button class="btn" onclick="scrollToSection('medium')">View Strategy</button>
             </div>
 
             <div class="card">
                 <h2>🎙️ Podcast</h2>
                 <p class="card-meta">Episode outlines</p>
                 <p>8-10 episode outline. Discuss each chapter with guests. Build authority.</p>
-                <button class="btn" onclick="scrollTo('podcast')">View Outline</button>
+                <button class="btn" onclick="scrollToSection('podcast')">View Outline</button>
             </div>
         </div>
 
@@ -658,16 +663,20 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        function scrollTo(id) {
+        function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
         function copyToClipboard(text) {
+            const toast = document.getElementById('toast');
             navigator.clipboard.writeText(text).then(() => {
-                const toast = document.getElementById('toast');
                 toast.textContent = '✓ Copied!';
                 toast.classList.add('show');
                 setTimeout(() => toast.classList.remove('show'), 2000);
+            }).catch(() => {
+                toast.textContent = '✗ Copy failed — select text manually';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2500);
             });
         }
     </script>
